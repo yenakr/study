@@ -626,82 +626,145 @@ export default function App() {
                   }
 
                   if (section.title === '정리하기') {
-                    const cleanLines = section.content.split('\n').map(l => l.trim()).filter(Boolean);
-                    const totalItems = cleanLines.length;
-                    const completedCount = cleanLines.filter(line => checkedItems.includes(line)).length;
-                    const progressPercent = totalItems > 0 ? Math.round((completedCount / totalItems) * 100) : 0;
+                    const lines = section.content.split('\n').map(l => l.trim()).filter(Boolean);
+                    
+                    // Filter lines into headers and checkable items
+                    const structuredItems = lines.map(line => {
+                      const isHeading = line.startsWith('### ');
+                      const isParentHeading = !isHeading && /^([0-9]+)\.?\s+(.*)$/.test(line) && !/^([0-9]+\.[0-9]+)/.test(line);
+                      const isChildHeading = !isHeading && /^([0-9]+\.[0-9]+|[0-9]+\.[0-9]+\.[0-9]+)\s*(.*)$/.test(line);
+                      
+                      return {
+                        raw: line,
+                        isHeader: isHeading || isParentHeading || isChildHeading,
+                        isParent: isHeading || isParentHeading,
+                        cleanText: line.replace(/^###\s+/, '').replace(/^[§Ÿ❍•\-\*]\s*/, '')
+                      };
+                    });
+
+                    const checkableItems = structuredItems.filter(item => !item.isHeader);
+                    const totalItemsCount = checkableItems.length;
+                    const completedCount = checkableItems.filter(item => checkedItems.includes(item.raw)).length;
+                    const progressPercent = totalItemsCount > 0 ? Math.round((completedCount / totalItemsCount) * 100) : 0;
 
                     return (
                       <div 
                         key={sIdx}
                         style={{
-                          backgroundColor: '#e6fffa',
-                          borderLeft: '5px solid #10b981',
-                          borderRadius: '0 12px 12px 0',
-                          padding: '28px',
-                          boxShadow: '0 4px 6px -1px rgba(16, 185, 129, 0.05)',
+                          backgroundColor: '#f8fafc',
+                          border: '1px solid #e2e8f0',
+                          borderRadius: '16px',
+                          padding: '32px',
+                          boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)',
                           display: 'flex',
                           flexDirection: 'column',
-                          gap: '20px',
-                          border: '1px solid #a7f3d0',
-                          borderLeftWidth: '5px'
+                          gap: '24px'
                         }}
                       >
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
-                          <h2 style={{ fontSize: '18px', fontWeight: '800', color: '#0f766e', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                            <CheckCircle size={20} />
-                            핵심 정리 &amp; 자가 체크리스트
-                          </h2>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                            <div style={{ width: '120px', height: '8px', backgroundColor: '#d1fae5', borderRadius: '4px', overflow: 'hidden' }}>
+                        {/* Progress Header Box */}
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', borderBottom: '2px solid #e2e8f0', paddingBottom: '16px' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <CheckCircle size={22} style={{ color: '#10b981' }} />
+                            <h2 style={{ fontSize: '20px', fontWeight: '800', color: '#0E4A84', margin: 0 }}>
+                              단원별 핵심 정리 &amp; 학습 확인
+                            </h2>
+                          </div>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                            <div style={{ width: '120px', height: '8px', backgroundColor: '#e2e8f0', borderRadius: '4px', overflow: 'hidden' }}>
                               <div style={{ width: `${progressPercent}%`, height: '100%', backgroundColor: '#10b981', transition: 'width 0.3s' }} />
                             </div>
-                            <span style={{ fontSize: '13px', fontWeight: 'bold', color: '#0f766e' }}>
-                              {progressPercent}% 완료 ({completedCount}/{totalItems})
+                            <span style={{ fontSize: '14px', fontWeight: 'bold', color: '#10b981' }}>
+                              {progressPercent}% 완료 ({completedCount}/{totalItemsCount})
                             </span>
                           </div>
                         </div>
 
-                        <p style={{ fontSize: '14px', color: '#047857', fontWeight: 'bold', margin: 0 }}>
-                          💡 정리된 문장을 하나씩 클릭하며 확실하게 암기했는지 확인해 보세요!
+                        <p style={{ fontSize: '14px', color: '#475569', fontWeight: 'bold', margin: 0 }}>
+                          💡 학습 단원의 핵심 정리 내용입니다. 다 읽고 숙지한 문장의 체크박스를 클릭하여 학습을 완료하세요.
                         </p>
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                          {cleanLines.map((line, idx) => {
-                            const isChecked = checkedItems.includes(line);
+                        {/* Structured list container */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                          {structuredItems.map((item, idx) => {
+                            if (item.isHeader) {
+                              if (item.isParent) {
+                                return (
+                                  <h3 
+                                    key={idx} 
+                                    style={{ 
+                                      fontSize: '18px', 
+                                      fontWeight: '800', 
+                                      color: '#0E4A84', 
+                                      marginTop: '28px', 
+                                      marginBottom: '10px', 
+                                      borderBottom: '2px solid #0E4A84', 
+                                      paddingBottom: '8px',
+                                      width: '100%' 
+                                    }}
+                                  >
+                                    {item.cleanText}
+                                  </h3>
+                                );
+                              } else {
+                                return (
+                                  <h4 
+                                    key={idx} 
+                                    style={{ 
+                                      fontSize: '15px', 
+                                      fontWeight: 'bold', 
+                                      color: '#475569', 
+                                      marginTop: '16px', 
+                                      marginBottom: '8px', 
+                                      padding: '6px 12px',
+                                      backgroundColor: '#f1f5f9',
+                                      borderRadius: '6px',
+                                      display: 'inline-block',
+                                      width: 'fit-content'
+                                    }}
+                                  >
+                                    {item.cleanText}
+                                  </h4>
+                                );
+                              }
+                            }
+
+                            // Render Checkable Items
+                            const isChecked = checkedItems.includes(item.raw);
                             return (
                               <button
                                 key={idx}
                                 onClick={() => {
                                   if (isChecked) {
-                                    setCheckedItems(checkedItems.filter(item => item !== line));
+                                    setCheckedItems(checkedItems.filter(ci => ci !== item.raw));
                                   } else {
-                                    setCheckedItems([...checkedItems, line]);
+                                    setCheckedItems([...checkedItems, item.raw]);
                                   }
                                 }}
                                 style={{
                                   display: 'flex',
                                   alignItems: 'flex-start',
-                                  gap: '12px',
+                                  gap: '14px',
                                   padding: '16px 20px',
                                   borderRadius: '12px',
                                   border: '1px solid',
-                                  borderColor: isChecked ? '#10b981' : '#cbd5e1',
+                                  borderColor: isChecked ? '#10b981' : '#e2e8f0',
+                                  borderLeft: `5px solid ${isChecked ? '#10b981' : '#cbd5e1'}`,
                                   backgroundColor: isChecked ? '#f0fdf4' : '#ffffff',
                                   color: '#334155',
                                   textAlign: 'left',
                                   cursor: 'pointer',
-                                  transition: 'all 0.2s',
-                                  boxShadow: isChecked ? 'none' : '0 1px 2px rgba(0,0,0,0.02)',
+                                  transition: 'all 0.15s',
+                                  boxShadow: '0 1px 2px rgba(0,0,0,0.02)',
                                   width: '100%'
                                 }}
                               >
+                                {/* Custom Checkbox */}
                                 <div style={{
                                   width: '20px',
                                   height: '20px',
                                   borderRadius: '6px',
                                   border: '2px solid',
-                                  borderColor: isChecked ? '#10b981' : '#94a3b8',
+                                  borderColor: isChecked ? '#10b981' : '#cbd5e1',
                                   backgroundColor: isChecked ? '#10b981' : '#ffffff',
                                   display: 'flex',
                                   alignItems: 'center',
@@ -713,8 +776,14 @@ export default function App() {
                                 }}>
                                   {isChecked && <Check size={12} strokeWidth={3} />}
                                 </div>
-                                <div style={{ fontSize: '15px', fontWeight: '600', lineHeight: '1.65', textDecoration: isChecked ? 'line-through' : 'none', color: isChecked ? '#94a3b8' : '#334155' }}>
-                                  {line.replace(/^[§Ÿ❍•\-\*]\s*/, '')}
+                                <div style={{ 
+                                  fontSize: '15px', 
+                                  fontWeight: '600', 
+                                  lineHeight: '1.65', 
+                                  color: isChecked ? '#64748b' : '#334155',
+                                  transition: 'color 0.15s'
+                                }}>
+                                  {item.cleanText}
                                 </div>
                               </button>
                             );
