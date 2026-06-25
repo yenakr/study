@@ -19,6 +19,7 @@ export default function App() {
   const [selectedPartIdx, setSelectedPartIdx] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [checkedItems, setCheckedItems] = useState<string[]>([]);
 
   // Search logic
   const searchResults = useMemo(() => {
@@ -65,6 +66,7 @@ export default function App() {
     setSelectedPartIdx(partIdx);
     setSearchQuery('');
     setMobileMenuOpen(false);
+    setCheckedItems([]);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -73,6 +75,7 @@ export default function App() {
 
   const handlePrevPart = () => {
     if (selectedFileIdx === null || selectedPartIdx === null) return;
+    setCheckedItems([]);
     if (selectedPartIdx > 0) {
       setSelectedPartIdx(selectedPartIdx - 1);
     } else if (selectedFileIdx > 0) {
@@ -85,6 +88,7 @@ export default function App() {
 
   const handleNextPart = () => {
     if (selectedFileIdx === null || selectedPartIdx === null) return;
+    setCheckedItems([]);
     const filePartsCount = careEducationData[selectedFileIdx].parts.length;
     if (selectedPartIdx < filePartsCount - 1) {
       setSelectedPartIdx(selectedPartIdx + 1);
@@ -163,14 +167,30 @@ export default function App() {
       );
     }
 
-    // Paragraph Titles like 1. 1.1 1.2
-    const sectionHeadingMatch = trimmed.match(/^([0-9]+\.[0-9]+|[0-9]+\s|[0-9]+\.[0-9]+\.[0-9]+)\s*(.*)$/);
-    if (sectionHeadingMatch) {
-      const num = sectionHeadingMatch[1];
-      const titleText = sectionHeadingMatch[2];
+    // Paragraph Titles like 2. or 3. (Parent level heading)
+    const parentHeadingMatch = trimmed.match(/^([0-9]+)\.?\s+(.*)$/);
+    if (parentHeadingMatch) {
+      const num = parentHeadingMatch[1];
+      const titleText = parentHeadingMatch[2];
+      // Exclude simple subheadings like 2.1
+      if (!num.includes('.')) {
+        return (
+          <h3 key={index} style={{ fontSize: '20px', fontWeight: '800', color: '#0E4A84', marginTop: '28px', marginBottom: '14px', borderBottom: '2px solid #0E4A84', paddingBottom: '6px' }}>
+            <span style={{ marginRight: '8px', color: '#64748b' }}>{num}.</span>
+            {titleText}
+          </h3>
+        );
+      }
+    }
+
+    // Subparagraph Titles like 2.1 or 2.1.1 (Child level heading)
+    const childHeadingMatch = trimmed.match(/^([0-9]+\.[0-9]+|[0-9]+\.[0-9]+\.[0-9]+)\s*(.*)$/);
+    if (childHeadingMatch) {
+      const num = childHeadingMatch[1];
+      const titleText = childHeadingMatch[2];
       return (
-        <h4 key={index} style={{ fontSize: '18px', fontWeight: '800', color: '#0E4A84', marginTop: '24px', marginBottom: '12px', borderBottom: '1px solid #e2e8f0', paddingBottom: '6px' }}>
-          <span style={{ marginRight: '8px', color: '#64748b' }}>{num}</span>
+        <h4 key={index} style={{ fontSize: '17px', fontWeight: 'bold', color: '#475569', marginTop: '20px', marginBottom: '10px', paddingLeft: '4px', borderLeft: '3px solid #64748b', paddingBottom: '2px' }}>
+          <span style={{ marginRight: '6px', color: '#94a3b8' }}>{num}</span>
           {titleText}
         </h4>
       );
@@ -606,6 +626,11 @@ export default function App() {
                   }
 
                   if (section.title === '정리하기') {
+                    const cleanLines = section.content.split('\n').map(l => l.trim()).filter(Boolean);
+                    const totalItems = cleanLines.length;
+                    const completedCount = cleanLines.filter(line => checkedItems.includes(line)).length;
+                    const progressPercent = totalItems > 0 ? Math.round((completedCount / totalItems) * 100) : 0;
+
                     return (
                       <div 
                         key={sIdx}
@@ -614,18 +639,86 @@ export default function App() {
                           borderLeft: '5px solid #10b981',
                           borderRadius: '0 12px 12px 0',
                           padding: '28px',
-                          boxShadow: '0 2px 4px rgba(0,0,0,0.02)',
+                          boxShadow: '0 4px 6px -1px rgba(16, 185, 129, 0.05)',
                           display: 'flex',
                           flexDirection: 'column',
-                          gap: '16px'
+                          gap: '20px',
+                          border: '1px solid #a7f3d0',
+                          borderLeftWidth: '5px'
                         }}
                       >
-                        <h2 style={{ fontSize: '18px', fontWeight: '800', color: '#0f766e', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                          <CheckCircle size={20} />
-                          핵심 정리
-                        </h2>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                          {section.content.split('\n').map((line, idx) => renderFormattedLine(line, idx))}
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+                          <h2 style={{ fontSize: '18px', fontWeight: '800', color: '#0f766e', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <CheckCircle size={20} />
+                            핵심 정리 &amp; 자가 체크리스트
+                          </h2>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <div style={{ width: '120px', height: '8px', backgroundColor: '#d1fae5', borderRadius: '4px', overflow: 'hidden' }}>
+                              <div style={{ width: `${progressPercent}%`, height: '100%', backgroundColor: '#10b981', transition: 'width 0.3s' }} />
+                            </div>
+                            <span style={{ fontSize: '13px', fontWeight: 'bold', color: '#0f766e' }}>
+                              {progressPercent}% 완료 ({completedCount}/{totalItems})
+                            </span>
+                          </div>
+                        </div>
+
+                        <p style={{ fontSize: '14px', color: '#047857', fontWeight: 'bold', margin: 0 }}>
+                          💡 정리된 문장을 하나씩 클릭하며 확실하게 암기했는지 확인해 보세요!
+                        </p>
+
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                          {cleanLines.map((line, idx) => {
+                            const isChecked = checkedItems.includes(line);
+                            return (
+                              <button
+                                key={idx}
+                                onClick={() => {
+                                  if (isChecked) {
+                                    setCheckedItems(checkedItems.filter(item => item !== line));
+                                  } else {
+                                    setCheckedItems([...checkedItems, line]);
+                                  }
+                                }}
+                                style={{
+                                  display: 'flex',
+                                  alignItems: 'flex-start',
+                                  gap: '12px',
+                                  padding: '16px 20px',
+                                  borderRadius: '12px',
+                                  border: '1px solid',
+                                  borderColor: isChecked ? '#10b981' : '#cbd5e1',
+                                  backgroundColor: isChecked ? '#f0fdf4' : '#ffffff',
+                                  color: '#334155',
+                                  textAlign: 'left',
+                                  cursor: 'pointer',
+                                  transition: 'all 0.2s',
+                                  boxShadow: isChecked ? 'none' : '0 1px 2px rgba(0,0,0,0.02)',
+                                  width: '100%'
+                                }}
+                              >
+                                <div style={{
+                                  width: '20px',
+                                  height: '20px',
+                                  borderRadius: '6px',
+                                  border: '2px solid',
+                                  borderColor: isChecked ? '#10b981' : '#94a3b8',
+                                  backgroundColor: isChecked ? '#10b981' : '#ffffff',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  color: '#ffffff',
+                                  flexShrink: 0,
+                                  marginTop: '2px',
+                                  transition: 'all 0.15s'
+                                }}>
+                                  {isChecked && <Check size={12} strokeWidth={3} />}
+                                </div>
+                                <div style={{ fontSize: '15px', fontWeight: '600', lineHeight: '1.65', textDecoration: isChecked ? 'line-through' : 'none', color: isChecked ? '#94a3b8' : '#334155' }}>
+                                  {line.replace(/^[§Ÿ❍•\-\*]\s*/, '')}
+                                </div>
+                              </button>
+                            );
+                          })}
                         </div>
                       </div>
                     );
