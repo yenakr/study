@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "parse": "node scripts/parse-md.js",
+    "export-md": "node scripts/json-to-md.js"
   },
   "dependencies": {
     "lucide-react": "^1.21.0",
