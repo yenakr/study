@@ -628,21 +628,32 @@ export default function App() {
                   if (section.title === '정리하기') {
                     const lines = section.content.split('\n').map(l => l.trim()).filter(Boolean);
                     
-                    // Filter lines into headers and checkable items
+                    // Filter lines into headers, labels, and checkable items
                     const structuredItems = lines.map(line => {
                       const isHeading = line.startsWith('### ');
                       const isParentHeading = !isHeading && /^([0-9]+)\.?\s+(.*)$/.test(line) && !/^([0-9]+\.[0-9]+)/.test(line);
                       const isChildHeading = !isHeading && /^([0-9]+\.[0-9]+|[0-9]+\.[0-9]+\.[0-9]+)\s*(.*)$/.test(line);
                       
+                      // Check for short bold-only label lines (e.g. **힘**, **반복**, **자세**)
+                      const isBoldLabel = line.startsWith('**') && line.endsWith('**') && line.replace(/\*\*/g, '').length < 15;
+                      
+                      const isHeader = isHeading || isParentHeading || isChildHeading;
+                      const cleanText = line
+                        .replace(/^###\s+/, '')
+                        .replace(/\*\*/g, '')
+                        .replace(/^[§Ÿ❍•\-\*]\s*/, '')
+                        .trim();
+                      
                       return {
                         raw: line,
-                        isHeader: isHeading || isParentHeading || isChildHeading,
+                        isHeader: isHeader,
                         isParent: isHeading || isParentHeading,
-                        cleanText: line.replace(/^###\s+/, '').replace(/^[§Ÿ❍•\-\*]\s*/, '')
+                        isBoldLabel: isBoldLabel,
+                        cleanText: cleanText
                       };
                     });
 
-                    const checkableItems = structuredItems.filter(item => !item.isHeader);
+                    const checkableItems = structuredItems.filter(item => !item.isHeader && !item.isBoldLabel);
                     const totalItemsCount = checkableItems.length;
                     const completedCount = checkableItems.filter(item => checkedItems.includes(item.raw)).length;
                     const progressPercent = totalItemsCount > 0 ? Math.round((completedCount / totalItemsCount) * 100) : 0;
@@ -726,6 +737,28 @@ export default function App() {
                                   </h4>
                                 );
                               }
+                            }
+
+                            // Render Bold Labels
+                            if (item.isBoldLabel) {
+                              return (
+                                <div 
+                                  key={idx} 
+                                  style={{
+                                    fontSize: '14px',
+                                    fontWeight: 'bold',
+                                    color: '#0E4A84',
+                                    borderLeft: '3px solid #0E4A84',
+                                    paddingLeft: '8px',
+                                    marginTop: '12px',
+                                    marginBottom: '4px',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.5px'
+                                  }}
+                                >
+                                  {item.cleanText}
+                                </div>
+                              );
                             }
 
                             // Render Checkable Items
