@@ -107,13 +107,34 @@ export default function App() {
     const trimmed = line.trim();
     if (!trimmed) return null;
 
+    // Headings like ### Heading
+    if (trimmed.startsWith('### ')) {
+      const headingText = trimmed.replace(/^###\s+/, '');
+      return (
+        <h3 key={index} style={{ fontSize: '20px', fontWeight: '800', color: '#0E4A84', marginTop: '28px', marginBottom: '14px', borderBottom: '2px solid #0E4A84', paddingBottom: '6px' }}>
+          {headingText}
+        </h3>
+      );
+    }
+
+    // Bold standalone phrases (often headers in original raw md)
+    const isBoldHeader = trimmed.startsWith('**') && trimmed.endsWith('**') && trimmed.length < 100;
+    if (isBoldHeader) {
+      const cleanBold = trimmed.replace(/\*\*/g, '');
+      return (
+        <h4 key={index} style={{ fontSize: '17px', fontWeight: 'bold', color: '#334155', marginTop: '20px', marginBottom: '10px' }}>
+          {cleanBold}
+        </h4>
+      );
+    }
+
     // Table Row detection (columns separated by multiple spaces or tabs or |)
     const isTableLine = trimmed.includes('|') || trimmed.split(/\s{2,}/).length > 2;
     if (isTableLine && trimmed.startsWith('§') === false && trimmed.startsWith('구분') === false && trimmed.startsWith('위험') === false) {
       const cols = trimmed.split(/\||\s{2,}/).map(c => c.trim()).filter(Boolean);
       if (cols.length >= 2) {
         return (
-          <div key={index} style={{ display: 'grid', gridTemplateColumns: '120px 1fr', borderBottom: '1px solid #f1f5f9', padding: '10px 0', gap: '16px' }}>
+          <div key={index} style={{ display: 'grid', gridTemplateColumns: '150px 1fr', borderBottom: '1px solid #f1f5f9', padding: '10px 0', gap: '16px' }}>
             <span style={{ fontWeight: 'bold', color: '#0E4A84', fontSize: '15px' }}>{cols[0]}</span>
             <span style={{ color: '#334155', fontSize: '15px', lineHeight: '1.65' }}>{cols.slice(1).join(' - ')}</span>
           </div>
@@ -148,10 +169,10 @@ export default function App() {
       const num = sectionHeadingMatch[1];
       const titleText = sectionHeadingMatch[2];
       return (
-        <h3 key={index} style={{ fontSize: '18px', fontWeight: '800', color: '#0E4A84', marginTop: '24px', marginBottom: '12px', borderBottom: '1px solid #e2e8f0', paddingBottom: '6px' }}>
+        <h4 key={index} style={{ fontSize: '18px', fontWeight: '800', color: '#0E4A84', marginTop: '24px', marginBottom: '12px', borderBottom: '1px solid #e2e8f0', paddingBottom: '6px' }}>
           <span style={{ marginRight: '8px', color: '#64748b' }}>{num}</span>
           {titleText}
-        </h3>
+        </h4>
       );
     }
 
