@@ -202,8 +202,6 @@ export default function App() {
       const figNum = imageMatch[1];
       const figTitle = imageMatch[2];
       
-      // Determine prefix based on the currently selected file index to create unique filenames
-      // e.g. /images/transfer_fig1.png, /images/toileting_fig2.png, etc.
       const filePrefixes = ['transfer', 'toileting', 'eating', 'position', 'comm'];
       const prefix = filePrefixes[selectedFileIdx ?? 0] || 'care';
       const imageSrc = `/images/${prefix}_fig${figNum}.png`;
@@ -213,9 +211,8 @@ export default function App() {
           <img 
             src={imageSrc} 
             alt={`[그림 ${figNum}] ${figTitle}`}
-            style={{ maxWidth: '100%', maxHeight: '300px', objectFit: 'contain', borderRadius: '8px', marginBottom: '8px' }}
+            style={{ maxWidth: '100%', maxHeight: '350px', objectFit: 'contain', borderRadius: '8px', marginBottom: '8px' }}
             onError={(e) => {
-              // Fallback placeholder with helpful guide text for users
               e.currentTarget.style.display = 'none';
               const parent = e.currentTarget.parentElement;
               if (parent) {
@@ -230,6 +227,42 @@ export default function App() {
           </div>
           <span style={{ fontSize: '14px', fontWeight: 'bold', color: '#0E4A84' }}>
             [그림 {figNum}] {figTitle}
+          </span>
+        </div>
+      );
+    }
+
+    // Table element marker pattern like > [표 X] Title
+    const tableMatch = trimmed.match(/^>\s*\[표\s*([0-9]+)\]\s*(.*)$/);
+    if (tableMatch) {
+      const tblNum = tableMatch[1];
+      const tblTitle = tableMatch[2];
+
+      const filePrefixes = ['transfer', 'toileting', 'eating', 'position', 'comm'];
+      const prefix = filePrefixes[selectedFileIdx ?? 0] || 'care';
+      const tableSrc = `/images/${prefix}_table${tblNum}.png`;
+
+      return (
+        <div key={index} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '24px 0', padding: '16px', border: '1px solid #e2e8f0', borderRadius: '12px', backgroundColor: '#f8fafc' }}>
+          <img 
+            src={tableSrc} 
+            alt={`[표 ${tblNum}] ${tblTitle}`}
+            style={{ maxWidth: '100%', maxHeight: '400px', objectFit: 'contain', borderRadius: '8px', marginBottom: '8px' }}
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+              const parent = e.currentTarget.parentElement;
+              if (parent) {
+                const helper = parent.querySelector('.tbl-helper');
+                if (helper) (helper as HTMLElement).style.display = 'block';
+              }
+            }}
+          />
+          <div className="tbl-helper" style={{ display: 'none', padding: '20px', border: '2px dashed #cbd5e1', borderRadius: '8px', backgroundColor: '#ffffff', color: '#64748b', fontSize: '13px', textAlign: 'center', marginBottom: '8px', width: '100%', maxWidth: '400px' }}>
+            📊 <strong>{prefix}_table{tblNum}.png</strong> 이미지를 등록해 주세요.<br/>
+            <span style={{ fontSize: '11px', color: '#94a3b8' }}>(public/images/ 폴더 안에 해당 파일명으로 이미지를 넣어주세요)</span>
+          </div>
+          <span style={{ fontSize: '14px', fontWeight: 'bold', color: '#0f766e' }}>
+            [표 {tblNum}] {tblTitle}
           </span>
         </div>
       );
