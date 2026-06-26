@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
-import { 
-  Search, ChevronRight, BookOpen, Compass, ChevronLeft, Heart, 
+import {
+  Search, ChevronRight, BookOpen, Compass, ChevronLeft, Heart,
   CheckCircle, ArrowRight, UserCheck, Flame, RotateCcw,
   Smile, Activity, ClipboardList, Info, Sparkles, Check, ChevronDown, List
 } from 'lucide-react';
@@ -151,7 +151,7 @@ export default function App() {
     if (listMatch) {
       const marker = listMatch[1];
       const rest = listMatch[2];
-      
+
       let markerStyle = {};
       if (marker === '§') {
         markerStyle = { backgroundColor: '#e0f2fe', color: '#0E4A84', padding: '2px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: 'bold', marginRight: '8px' };
@@ -201,15 +201,15 @@ export default function App() {
     if (imageMatch) {
       const figNum = imageMatch[1];
       const figTitle = imageMatch[2];
-      
+
       const filePrefixes = ['transfer', 'toileting', 'eating', 'position', 'comm'];
       const prefix = filePrefixes[selectedFileIdx ?? 0] || 'care';
       const imageSrc = `/images/${prefix}_fig${figNum}.png`;
 
       return (
         <div key={index} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '24px 0', padding: '16px', border: '1px solid #e2e8f0', borderRadius: '12px', backgroundColor: '#f8fafc' }}>
-          <img 
-            src={imageSrc} 
+          <img
+            src={imageSrc}
             alt={`[그림 ${figNum}] ${figTitle}`}
             style={{ maxWidth: '100%', maxHeight: '350px', objectFit: 'contain', borderRadius: '8px', marginBottom: '8px' }}
             onError={(e) => {
@@ -222,7 +222,7 @@ export default function App() {
             }}
           />
           <div className="img-helper" style={{ display: 'none', padding: '20px', border: '2px dashed #cbd5e1', borderRadius: '8px', backgroundColor: '#ffffff', color: '#64748b', fontSize: '13px', textAlign: 'center', marginBottom: '8px', width: '100%', maxWidth: '400px' }}>
-            🖼️ <strong>{prefix}_fig{figNum}.png</strong> 이미지를 등록해 주세요.<br/>
+            🖼️ <strong>{prefix}_fig{figNum}.png</strong> 이미지를 등록해 주세요.<br />
             <span style={{ fontSize: '11px', color: '#94a3b8' }}>(public/images/ 폴더 안에 해당 파일명으로 이미지를 넣어주세요)</span>
           </div>
           <span style={{ fontSize: '14px', fontWeight: 'bold', color: '#0E4A84' }}>
@@ -244,8 +244,8 @@ export default function App() {
 
       return (
         <div key={index} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '24px 0', padding: '16px', border: '1px solid #e2e8f0', borderRadius: '12px', backgroundColor: '#f8fafc' }}>
-          <img 
-            src={tableSrc} 
+          <img
+            src={tableSrc}
             alt={`[표 ${tblNum}] ${tblTitle}`}
             style={{ maxWidth: '100%', maxHeight: '400px', objectFit: 'contain', borderRadius: '8px', marginBottom: '8px' }}
             onError={(e) => {
@@ -258,7 +258,7 @@ export default function App() {
             }}
           />
           <div className="tbl-helper" style={{ display: 'none', padding: '20px', border: '2px dashed #cbd5e1', borderRadius: '8px', backgroundColor: '#ffffff', color: '#64748b', fontSize: '13px', textAlign: 'center', marginBottom: '8px', width: '100%', maxWidth: '400px' }}>
-            📊 <strong>{prefix}_table{tblNum}.png</strong> 이미지를 등록해 주세요.<br/>
+            📊 <strong>{prefix}_table{tblNum}.png</strong> 이미지를 등록해 주세요.<br />
             <span style={{ fontSize: '11px', color: '#94a3b8' }}>(public/images/ 폴더 안에 해당 파일명으로 이미지를 넣어주세요)</span>
           </div>
           <span style={{ fontSize: '14px', fontWeight: 'bold', color: '#0f766e' }}>
@@ -277,7 +277,7 @@ export default function App() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: '#f8fafc', width: '100%', fontFamily: 'system-ui, sans-serif' }}>
-      
+
       {/* Primary Sticky Navbar */}
       <nav style={{ position: 'sticky', top: 0, zIndex: 100, backgroundColor: '#ffffff', borderBottom: '1px solid #e2e8f0', padding: '16px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }} onClick={() => { setSelectedFileIdx(null); setSelectedPartIdx(null); }}>
@@ -286,11 +286,11 @@ export default function App() {
           </div>
           <span style={{ fontSize: '18px', fontWeight: '800', color: '#0E4A84', letterSpacing: '-0.5px' }}>돌봄로봇 온라인 학습관</span>
         </div>
-        
+
         {/* Navigation Dropdown on Mobile */}
         {selectedFileIdx !== null && (
           <div style={{ position: 'relative' }} className="lg:hidden">
-            <button 
+            <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 12px', border: '1px solid #cbd5e1', borderRadius: '8px', backgroundColor: '#ffffff', cursor: 'pointer', fontSize: '13px', fontWeight: 'bold', color: '#334155' }}
             >
@@ -316,8 +316,8 @@ export default function App() {
       {/* Global breadcrumb & Search box */}
       <header style={{ backgroundColor: '#0f172a', color: '#ffffff', padding: '14px 24px', display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', fontWeight: '600' }}>
-          <button 
-            onClick={() => { setSelectedFileIdx(null); setSelectedPartIdx(null); }} 
+          <button
+            onClick={() => { setSelectedFileIdx(null); setSelectedPartIdx(null); }}
             style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', fontWeight: 'bold', outline: 'none' }}
           >
             돌봄로봇 학습자료
@@ -325,8 +325,8 @@ export default function App() {
           {currentFile && (
             <>
               <ChevronRight size={16} color="#475569" />
-              <button 
-                onClick={() => setSelectedPartIdx(null)} 
+              <button
+                onClick={() => setSelectedPartIdx(null)}
                 style={{ background: 'none', border: 'none', color: '#f8fafc', cursor: 'pointer', outline: 'none' }}
               >
                 {getShortTitle(currentFile.title)}
@@ -387,12 +387,12 @@ export default function App() {
 
       {/* Main Workspace Area */}
       <div style={{ flex: 1, display: 'flex', maxWidth: '1200px', width: '100%', margin: '0 auto', padding: '24px', position: 'relative' }}>
-        
+
         {/* Left sticky Sidebar (desktop only) */}
         {selectedFileIdx !== null && (
           <aside style={{ width: '280px', paddingRight: '24px', borderRight: '1px solid #e2e8f0', flexShrink: 0, display: 'none' }} className="lg:block">
             <div style={{ position: 'sticky', top: '100px' }}>
-              <button 
+              <button
                 onClick={() => { setSelectedFileIdx(null); setSelectedPartIdx(null); }}
                 style={{ background: 'none', border: 'none', color: '#64748b', fontWeight: 'bold', fontSize: '12px', cursor: 'pointer', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '4px' }}
               >
@@ -401,7 +401,7 @@ export default function App() {
               <h3 style={{ fontSize: '16px', fontWeight: '800', color: '#0E4A84', marginBottom: '20px', lineHeight: '1.4' }}>
                 {getShortTitle(careEducationData[selectedFileIdx].title)}
               </h3>
-              
+
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <div style={{ fontSize: '11px', fontWeight: 'bold', color: '#94a3b8', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '8px' }}>Part 구성 목차</div>
                 {careEducationData[selectedFileIdx].parts.map((part, pIdx) => (
@@ -435,20 +435,18 @@ export default function App() {
 
         {/* Content detail rendering */}
         <main style={{ flex: 1, paddingLeft: (selectedFileIdx !== null ? '24px' : '0'), minWidth: 0 }}>
-          
+
           {selectedFileIdx === null ? (
             /* 1. Main Dashboard (File Cards & Table of Contents) */
             <div style={{ display: 'flex', flexDirection: 'column', gap: '48px', padding: '24px 0' }}>
-              
+
               {/* Main Headline */}
               <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <span style={{ backgroundColor: '#e0f2fe', color: '#0E4A84', fontSize: '13px', fontWeight: 'bold', padding: '6px 16px', borderRadius: '9999px', alignSelf: 'center', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                  <Sparkles size={14} /> 돌봄 교육자료 공식 배포관
                 </span>
                 <h1 style={{ fontSize: '32px', fontWeight: '800', color: '#0E4A84', letterSpacing: '-0.75px' }}>돌봄로봇 학습자료 센터</h1>
                 <p style={{ fontSize: '16px', color: '#64748b', lineHeight: '1.65', fontWeight: '500' }}>
-                  고령자 및 돌봄자를 위한 온라인 학습 사이트입니다.<br />
-                  각 영역을 선택하여 깔끔하게 정리된 핵심 본문과 챕터별 정리 요약을 편하게 공부해보세요.
+                  돌봄주는자를 위한 온라인 학습 사이트<br />
                 </p>
               </div>
 
@@ -561,10 +559,10 @@ export default function App() {
               {/* Renders Goal, Contents, Core learning, Summary in sequence */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '36px' }}>
                 {currentPart!.sections.map((section, sIdx) => {
-                  
+
                   if (section.title === '학습목표') {
                     return (
-                      <div 
+                      <div
                         key={sIdx}
                         style={{
                           backgroundColor: '#f0f9ff',
@@ -599,7 +597,7 @@ export default function App() {
 
                   if (section.title === '학습내용') {
                     return (
-                      <div 
+                      <div
                         key={sIdx}
                         style={{
                           backgroundColor: '#f8fafc',
@@ -634,7 +632,7 @@ export default function App() {
 
                   if (section.title === '학습하기') {
                     return (
-                      <div 
+                      <div
                         key={sIdx}
                         style={{
                           backgroundColor: '#ffffff',
@@ -660,23 +658,23 @@ export default function App() {
 
                   if (section.title === '정리하기') {
                     const lines = section.content.split('\n').map(l => l.trim()).filter(Boolean);
-                    
+
                     // Filter lines into headers, labels, and checkable items
                     const structuredItems = lines.map(line => {
                       const isHeading = line.startsWith('### ');
                       const isParentHeading = !isHeading && /^([0-9]+)\.?\s+(.*)$/.test(line) && !/^([0-9]+\.[0-9]+)/.test(line);
                       const isChildHeading = !isHeading && /^([0-9]+\.[0-9]+|[0-9]+\.[0-9]+\.[0-9]+)\s*(.*)$/.test(line);
-                      
+
                       // Check for short bold-only label lines (e.g. **힘**, **반복**, **자세**)
                       const isBoldLabel = line.startsWith('**') && line.endsWith('**') && line.replace(/\*\*/g, '').length < 15;
-                      
+
                       const isHeader = isHeading || isParentHeading || isChildHeading;
                       const cleanText = line
                         .replace(/^###\s+/, '')
                         .replace(/\*\*/g, '')
                         .replace(/^[§Ÿ❍•\-\*]\s*/, '')
                         .trim();
-                      
+
                       return {
                         raw: line,
                         isHeader: isHeader,
@@ -692,7 +690,7 @@ export default function App() {
                     const progressPercent = totalItemsCount > 0 ? Math.round((completedCount / totalItemsCount) * 100) : 0;
 
                     return (
-                      <div 
+                      <div
                         key={sIdx}
                         style={{
                           backgroundColor: '#f8fafc',
@@ -733,17 +731,17 @@ export default function App() {
                             if (item.isHeader) {
                               if (item.isParent) {
                                 return (
-                                  <h3 
-                                    key={idx} 
-                                    style={{ 
-                                      fontSize: '18px', 
-                                      fontWeight: '800', 
-                                      color: '#0E4A84', 
-                                      marginTop: '28px', 
-                                      marginBottom: '10px', 
-                                      borderBottom: '2px solid #0E4A84', 
+                                  <h3
+                                    key={idx}
+                                    style={{
+                                      fontSize: '18px',
+                                      fontWeight: '800',
+                                      color: '#0E4A84',
+                                      marginTop: '28px',
+                                      marginBottom: '10px',
+                                      borderBottom: '2px solid #0E4A84',
                                       paddingBottom: '8px',
-                                      width: '100%' 
+                                      width: '100%'
                                     }}
                                   >
                                     {item.cleanText}
@@ -751,14 +749,14 @@ export default function App() {
                                 );
                               } else {
                                 return (
-                                  <h4 
-                                    key={idx} 
-                                    style={{ 
-                                      fontSize: '15px', 
-                                      fontWeight: 'bold', 
-                                      color: '#475569', 
-                                      marginTop: '16px', 
-                                      marginBottom: '8px', 
+                                  <h4
+                                    key={idx}
+                                    style={{
+                                      fontSize: '15px',
+                                      fontWeight: 'bold',
+                                      color: '#475569',
+                                      marginTop: '16px',
+                                      marginBottom: '8px',
                                       padding: '6px 12px',
                                       backgroundColor: '#f1f5f9',
                                       borderRadius: '6px',
@@ -775,8 +773,8 @@ export default function App() {
                             // Render Bold Labels
                             if (item.isBoldLabel) {
                               return (
-                                <div 
-                                  key={idx} 
+                                <div
+                                  key={idx}
                                   style={{
                                     fontSize: '14px',
                                     fontWeight: 'bold',
@@ -842,10 +840,10 @@ export default function App() {
                                 }}>
                                   {isChecked && <Check size={12} strokeWidth={3} />}
                                 </div>
-                                <div style={{ 
-                                  fontSize: '15px', 
-                                  fontWeight: '600', 
-                                  lineHeight: '1.65', 
+                                <div style={{
+                                  fontSize: '15px',
+                                  fontWeight: '600',
+                                  lineHeight: '1.65',
                                   color: isChecked ? '#64748b' : '#334155',
                                   transition: 'color 0.15s'
                                 }}>
