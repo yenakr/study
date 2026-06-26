@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import {
   Search, ChevronRight, BookOpen, Compass, ChevronLeft, Heart,
   CheckCircle, ArrowRight, UserCheck, Flame, RotateCcw,
-  Smile, Activity, ClipboardList, Info, Sparkles, Check, ChevronDown, List
+  Smile, Activity, ClipboardList, Info, Check, ChevronDown, List
 } from 'lucide-react';
 import { careEducationData } from './data/education/parsedData';
 
