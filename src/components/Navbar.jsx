@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ShieldAlert, ChevronRight } from 'lucide-react';
+import { Menu, X, ChevronRight } from 'lucide-react';
 import { PROJECT_CONFIG } from '../config';
 
 export default function Navbar({ activeSection, setActiveSection }) {
@@ -32,7 +32,7 @@ export default function Navbar({ activeSection, setActiveSection }) {
     }
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80; // Navbar height
+      const offset = 80;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -47,31 +47,23 @@ export default function Navbar({ activeSection, setActiveSection }) {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? 'bg-navy-900/95 backdrop-blur-md shadow-lg border-b border-navy-700/50 text-white py-3.5' : 'bg-navy-900 text-white py-4'
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
+      scrolled ? 'bg-navy-900/95 backdrop-blur-md shadow-md border-b border-navy-700/50 py-3.5' : 'bg-navy-900 text-white py-4'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
           {/* Logo */}
           <button 
             onClick={() => scrollTo('home')}
-            className="flex items-center space-x-3 group focus:outline-none"
+            className="flex items-center gap-3 text-left focus:outline-none"
           >
-            <div className="w-9 h-9 rounded-lg bg-brand-blue flex items-center justify-center text-white shadow-md group-hover:bg-brand-lightblue transition-colors">
-              <ShieldAlert className="w-5 h-5 text-white" />
-            </div>
-            <div className="flex flex-col text-left">
-              <span className="font-extrabold text-xl tracking-tight text-white flex items-center gap-1.5">
-                {PROJECT_CONFIG.teamName}
-                <span className="text-[10px] font-semibold tracking-wide uppercase px-2 py-0.5 rounded bg-blue-500/20 text-brand-lightblue border border-blue-400/30">
-                  LION 2026
-                </span>
-              </span>
-              <span className="text-[11px] text-slate-300 font-medium">
-                한양학술타운 응급의료체계 프로젝트
-              </span>
-            </div>
+            <span className="font-extrabold text-xl tracking-tight text-white">
+              {PROJECT_CONFIG.teamName}
+            </span>
+            <span className="hidden sm:inline-block text-xs text-slate-400 font-medium pl-3 border-l border-slate-700">
+              2026 한양학술타운 LION
+            </span>
           </button>
 
           {/* Desktop Navigation */}
@@ -82,10 +74,10 @@ export default function Navbar({ activeSection, setActiveSection }) {
                 <button
                   key={item.id}
                   onClick={() => scrollTo(item.id)}
-                  className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  className={`px-3.5 py-2 rounded-md text-sm font-medium transition-colors ${
                     isActive 
-                      ? 'bg-brand-blue text-white shadow-sm font-semibold' 
-                      : 'text-slate-200 hover:text-white hover:bg-navy-800'
+                      ? 'bg-brand-blue text-white font-semibold' 
+                      : 'text-slate-300 hover:text-white hover:bg-navy-800'
                   }`}
                 >
                   {item.label}
@@ -98,7 +90,7 @@ export default function Navbar({ activeSection, setActiveSection }) {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-800 focus:outline-none"
+              className="p-2 rounded-md text-slate-300 hover:text-white hover:bg-navy-800 focus:outline-none"
               aria-label="메뉴 열기"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -109,21 +101,21 @@ export default function Navbar({ activeSection, setActiveSection }) {
 
       {/* Mobile Drawer */}
       {isOpen && (
-        <div className="md:hidden bg-navy-900 border-b border-navy-700 px-4 pt-3 pb-6 space-y-2 shadow-2xl animate-fadeIn">
+        <div className="md:hidden bg-navy-900 border-b border-navy-700 px-4 pt-3 pb-6 space-y-1 shadow-2xl">
           {navItems.filter(item => !item.isLogo).map((item) => {
             const isActive = activeSection === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-lg text-left text-base font-medium transition-colors ${
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-md text-left text-base font-medium transition-colors ${
                   isActive 
                     ? 'bg-brand-blue text-white font-semibold' 
-                    : 'text-slate-200 hover:bg-navy-800'
+                    : 'text-slate-300 hover:bg-navy-800'
                 }`}
               >
                 <span>{item.label}</span>
-                <ChevronRight className="w-4 h-4 opacity-60" />
+                <ChevronRight className="w-4 h-4 opacity-50" />
               </button>
             );
           })}
