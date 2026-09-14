@@ -1,13 +1,13 @@
 import React from 'react';
-import { ShieldAlert, AlertTriangle } from 'lucide-react';
+import { ShieldAlert } from 'lucide-react';
 import { PROJECT_CONFIG } from '../config';
 
 export default function Footer() {
   return (
-    <footer className="bg-navy-900 text-slate-400 py-12 border-t border-navy-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-navy-900 text-slate-400 py-10 border-t border-navy-800">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-navy-800">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 rounded-lg bg-brand-blue flex items-center justify-center text-white">
               <ShieldAlert className="w-4 h-4" />
@@ -23,22 +23,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="text-xs text-slate-400 font-medium">
-            간호학 × 정책학 융합 학술 연구 프로젝트
-          </div>
-        </div>
-
-        {/* Disclaimer Banner */}
-        <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs">
-          <div className="flex items-start gap-2 bg-navy-800/60 p-3.5 rounded-xl border border-navy-700 max-w-3xl text-slate-300">
-            <AlertTriangle className="w-4 h-4 text-brand-red shrink-0 mt-0.5" />
-            <p className="leading-relaxed">
-              <strong className="text-white">학술 안내: </strong>
-              본 웹사이트는 응급의료체계에 관한 학술 프로젝트 결과물이며, 의료상담이나 실시간 병원 정보를 제공하지 않습니다. 실제 응급상황에서는 119로 즉시 신고하여 안내를 받으시기 바랍니다.
-            </p>
-          </div>
-
-          <div className="text-slate-500 text-[11px] shrink-0">
+          <div className="text-slate-500 text-xs font-medium">
             © 2026 CODE BLUE. All rights reserved.
           </div>
         </div>
