@@ -19,8 +19,8 @@ export default function AboutSection() {
           <h2 className="text-2xl sm:text-3xl font-extrabold text-navy-900 tracking-tight mb-2">
             프로젝트 소개
           </h2>
-          <p className="text-slate-600 text-sm">
-            {PROJECT_CONFIG.academicTitle}
+          <p className="text-slate-600 text-sm font-semibold">
+            {PROJECT_CONFIG.fullAcademicTitle}
           </p>
         </div>
 
@@ -43,7 +43,7 @@ export default function AboutSection() {
                 참여 전공
               </span>
               <div className="text-lg font-bold text-brand-blue">
-                {PROJECT_CONFIG.majors}
+                {PROJECT_CONFIG.fullAcademicTitle}
               </div>
             </div>
           </div>

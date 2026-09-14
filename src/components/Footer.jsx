@@ -18,7 +18,7 @@ export default function Footer() {
               </span>
               <span className="mx-2 text-slate-600">|</span>
               <span className="text-sm font-medium text-slate-300">
-                {PROJECT_CONFIG.academicTitle}
+                {PROJECT_CONFIG.fullAcademicTitle}
               </span>
             </div>
           </div>

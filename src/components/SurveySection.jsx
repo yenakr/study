@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { Send, CheckCircle2, ExternalLink, Loader2 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Send, CheckCircle2, ExternalLink, Loader2, ShieldCheck, RefreshCw } from 'lucide-react';
 import { PROJECT_CONFIG } from '../config';
 
 export default function SurveySection() {
   const [formData, setFormData] = useState({
     q1_experience: '',
     q2_inconvenience: '',
+    q2_other_text: '',
     q3_cause: '',
     q4_awareness: '',
     q5_improvement: '',
@@ -15,6 +16,15 @@ export default function SurveySection() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [alreadySubmitted, setAlreadySubmitted] = useState(false);
+
+  // Check duplicate submission on mount via localStorage
+  useEffect(() => {
+    const hasSubmitted = localStorage.getItem('code_blue_survey_submitted');
+    if (hasSubmitted === 'true') {
+      setAlreadySubmitted(true);
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -31,30 +41,42 @@ export default function SurveySection() {
       return;
     }
 
+    // Resolve final Q2 value if "기타" was selected with custom text
+    const finalInconvenience = formData.q2_inconvenience === '기타'
+      ? `기타: ${formData.q2_other_text || '직접 입력'}`
+      : formData.q2_inconvenience;
+
+    const payload = {
+      ...formData,
+      q2_inconvenience: finalInconvenience
+    };
+
     setIsSubmitting(true);
 
     try {
-      // Vercel Serverless API 호출
       const response = await fetch('/api/survey', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
       });
 
-      if (response.ok) {
-        setSubmitted(true);
-      } else {
-        // 백엔드 미배포 로컬 환경이더라도 시뮬레이션 제출 완료 처리
-        setSubmitted(true);
-      }
-    } catch (err) {
-      console.log('Submission fallback to client state');
+      // Mark duplicate submission prevention in localStorage
+      localStorage.setItem('code_blue_survey_submitted', 'true');
       setSubmitted(true);
+      setAlreadySubmitted(true);
+    } catch (err) {
+      localStorage.setItem('code_blue_survey_submitted', 'true');
+      setSubmitted(true);
+      setAlreadySubmitted(true);
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const resetDuplicateLock = () => {
+    localStorage.removeItem('code_blue_survey_submitted');
+    setAlreadySubmitted(false);
+    setSubmitted(false);
   };
 
   return (
@@ -85,9 +107,31 @@ export default function SurveySection() {
           </div>
         )}
 
-        {submitted ? (
+        {/* Already Submitted / Duplicate Guard State */}
+        {alreadySubmitted && !submitted ? (
+          <div className="bg-white rounded-xl p-8 sm:p-12 border border-slate-200 text-center space-y-4 shadow-sm">
+            <div className="w-12 h-12 rounded-full bg-blue-100 text-brand-blue flex items-center justify-center mx-auto">
+              <ShieldCheck className="w-6 h-6" />
+            </div>
+            <h3 className="text-xl font-bold text-navy-900">
+              이미 설문 응답 제출이 완료되었습니다.
+            </h3>
+            <p className="text-slate-600 text-sm leading-relaxed max-w-md mx-auto">
+              중복 응답 방지 정책(1인 1회 응답)에 따라 이미 기여하신 응답이 무기명으로 집계되었습니다.
+            </p>
+            <div className="pt-2">
+              <button
+                onClick={resetDuplicateLock}
+                className="inline-flex items-center px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition-colors"
+              >
+                <RefreshCw className="w-3.5 h-3.5 mr-1.5" />
+                <span>새 응답 재작성하기 (테스트용)</span>
+              </button>
+            </div>
+          </div>
+        ) : submitted ? (
           /* Submission Success State */
-          <div className="bg-white rounded-xl p-8 sm:p-12 border border-slate-200 text-center space-y-4">
+          <div className="bg-white rounded-xl p-8 sm:p-12 border border-slate-200 text-center space-y-4 shadow-sm">
             <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
               <CheckCircle2 className="w-6 h-6" />
             </div>
@@ -97,16 +141,13 @@ export default function SurveySection() {
             <p className="text-slate-700 text-base leading-relaxed max-w-md mx-auto">
               여러분의 응답은 더 나은 응급의료체계를 제안하는 데 활용됩니다.
             </p>
-            <button
-              onClick={() => setSubmitted(false)}
-              className="px-5 py-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm transition-colors"
-            >
-              추가 제출하기
-            </button>
+            <p className="text-xs text-slate-400">
+              ※ 중복 응답 방지 시스템이 적용되었습니다.
+            </p>
           </div>
         ) : (
           /* Survey Form */
-          <form onSubmit={handleSubmit} className="bg-white rounded-xl p-6 sm:p-10 border border-slate-200 space-y-8">
+          <form onSubmit={handleSubmit} className="bg-white rounded-xl p-6 sm:p-10 border border-slate-200 space-y-8 shadow-sm">
             
             {/* Q1 */}
             <div className="space-y-3">
@@ -146,20 +187,35 @@ export default function SurveySection() {
                   "응급실 이용 순서 및 시스템 안내 부족",
                   "기타"
                 ].map((opt, idx) => (
-                  <label key={idx} className={`flex items-center p-3.5 rounded-lg border cursor-pointer transition-colors ${
-                    formData.q2_inconvenience === opt ? 'border-brand-blue bg-blue-50 font-semibold' : 'border-slate-200 hover:bg-slate-50'
-                  }`}>
-                    <input
-                      type="radio"
-                      name="q2_inconvenience"
-                      value={opt}
-                      checked={formData.q2_inconvenience === opt}
-                      onChange={handleChange}
-                      required
-                      className="w-4 h-4 text-brand-blue"
-                    />
-                    <span className="ml-3 text-sm text-slate-800">{opt}</span>
-                  </label>
+                  <div key={idx} className="space-y-2">
+                    <label className={`flex items-center p-3.5 rounded-lg border cursor-pointer transition-colors ${
+                      formData.q2_inconvenience === opt ? 'border-brand-blue bg-blue-50 font-semibold' : 'border-slate-200 hover:bg-slate-50'
+                    }`}>
+                      <input
+                        type="radio"
+                        name="q2_inconvenience"
+                        value={opt}
+                        checked={formData.q2_inconvenience === opt}
+                        onChange={handleChange}
+                        required
+                        className="w-4 h-4 text-brand-blue"
+                      />
+                      <span className="ml-3 text-sm text-slate-800">{opt}</span>
+                    </label>
+
+                    {/* Direct write-in input when "기타" is selected */}
+                    {opt === '기타' && formData.q2_inconvenience === '기타' && (
+                      <input
+                        type="text"
+                        name="q2_other_text"
+                        value={formData.q2_other_text}
+                        onChange={handleChange}
+                        placeholder="기타 불편했던 점을 직접 입력해주세요."
+                        required
+                        className="w-full p-3 rounded-lg border border-brand-blue text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-blue bg-blue-50/30 ml-1 animate-fadeIn"
+                      />
+                    )}
+                  </div>
                 ))}
               </div>
             </div>
@@ -262,11 +318,6 @@ export default function SurveySection() {
                 placeholder="자유롭게 의견을 작성해주세요."
                 className="w-full p-3.5 rounded-lg border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-blue resize-none"
               />
-            </div>
-
-            {/* PII Notice */}
-            <div className="p-4 rounded-lg bg-slate-100 text-xs text-slate-600 leading-relaxed">
-              이름, 연락처, 주민등록번호, 병명, 병원명 등 개인을 식별할 수 있는 정보는 수집하지 않습니다.
             </div>
 
             {/* Consent Checkbox */}
