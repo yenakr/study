@@ -1,8 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 
 export default function SurveyResultsSection() {
   const [showPreviewData, setShowPreviewData] = useState(false);
+  const [dbStats, setDbStats] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchStats() {
+      try {
+        const res = await fetch('/api/survey');
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success && data.total > 0) {
+            setDbStats(data);
+          }
+        }
+      } catch (e) {
+        console.log('Stats fetch fallback');
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchStats();
+  }, []);
 
   const keywords = [
     "수용 병상 정보", "119 이송 안내", "전문의 당직 체계", "응급실 대기시간",
@@ -26,8 +47,14 @@ export default function SurveyResultsSection() {
         {/* Status Notice */}
         <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
           <div className="text-slate-700">
-            <span className="font-bold text-navy-900">상태: </span>
-            <span>의견수집 후 공개 예정</span>
+            <span className="font-bold text-navy-900">Neon DB 연동 상태: </span>
+            {dbStats && dbStats.total > 0 ? (
+              <span className="text-emerald-700 font-bold">
+                실시간 {dbStats.total}건의 시민 의견 집계 중
+              </span>
+            ) : (
+              <span>의견수집 후 공개 예정 (Neon DB 대기 중)</span>
+            )}
           </div>
 
           <button
@@ -57,11 +84,31 @@ export default function SurveyResultsSection() {
               주요 이송 지연 원인
             </h3>
 
-            {!showPreviewData ? (
+            {dbStats && dbStats.causes && dbStats.causes.length > 0 ? (
+              <div className="space-y-4">
+                <p className="text-xs text-emerald-700 font-semibold">Neon DB 실시간 집계</p>
+                <div className="space-y-3">
+                  {dbStats.causes.map((item, idx) => {
+                    const pct = Math.round((item.count / dbStats.total) * 100);
+                    return (
+                      <div key={idx}>
+                        <div className="flex justify-between text-xs font-semibold mb-1">
+                          <span>{item.q3_cause}</span>
+                          <span className="text-brand-blue">{pct}% ({item.count}명)</span>
+                        </div>
+                        <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                          <div className="bg-brand-blue h-full" style={{ width: `${pct}%` }} />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ) : !showPreviewData ? (
               <div className="py-14 text-center">
                 <p className="text-sm font-bold text-slate-500 mb-1">의견수집 후 공개 예정</p>
                 <p className="text-xs text-slate-400">
-                  설문 조사가 완료되면 집계 결과가 시각화됩니다.
+                  시민 의견 제출 시 Neon DB에 자동 집계되어 표시됩니다.
                 </p>
               </div>
             ) : (
@@ -106,11 +153,31 @@ export default function SurveyResultsSection() {
               필요하다고 생각하는 개선방안
             </h3>
 
-            {!showPreviewData ? (
+            {dbStats && dbStats.improvements && dbStats.improvements.length > 0 ? (
+              <div className="space-y-4">
+                <p className="text-xs text-emerald-700 font-semibold">Neon DB 실시간 집계</p>
+                <div className="space-y-3">
+                  {dbStats.improvements.map((item, idx) => {
+                    const pct = Math.round((item.count / dbStats.total) * 100);
+                    return (
+                      <div key={idx}>
+                        <div className="flex justify-between text-xs font-semibold mb-1">
+                          <span>{item.q5_improvement}</span>
+                          <span className="text-navy-900">{pct}% ({item.count}명)</span>
+                        </div>
+                        <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                          <div className="bg-navy-900 h-full" style={{ width: `${pct}%` }} />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ) : !showPreviewData ? (
               <div className="py-14 text-center">
                 <p className="text-sm font-bold text-slate-500 mb-1">의견수집 후 공개 예정</p>
                 <p className="text-xs text-slate-400">
-                  설문 조사가 완료되면 집계 결과가 시각화됩니다.
+                  시민 의견 제출 시 Neon DB에 자동 집계되어 표시됩니다.
                 </p>
               </div>
             ) : (
