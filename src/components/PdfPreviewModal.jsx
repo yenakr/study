@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Download, FileText, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { X, Download, FileText, ExternalLink } from 'lucide-react';
 import { PROJECT_CONFIG } from '../config';
 import { generatePolicyPDF } from '../utils/pdfGenerator';
 
@@ -9,38 +9,38 @@ export default function PdfPreviewModal({ isOpen, onClose }) {
   const proposals = [
     {
       code: "과제 01",
-      title: "실제 치료역량을 반영한 수용정보 체계 구축",
-      issue: "단순 빈 병상 수만 표기되어 당직 전문의 부재나 수술실 대기 상황이 반영되지 않아 2차 재이송(핑퐁 이송)이 발생하는 실정입니다.",
-      proposal: "응급실 병상 수뿐만 아니라 실시간 당직 전문의 진료 과목 및 응급 수술실·중환자실 가동 현황을 종합 연동합니다.",
-      effect: "119 구급대의 수용 요청 탐색 시간을 단축하고 중증응급환자의 최종 치료 병원 도착 시간을 대폭 개선합니다."
+      title: "질환별 최종 치료역량을 반영한 수용정보 체계 구축",
+      issue: "단순 응급실 병상 수만 표기되어 당직 전문의, 응급수술실, 중환자실 이용 가능 여부가 미반영되어 재이송이 발생하는 실정입니다.",
+      proposal: "응급의료정보통신망의 수용정보를 중증외상, 급성 뇌졸중, 심근경색 등 질환·처치 단위로 세분화하고 3단계 수용 상태로 제공합니다.",
+      effect: "구급대의 불필요한 병원 문의를 줄이고 환자를 적정 최종 치료 가능 병원으로 골든타임 내 이송합니다."
     },
     {
       code: "과제 02",
-      title: "수용정보의 갱신 시각과 불가 사유 표시 의무화",
-      issue: "수용 정보의 갱신 지연 및 불명확한 수용 불가 통보로 인해 현장 구급대원의 이송 판단에 혼선이 생깁니다.",
-      proposal: "수용 정보의 갱신 시각 타임스탬프를 의무화하고 수용 불가능 시 당직 수술 중 등 객관적 사유를 명시하도록 합니다.",
-      effect: "수용 정보의 실시간 신뢰도를 확보하고 불필요한 문의로 인한 행정 지연을 방지합니다."
+      title: "수용정보 갱신 시각과 수용 불가 사유 표시 의무화",
+      issue: "정보 업데이트 지연과 불명확한 수용 불가 회신으로 인해 구급대의 다음 병원 결정에 혼선이 초래됩니다.",
+      proposal: "정보 갱신 타임스탬프를 의무화하고, 전문의 수술 중, 중환자실 부족 등 표준화된 수용 불가 사유 입력을 제도화합니다.",
+      effect: "수용 정보의 신뢰도를 확보하고 객관적 수용 불가 기록을 지자체 인력·시설 지원의 정책자료로 활용합니다."
     },
     {
       code: "과제 03",
-      title: "119와 의료기관 간 표준화된 이송 인계체계(SBAR) 도입",
-      issue: "구급대원과 응급실 간 구두 인계 방식의 차이로 핵심 환자 상태 정보 및 처치 내역이 누락될 위험이 있습니다.",
-      proposal: "국제 표준 SBAR 기반의 디지털 이송 인계 서식을 제정하고 119와 응급실 간 실시간 공유합니다.",
-      effect: "환자 도착 즉시 연속성 있는 전문 응급 처치 및 수술 준비가 가능해집니다."
+      title: "IMIST-AMBO 기반 119-응급실 표준 인계체계 도입",
+      issue: "구급대원과 응급실 간 인계 순서와 표현 방식 차이로 주요 증상 시각이나 현장 처치 내역이 누락될 위험이 있습니다.",
+      proposal: "국제 표준 IMIST-AMBO(신원-사고기전-손상-활력징후-처치-알레르기-약물-과거력-기타) 서식을 공유하여 도착 전 사전 전달 및 30~60초 구두 인계를 시행합니다.",
+      effect: "핵심 생명 정보의 누락과 중복 질문을 방지하여 응급실 도착 즉시 연속성 있는 전문 응급 처치가 가능해집니다."
     },
     {
       code: "과제 04",
-      title: "중증도와 최종 치료 가능성을 고려한 이송 원칙",
-      issue: "대형병원 선호 현상으로 상급종합병원 응급실 과밀화가 가중되어 정작 중증환자의 수용력이 저하됩니다.",
-      proposal: "KTAS 중증도에 맞춘 이송 가이드라인을 강화하고 권역 내 최종 치료 가능 병원으로 우선 분산 이송합니다.",
-      effect: "권역 응급의료센터의 중증환자 전담 역량을 보호하고 지역 응급의료 자원을 효율화합니다."
+      title: "중증도와 최종 치료 가능성을 고려한 이송 원칙 확립",
+      issue: "가장 가까운 병원만 선택 시 재전원이 발생하고, 대형병원 선호 시 권역응급센터 과밀화가 가중됩니다.",
+      proposal: "거리뿐 아니라 환자의 중증도·시간 민감성을 고려하여 즉시 안정화 환자, 시간 민감 중증환자, 경증환자의 이송원칙을 구체화합니다.",
+      effect: "중증환자는 최종 치료기관으로 직접 이송하고 경증환자는 적정 지역 병원으로 분산하여 응급실 과밀화를 완화합니다."
     },
     {
       code: "과제 05",
-      title: "지역 의료기관의 초기 처치 및 전원 역량 강화",
-      issue: "장거리 이송 도중 환자 상태 악화 위험이 높으나 지역 1차 응급실의 초기 기적 처치가 미흡합니다.",
-      proposal: "지역 1차 응급실의 초기 생명 유지 및 처치 역량을 지원하고 안전한 전원 시스템을 확립합니다.",
-      effect: "장거리 이동에 따른 위험을 최소화하고 1차 안정화 후 최적 상급 병원 전원을 보장합니다."
+      title: "지역 책임형 초기 처치 및 전원조정 네트워크 구축",
+      issue: "지역 의료기관이 중증환자 수용 후 최종 수술이 불가능할 경우, 의료진이 직접 수용 병원을 찾느라 지연 및 부담이 발생합니다.",
+      proposal: "24시간 전원조정 허브를 지정하여 수용 병원 조율 및 기록 전송을 전담하고 초기 처치 의료진의 법적 부담 완화 기준을 마련합니다.",
+      effect: "지역 의료진이 초기 소생 처치에 전념할 수 있도록 지원하고 상급 치료기관으로의 안전한 2차 전원을 보장합니다."
     }
   ];
 
@@ -79,10 +79,10 @@ export default function PdfPreviewModal({ isOpen, onClose }) {
                 POLICY PROPOSAL REPORT • 2026 HANYANG LION
               </span>
               <h1 className="text-2xl sm:text-3xl font-black text-navy-900 leading-tight">
-                중증응급환자 이송 지연 문제 개선을 위한 5대 정책 제안서
+                중증응급환자 이송 지연 개선을 위한 5대 정책 제안서
               </h1>
               <p className="text-xs sm:text-sm text-slate-600 font-medium pt-1">
-                응급의료체계의 정보 신뢰성, 현장 인계 체계, 그리고 지역 의료 자원 효율화 방안
+                정보 신뢰성, IMIST-AMBO 인계 체계, 지역 전원 네트워크 강화를 중심으로
               </p>
             </div>
 
@@ -94,7 +94,7 @@ export default function PdfPreviewModal({ isOpen, onClose }) {
               </div>
               <div>
                 <span className="text-slate-400 block font-semibold">참여 전공</span>
-                <span className="font-bold text-navy-900">{PROJECT_CONFIG.majors}</span>
+                <span className="font-bold text-navy-900">{PROJECT_CONFIG.fullAcademicTitle}</span>
               </div>
               <div>
                 <span className="text-slate-400 block font-semibold">연구진</span>
@@ -114,7 +114,7 @@ export default function PdfPreviewModal({ isOpen, onClose }) {
                   1. 서론 및 제안 배경
                 </h3>
                 <p className="text-slate-700 leading-relaxed text-justify pl-4">
-                  중증응급환자의 이송 지연 문제는 단순한 수용 병상 부족에 그치지 않고, 수용 가능 전문의 및 수술실 정보의 불일치, 구급대와 응급실 간 인계 방식의 비표준화, 지역 응급 의료 자원의 불균형이 복합적으로 작용한 결과입니다. 이에 본 CODE BLUE 연구팀은 간호학적 현장 관리 관점과 정책학적 제도 설계 관점을 결합하여 5대 정책 과제를 제시합니다.
+                  중증응급환자의 이송 지연은 단순히 병상 부족에 그치지 않고 전문의·수술실 가동 여부, 정보 전달, 전원 조정이 복합적으로 작동합니다. 본 보고서는 현행 법제도(응급의료법 제6조, 제11조, 제15조, 제48조의2)를 구체화하고 현장에서 실질적으로 작동하도록 5대 정책 과제를 제시합니다.
                 </p>
               </div>
 
@@ -143,10 +143,10 @@ export default function PdfPreviewModal({ isOpen, onClose }) {
 
               <div className="space-y-2 pt-4 border-t border-slate-200">
                 <h3 className="text-base font-extrabold text-navy-900 flex items-center gap-2 border-l-4 border-navy-900 pl-3">
-                  3. 결론 및 결언
+                  3. 결론
                 </h3>
                 <p className="text-slate-700 leading-relaxed text-justify pl-4">
-                  본 정책 제안서의 대안들은 초를 다투는 중증응급환자가 적절한 시간 내 적절한 의료기관에 도착할 수 있는 골든타임 수호 체계를 목표로 합니다. 시민의 성숙한 응급실 이용 인식과 정책적 제도의 뒷받침이 융합될 때 실효성 있는 응급의료 네트워크가 완성될 것입니다.
+                  병원의 실제 치료역량, 신뢰할 수 있는 수용정보, IMIST-AMBO 표준 인계, 책임 있는 전원조정이 하나의 흐름으로 연결될 때 중증응급환자의 불필요한 이송 지연을 방지할 수 있습니다.
                 </p>
               </div>
 
