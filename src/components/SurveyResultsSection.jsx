@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BarChart2, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { BarChart2, CheckCircle2 } from 'lucide-react';
 
 export default function SurveyResultsSection() {
   const [dbStats, setDbStats] = useState(null);
@@ -16,7 +16,7 @@ export default function SurveyResultsSection() {
           }
         }
       } catch (e) {
-        // Fallback silently if offline or API not present
+        // Fallback silently
       } finally {
         setLoading(false);
       }
@@ -30,14 +30,11 @@ export default function SurveyResultsSection() {
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-bold text-brand-blue uppercase tracking-wider block">
-            CITIZEN OPINION ANALYSIS
-          </span>
           <h2 className="text-2xl sm:text-3xl font-black text-navy-900 tracking-tight">
-            시민 의견 수집 및 집계 현황
+            시민 의견 집계 현황
           </h2>
           <p className="text-slate-600 text-sm leading-relaxed">
-            시민 여러분의 의견은 개인식별정보 없이 학술 연구 분석에 활용되며, 임의의 가공이나 가짜 통계 없이 실제 응답 데이터만 집계됩니다.
+            시민 여러분이 제출해주신 의견의 익명 집계 통계입니다.
           </p>
         </div>
 
@@ -47,7 +44,7 @@ export default function SurveyResultsSection() {
             <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 flex items-center justify-between text-xs sm:text-sm text-brand-blue font-bold">
               <span className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4" />
-                <span>시민 응답 누적 집계</span>
+                <span>누적 응답</span>
               </span>
               <span>총 {dbStats.total}건</span>
             </div>
@@ -57,7 +54,7 @@ export default function SurveyResultsSection() {
               {dbStats.causes && dbStats.causes.length > 0 && (
                 <div className="bg-slate-50 rounded-xl p-6 border border-slate-200 space-y-4">
                   <h3 className="text-sm font-bold text-navy-900 border-b border-slate-200 pb-2">
-                    주요 이송 지연 원인에 대한 인식
+                    주요 이송 지연 원인
                   </h3>
                   <div className="space-y-3">
                     {dbStats.causes.map((item, idx) => {
@@ -82,7 +79,7 @@ export default function SurveyResultsSection() {
               {dbStats.improvements && dbStats.improvements.length > 0 && (
                 <div className="bg-slate-50 rounded-xl p-6 border border-slate-200 space-y-4">
                   <h3 className="text-sm font-bold text-navy-900 border-b border-slate-200 pb-2">
-                    가장 시급한 정책적 개선방안
+                    가장 시급한 개선방안
                   </h3>
                   <div className="space-y-3">
                     {dbStats.improvements.map((item, idx) => {
@@ -105,15 +102,15 @@ export default function SurveyResultsSection() {
             </div>
           </div>
         ) : (
-          <div className="bg-slate-50 rounded-2xl p-8 sm:p-12 border border-slate-200 text-center max-w-2xl mx-auto space-y-3">
+          <div className="bg-slate-50 rounded-2xl p-8 sm:p-12 border border-slate-200 text-center max-w-xl mx-auto space-y-3">
             <div className="w-12 h-12 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center mx-auto">
               <BarChart2 className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-bold text-navy-900">
-              학술 의견 수집 진행 중
+            <h3 className="text-base sm:text-lg font-bold text-navy-900">
+              응답 집계 준비 중
             </h3>
-            <p className="text-slate-600 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
-              본 프로젝트는 가공된 임의 수치나 가짜 통계를 제공하지 않습니다. 시민 설문 응답이 제출되면 실시간 집계되어 통계 그래프로 즉시 반영됩니다.
+            <p className="text-slate-600 text-xs sm:text-sm max-w-sm mx-auto leading-relaxed">
+              설문 응답이 제출되면 실시간 통계로 자동 반영됩니다.
             </p>
           </div>
         )}

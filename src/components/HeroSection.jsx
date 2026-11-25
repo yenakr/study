@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, BookOpen, AlertCircle, Scale, ShieldAlert, Sparkles, ChevronRight } from 'lucide-react';
+import { ArrowRight, BookOpen, AlertCircle, Scale, ChevronRight } from 'lucide-react';
 
 export default function HeroSection({ setActiveTab }) {
   const flowSteps = [
@@ -11,17 +11,17 @@ export default function HeroSection({ setActiveTab }) {
 
   return (
     <section className="bg-slate-900 text-white pt-24 pb-16 md:pt-32 md:pb-24 border-b border-slate-800 font-sans">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-10">
         
-        {/* Academic Project Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-950 border border-blue-800 text-blue-300 text-xs font-semibold">
-          <span>2026 한양학술타운 LION 프로젝트</span>
+        {/* Project Tag */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-950/80 border border-blue-800/60 text-blue-300 text-xs font-semibold">
+          <span>2026 한양학술타운 LION</span>
           <span className="text-slate-500">•</span>
           <span>간호학과 × 정책학과 융합 연구</span>
         </div>
 
         {/* Main Title & Subtitle */}
-        <div className="space-y-6 max-w-4xl mx-auto">
+        <div className="space-y-5 max-w-4xl mx-auto">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight sm:leading-tight">
             응급환자가 헤매지 않도록,<br className="hidden sm:inline" />
             받을 수 있는 병원에 필요한 전문의가 있어야 합니다.
@@ -31,37 +31,32 @@ export default function HeroSection({ setActiveTab }) {
           </p>
         </div>
 
-        {/* Highlight Callout: 받아도 책임, 받지 않아도 책임 */}
-        <div className="bg-gradient-to-br from-slate-800/90 to-blue-950/80 rounded-2xl p-6 sm:p-8 border border-slate-700/80 text-left max-w-3xl mx-auto shadow-xl space-y-4">
+        {/* Dilemma Callout: 받아도 책임, 받지 않아도 책임 */}
+        <div className="bg-slate-800/90 rounded-2xl p-6 sm:p-8 border border-slate-700/80 text-left max-w-3xl mx-auto shadow-lg space-y-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-red-950/90 border border-red-800/60 text-red-300 flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-red-950/80 border border-red-800/60 text-red-300 flex items-center justify-center shrink-0">
               <Scale className="w-5 h-5 text-red-400" />
             </div>
-            <div>
-              <span className="text-xs font-bold text-red-400 uppercase tracking-wider block">
-                DILEMMA OF EMERGENCY CARE
-              </span>
-              <h2 className="text-xl sm:text-2xl font-black text-white leading-tight">
-                받아도 책임, 받지 않아도 책임.
-              </h2>
-            </div>
+            <h2 className="text-xl sm:text-2xl font-black text-white leading-tight">
+              받아도 책임, 받지 않아도 책임.
+            </h2>
           </div>
 
-          <div className="space-y-3 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-700/60 pt-4">
+          <div className="space-y-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-700/60 pt-4">
             <p>
-              응급의료진은 환자를 수용해 치료한 뒤 결과가 좋지 않으면 업무상과실과 관련된 수사·재판에 노출될 수 있고, 환자를 수용하지 않으면 정당한 사유 없는 진료 거부로 판단될 수 있다.
+              응급의료진은 환자를 수용해 치료한 뒤 결과가 좋지 않으면 업무상과실과 관련된 수사·재판에 노출될 수 있고, 환자를 수용하지 않으면 정당한 사유 없는 진료 거부로 판단될 수 있습니다.
             </p>
             <p className="text-slate-400">
-              CODE BLUE는 이 문제를 의료진 개인의 태도로 설명하지 않는다. 실제로 환자를 받을 수 있는 전문인력과 병원을 확보하고, 수용 판단을 기록하며, 불가피한 결과에 대응할 제도가 함께 필요하다고 본다.
+              CODE BLUE는 이 문제를 의료진 개인의 태도로 설명하지 않습니다. 실제로 환자를 받을 수 있는 전문인력과 병원을 확보하고, 수용 판단을 기록하며, 불가피한 결과에 대응할 제도가 함께 필요하다고 봅니다.
             </p>
           </div>
         </div>
 
         {/* 3 Main Action Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-2xl mx-auto pt-2">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-xl mx-auto pt-2">
           <button
             onClick={() => { setActiveTab('issues'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-sm transition-all shadow-md active:scale-98"
+            className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-sm transition-colors shadow-sm"
           >
             <AlertCircle className="w-4 h-4 mr-2" />
             <span>2026년 주요 이슈 보기</span>
@@ -69,7 +64,7 @@ export default function HeroSection({ setActiveTab }) {
 
           <button
             onClick={() => { setActiveTab('policy'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition-all shadow-md active:scale-98"
+            className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition-colors shadow-sm"
           >
             <span>CODE BLUE 3대 정책 보기</span>
             <ArrowRight className="w-4 h-4 ml-2" />
@@ -77,56 +72,45 @@ export default function HeroSection({ setActiveTab }) {
 
           <button
             onClick={() => { setActiveTab('research'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold text-sm transition-all active:scale-98"
+            className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold text-sm transition-colors"
           >
             <BookOpen className="w-4 h-4 mr-2 text-blue-300" />
             <span>연구 과정 보기</span>
           </button>
         </div>
 
-        {/* 4-Step Linear Flow & Center Insight */}
-        <div className="pt-6 max-w-4xl mx-auto space-y-6">
-          {/* Central Message Banner */}
-          <div className="bg-blue-950/80 border border-blue-800/80 rounded-xl p-4 text-center text-blue-200 max-w-xl mx-auto flex items-center justify-center gap-2.5">
-            <Sparkles className="w-4 h-4 text-blue-400 shrink-0" />
-            <p className="text-xs sm:text-sm font-bold leading-snug">
-              “병상이 있어도 필요한 전문의가 없으면 최종 치료가 어렵습니다.”
-            </p>
-          </div>
+        {/* 4-Step Linear Flowchart with Center Insight */}
+        <div className="pt-4 max-w-4xl mx-auto space-y-4">
+          <p className="text-sm sm:text-base font-bold text-blue-200">
+            “병상이 있어도 필요한 전문의가 없으면 최종 치료가 어렵습니다.”
+          </p>
 
-          {/* 4-Step Cards */}
-          <div className="bg-slate-800/60 rounded-2xl p-6 sm:p-8 border border-slate-700/60 text-left">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-4 text-center sm:text-left">
-              중증응급환자 이송 및 진료 연계 흐름
-            </span>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {flowSteps.map((step, idx) => (
-                <div 
-                  key={idx} 
-                  className={`p-4 rounded-xl border text-left transition-all ${
-                    idx === 2 
-                      ? 'bg-blue-950/90 border-blue-500/80 ring-1 ring-blue-500' 
-                      : 'bg-slate-900/80 border-slate-700'
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-bold text-slate-400">Step 0{idx + 1}</span>
-                    {idx === 2 && (
-                      <span className="text-[10px] font-bold bg-blue-600 text-white px-2 py-0.5 rounded">
-                        핵심 병목
-                      </span>
-                    )}
-                  </div>
-                  <h4 className="text-sm font-bold text-white mb-1">
-                    {step.title}
-                  </h4>
-                  <p className="text-xs text-slate-400 leading-relaxed font-normal">
-                    {step.desc}
-                  </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-left">
+            {flowSteps.map((step, idx) => (
+              <div 
+                key={idx} 
+                className={`p-4 rounded-xl border transition-all ${
+                  idx === 2 
+                    ? 'bg-blue-950/80 border-blue-500/80' 
+                    : 'bg-slate-800/80 border-slate-700'
+                }`}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-bold text-slate-400">0{idx + 1}</span>
+                  {idx === 2 && (
+                    <span className="text-[10px] font-bold bg-blue-600 text-white px-2 py-0.5 rounded">
+                      핵심 병목
+                    </span>
+                  )}
                 </div>
-              ))}
-            </div>
+                <h3 className="text-sm font-bold text-white mb-1">
+                  {step.title}
+                </h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  {step.desc}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
 

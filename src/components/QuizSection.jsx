@@ -63,15 +63,12 @@ export default function QuizSection() {
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         
         {/* Header */}
-        <div className="text-center mb-10 space-y-2">
-          <span className="text-xs font-bold text-brand-blue uppercase tracking-wider block">
-            CITIZEN AWARENESS QUIZ
-          </span>
+        <div className="text-center mb-8 space-y-2">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-navy-900 tracking-tight">
             응급실 바로 알기 O/X 퀴즈
           </h2>
           <p className="text-slate-600 text-sm">
-            5문항의 퀴즈를 통해 올바른 응급실 이용 원칙과 골든타임 보호 방법을 확인해보세요.
+            5문항의 퀴즈로 올바른 응급실 이용 원칙을 확인해보세요.
           </p>
         </div>
 
@@ -103,7 +100,7 @@ export default function QuizSection() {
               <button
                 onClick={() => handleSelectAnswer(currentStep, true)}
                 disabled={userAnswers[currentStep] !== undefined}
-                className={`py-8 rounded-xl font-black text-4xl flex items-center justify-center border-2 transition-all focus:outline-none focus:ring-2 focus:ring-brand-blue ${
+                className={`py-8 rounded-xl font-black text-4xl flex items-center justify-center border-2 transition-all focus:outline-none ${
                   userAnswers[currentStep] === true
                     ? questions[currentStep].answer === true
                       ? 'bg-emerald-50 border-emerald-500 text-emerald-700'
@@ -118,7 +115,7 @@ export default function QuizSection() {
               <button
                 onClick={() => handleSelectAnswer(currentStep, false)}
                 disabled={userAnswers[currentStep] !== undefined}
-                className={`py-8 rounded-xl font-black text-4xl flex items-center justify-center border-2 transition-all focus:outline-none focus:ring-2 focus:ring-brand-blue ${
+                className={`py-8 rounded-xl font-black text-4xl flex items-center justify-center border-2 transition-all focus:outline-none ${
                   userAnswers[currentStep] === false
                     ? questions[currentStep].answer === false
                       ? 'bg-emerald-50 border-emerald-500 text-emerald-700'
@@ -146,7 +143,7 @@ export default function QuizSection() {
                   )}
                   <div>
                     <span className="font-bold text-sm block mb-1">
-                      {userAnswers[currentStep] === questions[currentStep].answer ? '정답입니다.' : '설명을 확인해보세요.'}
+                      {userAnswers[currentStep] === questions[currentStep].answer ? '정답입니다.' : '해설'}
                     </span>
                     <p className="text-xs sm:text-sm font-normal leading-relaxed">
                       {questions[currentStep].explanation}
@@ -157,7 +154,7 @@ export default function QuizSection() {
                 <div className="flex justify-end">
                   <button
                     onClick={nextQuestion}
-                    className="inline-flex items-center px-6 py-3 rounded-xl bg-navy-900 text-white font-bold text-sm hover:bg-navy-800 transition-colors shadow-sm"
+                    className="inline-flex items-center px-6 py-2.5 rounded-xl bg-navy-900 text-white font-bold text-sm hover:bg-navy-800 transition-colors"
                   >
                     <span>{currentStep < questions.length - 1 ? '다음 문항' : '확인 완료'}</span>
                     <ArrowRight className="w-4 h-4 ml-2" />
@@ -168,37 +165,33 @@ export default function QuizSection() {
 
           </div>
         ) : (
-          /* Completion View: 점수를 매기거나 시민을 탓하지 않고, '올바른 응급실 이용이 중증환자의 골든타임을 지킨다'는 취지로 마무리 */
           <div className="bg-slate-50 rounded-2xl p-8 sm:p-10 border border-slate-200 text-center space-y-6 shadow-sm animate-fadeIn">
-            <div className="w-14 h-14 rounded-full bg-blue-100 text-brand-blue flex items-center justify-center mx-auto">
-              <HeartHandshake className="w-7 h-7" />
+            <div className="w-12 h-12 rounded-full bg-blue-100 text-brand-blue flex items-center justify-center mx-auto">
+              <HeartHandshake className="w-6 h-6" />
             </div>
 
             <div className="space-y-2">
-              <h3 className="text-2xl font-black text-navy-900">
+              <h3 className="text-xl sm:text-2xl font-bold text-navy-900">
                 올바른 응급실 이용이 중증환자의 골든타임을 지킵니다
               </h3>
-              <p className="text-slate-600 text-sm max-w-lg mx-auto leading-relaxed">
-                응급의료에 대한 시민 여러분의 깊은 관심과 참여에 감사드립니다.
-              </p>
             </div>
 
-            <div className="bg-white rounded-xl p-5 border border-slate-200 max-w-lg mx-auto text-left text-xs sm:text-sm text-slate-700 leading-relaxed space-y-2.5">
-              <p className="font-semibold text-navy-900">
-                • 생명이 위급한 중증응급환자가 지체 없이 전문의의 치료를 받을 수 있도록 응급실 이용 원칙을 준수하는 것이 중요합니다.
+            <div className="bg-white rounded-xl p-5 border border-slate-200 max-w-lg mx-auto text-left text-xs sm:text-sm text-slate-700 leading-relaxed space-y-2">
+              <p>
+                • 중증응급환자가 지체 없이 전문의의 치료를 받을 수 있도록 응급실 이용 원칙을 준수하는 것이 중요합니다.
               </p>
-              <p className="text-slate-600">
-                • 응급상황 발생 시 개별적으로 병원을 직접 찾기보다 <strong>119의 전문적인 상태 분류와 수용병원 안내</strong>를 따라주세요.
+              <p>
+                • 응급상황 발생 시 개별적으로 병원을 직접 찾기보다 <strong>119의 상태 분류와 수용병원 안내</strong>를 따라주세요.
               </p>
             </div>
 
             <div>
               <button
                 onClick={resetQuiz}
-                className="inline-flex items-center px-6 py-3 rounded-xl bg-brand-blue text-white font-bold text-xs sm:text-sm hover:bg-blue-600 transition-colors shadow-sm"
+                className="inline-flex items-center px-5 py-2.5 rounded-xl bg-brand-blue text-white font-bold text-xs sm:text-sm hover:bg-blue-600 transition-colors"
               >
                 <RefreshCw className="w-4 h-4 mr-2" />
-                <span>퀴즈 다시 확인하기</span>
+                <span>퀴즈 다시 풀기</span>
               </button>
             </div>
           </div>

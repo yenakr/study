@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Send, CheckCircle2, ShieldCheck, RefreshCw, AlertCircle, Info } from 'lucide-react';
+import { Send, CheckCircle2, ShieldCheck, RefreshCw, AlertCircle } from 'lucide-react';
 import { PROJECT_CONFIG } from '../config';
 
 export default function SurveySection() {
@@ -76,35 +76,32 @@ export default function SurveySection() {
   };
 
   return (
-    <section id="survey" className="py-16 bg-slate-50 text-slate-900 min-h-screen font-sans">
+    <section id="survey" className="py-16 md:py-20 bg-slate-50 text-slate-900 min-h-screen font-sans">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 space-y-8">
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-bold text-brand-blue uppercase tracking-wider block">
-            CITIZEN OPINION SURVEY
-          </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-navy-900 tracking-tight">
-            응급의료체계에 관한 시민 의견 수집
+            시민 의견 수집
           </h2>
           <p className="text-slate-600 text-sm leading-relaxed">
-            중증응급환자 이송 지연 개선 연구를 위해 시민 여러분의 경험과 고견을 경청합니다.
+            중증응급환자 이송 지연 개선 연구를 위한 익명 설문조사입니다.
           </p>
         </div>
 
-        {/* Essential Disclaimers Banner (요구사항 필수 반영) */}
-        <div className="bg-amber-50/90 border border-amber-200 rounded-2xl p-5 text-xs sm:text-sm text-amber-950 space-y-2 shadow-sm">
-          <div className="flex items-center gap-2 font-bold text-amber-900">
-            <AlertCircle className="w-5 h-5 text-amber-700 shrink-0" />
-            <span>설문 참여 전 유의사항 안내</span>
+        {/* Clean Disclaimers Banner */}
+        <div className="bg-white border border-slate-200 rounded-2xl p-5 text-xs sm:text-sm text-slate-800 space-y-2.5 shadow-sm">
+          <div className="flex items-center gap-2 font-bold text-navy-900">
+            <AlertCircle className="w-4 h-4 text-brand-blue shrink-0" />
+            <span>설문 참여 안내</span>
           </div>
-          <p className="text-xs sm:text-sm font-bold text-red-700 bg-red-50 p-2.5 rounded-lg border border-red-200">
+          <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
             본 의견수집은 학술 프로젝트를 위한 익명 의견수집입니다. 의료상담 또는 민원 접수 창구가 아닙니다.
           </p>
-          <ul className="list-disc pl-5 space-y-1 text-slate-800 text-xs">
-            <li><strong>개인정보 수집 금지:</strong> 이름, 연락처, 주민등록번호, 구체적인 병명, 병원명 등 개인을 식별할 수 있는 정보는 일체 수집하지 않습니다.</li>
-            <li><strong>수집 목적 및 범위:</strong> 중증응급환자 이송체계 개선방안에 관한 시민 의견 수렴 (이송 경험, 지연 원인 인식, 우선 정책 선호도, 자유 의견)</li>
-            <li><strong>보관 기간:</strong> 2026 한양학술타운 LION 프로젝트 종료 시까지 익명 보관 후 폐기</li>
+          <ul className="list-disc pl-5 space-y-1 text-slate-600 text-xs">
+            <li><strong>개인정보 보호:</strong> 이름, 연락처, 주민등록번호, 구체적인 병명, 병원명 등 개인을 식별할 수 있는 정보는 일체 수집하지 않습니다.</li>
+            <li><strong>수집 목적:</strong> 중증응급환자 이송체계 개선방안에 관한 시민 의견 수렴</li>
+            <li><strong>보관 기간:</strong> 2026 한양학술타운 LION 프로젝트 종료 시까지 익명 보관</li>
           </ul>
         </div>
 
@@ -115,10 +112,10 @@ export default function SurveySection() {
               <ShieldCheck className="w-6 h-6" />
             </div>
             <h3 className="text-xl font-bold text-navy-900">
-              이미 설문 응답 제출이 완료되었습니다.
+              설문 응답이 제출되었습니다.
             </h3>
             <p className="text-slate-600 text-sm leading-relaxed max-w-md mx-auto">
-              중복 응답 방지 정책(1인 1회 응답)에 따라 응답이 무기명으로 등록되었습니다. 소중한 의견에 감사드립니다.
+              소중한 의견에 감사드립니다. 제출해주신 내용은 학술 통계 분석에 반영됩니다.
             </p>
             <div className="pt-2">
               <button
@@ -126,12 +123,11 @@ export default function SurveySection() {
                 className="inline-flex items-center px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition-colors"
               >
                 <RefreshCw className="w-3.5 h-3.5 mr-1.5" />
-                <span>새 응답 작성하기 (테스트용)</span>
+                <span>새 응답 작성하기</span>
               </button>
             </div>
           </div>
         ) : submitted ? (
-          /* Submission Success State */
           <div className="bg-white rounded-2xl p-8 sm:p-12 border border-slate-200 text-center space-y-4 shadow-sm animate-fadeIn">
             <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
               <CheckCircle2 className="w-6 h-6" />
@@ -144,7 +140,6 @@ export default function SurveySection() {
             </p>
           </div>
         ) : (
-          /* Survey Form */
           <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-6 sm:p-10 border border-slate-200 space-y-8 shadow-sm">
             
             {/* Q1 */}
@@ -152,11 +147,16 @@ export default function SurveySection() {
               <label className="block text-sm sm:text-base font-bold text-navy-900">
                 1. 응급실을 이용하거나 보호자로 방문한 경험이 있습니까? <span className="text-red-500">*</span>
               </label>
-              <div className="grid grid-cols-2 gap-3">
-                {["예", "아니오"].map((opt, idx) => (
-                  <label key={idx} className={`flex items-center p-3.5 rounded-xl border cursor-pointer transition-colors ${
-                    formData.q1_experience === opt ? 'border-brand-blue bg-blue-50/60 font-semibold' : 'border-slate-200 hover:bg-slate-50'
-                  }`}>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {['최근 1년 이내 있다', '1년 이전 경험 있다', '경험 없다'].map((opt) => (
+                  <label 
+                    key={opt}
+                    className={`flex items-center gap-3 p-3.5 rounded-xl border cursor-pointer text-xs sm:text-sm font-medium transition-all ${
+                      formData.q1_experience === opt 
+                        ? 'bg-blue-50 border-brand-blue text-brand-blue' 
+                        : 'bg-slate-50 border-slate-200 hover:bg-slate-100 text-slate-800'
+                    }`}
+                  >
                     <input
                       type="radio"
                       name="q1_experience"
@@ -164,9 +164,9 @@ export default function SurveySection() {
                       checked={formData.q1_experience === opt}
                       onChange={handleChange}
                       required
-                      className="w-4 h-4 text-brand-blue"
+                      className="text-brand-blue focus:ring-brand-blue"
                     />
-                    <span className="ml-3 text-sm text-slate-800">{opt}</span>
+                    <span>{opt}</span>
                   </label>
                 ))}
               </div>
@@ -175,20 +175,24 @@ export default function SurveySection() {
             {/* Q2 */}
             <div className="space-y-3">
               <label className="block text-sm sm:text-base font-bold text-navy-900">
-                2. 응급실 이용 과정에서 가장 불편했던 점은 무엇입니까? <span className="text-red-500">*</span>
+                2. 응급실 이용 시 가장 크게 느꼈던 불편이나 우려는 무엇입니까? <span className="text-red-500">*</span>
               </label>
               <div className="space-y-2">
                 {[
-                  "치료 시작까지의 긴 대기시간",
-                  "다른 병원으로의 이송 및 수용 거부",
-                  "현재 상태 및 치료 과정 설명 부족",
-                  "응급실 이용 순서 및 시스템 안내 부족",
-                  "기타"
-                ].map((opt, idx) => (
-                  <div key={idx} className="space-y-2">
-                    <label className={`flex items-center p-3.5 rounded-xl border cursor-pointer transition-colors ${
-                      formData.q2_inconvenience === opt ? 'border-brand-blue bg-blue-50/60 font-semibold' : 'border-slate-200 hover:bg-slate-50'
-                    }`}>
+                  '긴 대기시간과 진료 지연',
+                  '당장 치료 가능한 전문의나 수술실 부재',
+                  '환자 상태에 대한 충분한 설명 및 안내 부족',
+                  '다른 병원으로의 재이송(전원) 불안',
+                  '기타'
+                ].map((opt) => (
+                  <div key={opt}>
+                    <label 
+                      className={`flex items-center gap-3 p-3.5 rounded-xl border cursor-pointer text-xs sm:text-sm font-medium transition-all ${
+                        formData.q2_inconvenience === opt 
+                          ? 'bg-blue-50 border-brand-blue text-brand-blue' 
+                          : 'bg-slate-50 border-slate-200 hover:bg-slate-100 text-slate-800'
+                      }`}
+                    >
                       <input
                         type="radio"
                         name="q2_inconvenience"
@@ -196,22 +200,23 @@ export default function SurveySection() {
                         checked={formData.q2_inconvenience === opt}
                         onChange={handleChange}
                         required
-                        className="w-4 h-4 text-brand-blue"
+                        className="text-brand-blue focus:ring-brand-blue"
                       />
-                      <span className="ml-3 text-sm text-slate-800">{opt}</span>
+                      <span>{opt}</span>
                     </label>
 
-                    {/* Write-in field for '기타' */}
                     {opt === '기타' && formData.q2_inconvenience === '기타' && (
-                      <input
-                        type="text"
-                        name="q2_other_text"
-                        value={formData.q2_other_text}
-                        onChange={handleChange}
-                        placeholder="기타 불편했던 점을 구체적으로 입력해주세요."
-                        required
-                        className="w-full p-3 rounded-lg border border-brand-blue text-sm text-slate-800 placeholder-slate-400 bg-blue-50/20 ml-1 animate-fadeIn focus:outline-none focus:ring-2 focus:ring-brand-blue"
-                      />
+                      <div className="mt-2 pl-2">
+                        <input
+                          type="text"
+                          name="q2_other_text"
+                          value={formData.q2_other_text}
+                          onChange={handleChange}
+                          placeholder="기타 불편사항을 직접 입력해주세요"
+                          className="w-full p-3 rounded-lg border border-slate-300 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue"
+                          required
+                        />
+                      </div>
                     )}
                   </div>
                 ))}
@@ -221,18 +226,24 @@ export default function SurveySection() {
             {/* Q3 */}
             <div className="space-y-3">
               <label className="block text-sm sm:text-base font-bold text-navy-900">
-                3. 응급환자 이송 지연의 가장 큰 원인은 무엇이라고 생각합니까? <span className="text-red-500">*</span>
+                3. 중증응급환자 이송 지연(소위 응급실 뺑뺑이)의 가장 주된 원인은 무엇이라고 생각하십니까? <span className="text-red-500">*</span>
               </label>
               <div className="space-y-2">
                 {[
-                  "수용 가능한 수술실 및 전문의 부족",
-                  "119 구급대와 병원 간 정보 공유 한계",
-                  "경증환자의 응급실 이용 쏠림",
-                  "지역 간 응급 의료 자원 불균형"
-                ].map((opt, idx) => (
-                  <label key={idx} className={`flex items-center p-3.5 rounded-xl border cursor-pointer transition-colors ${
-                    formData.q3_cause === opt ? 'border-brand-blue bg-blue-50/60 font-semibold' : 'border-slate-200 hover:bg-slate-50'
-                  }`}>
+                  '수술과 중환자 진료를 맡을 필수진료과 전문의 부족',
+                  '119와 병원 간의 실시간 치료역량 정보 공유 부족',
+                  '경증 환자의 대형병원 응급실 과밀 이용',
+                  '병원 간 전원 조정 및 컨트롤타워 부재',
+                  '의료사고 발생 시 의료진에게 가해지는 과도한 법적 책임'
+                ].map((opt) => (
+                  <label 
+                    key={opt}
+                    className={`flex items-center gap-3 p-3.5 rounded-xl border cursor-pointer text-xs sm:text-sm font-medium transition-all ${
+                      formData.q3_cause === opt 
+                        ? 'bg-blue-50 border-brand-blue text-brand-blue' 
+                        : 'bg-slate-50 border-slate-200 hover:bg-slate-100 text-slate-800'
+                    }`}
+                  >
                     <input
                       type="radio"
                       name="q3_cause"
@@ -240,9 +251,9 @@ export default function SurveySection() {
                       checked={formData.q3_cause === opt}
                       onChange={handleChange}
                       required
-                      className="w-4 h-4 text-brand-blue"
+                      className="text-brand-blue focus:ring-brand-blue"
                     />
-                    <span className="ml-3 text-sm text-slate-800">{opt}</span>
+                    <span>{opt}</span>
                   </label>
                 ))}
               </div>
@@ -251,13 +262,18 @@ export default function SurveySection() {
             {/* Q4 */}
             <div className="space-y-3">
               <label className="block text-sm sm:text-base font-bold text-navy-900">
-                4. 응급실 이용 원칙에 대해 어느 정도 알고 있었습니까? <span className="text-red-500">*</span>
+                4. 응급실에 빈 병상이 있더라도 수술할 전문의가 없으면 환자를 수용하기 어렵다는 사실을 알고 계셨습니까? <span className="text-red-500">*</span>
               </label>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                {["잘 알고 있었다", "들어보았지만 잘 몰랐다", "거의 몰랐다"].map((opt, idx) => (
-                  <label key={idx} className={`flex items-center p-3.5 rounded-xl border cursor-pointer transition-colors ${
-                    formData.q4_awareness === opt ? 'border-brand-blue bg-blue-50/60 font-semibold' : 'border-slate-200 hover:bg-slate-50'
-                  }`}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {['잘 알고 있었다', '이번 연구/안내를 통해 처음 알게 되었다'].map((opt) => (
+                  <label 
+                    key={opt}
+                    className={`flex items-center gap-3 p-3.5 rounded-xl border cursor-pointer text-xs sm:text-sm font-medium transition-all ${
+                      formData.q4_awareness === opt 
+                        ? 'bg-blue-50 border-brand-blue text-brand-blue' 
+                        : 'bg-slate-50 border-slate-200 hover:bg-slate-100 text-slate-800'
+                    }`}
+                  >
                     <input
                       type="radio"
                       name="q4_awareness"
@@ -265,9 +281,9 @@ export default function SurveySection() {
                       checked={formData.q4_awareness === opt}
                       onChange={handleChange}
                       required
-                      className="w-4 h-4 text-brand-blue"
+                      className="text-brand-blue focus:ring-brand-blue"
                     />
-                    <span className="ml-3 text-sm text-slate-800">{opt}</span>
+                    <span>{opt}</span>
                   </label>
                 ))}
               </div>
@@ -276,18 +292,23 @@ export default function SurveySection() {
             {/* Q5 */}
             <div className="space-y-3">
               <label className="block text-sm sm:text-base font-bold text-navy-900">
-                5. 가장 필요하다고 생각하는 개선방안은 무엇입니까? <span className="text-red-500">*</span>
+                5. 중증응급환자 이송 지연을 줄이기 위해 가장 시급한 대책은 무엇이라고 보십니까? <span className="text-red-500">*</span>
               </label>
               <div className="space-y-2">
                 {[
-                  "응급 및 배후 필수진료과 전문의 인력 확보",
-                  "권역별 순환 당직병원 지정 및 실시간 가동체계",
-                  "중증응급의료 의료진에 대한 법적·분쟁 지원",
-                  "올바른 응급실 이용 인식 개선 홍보"
-                ].map((opt, idx) => (
-                  <label key={idx} className={`flex items-center p-3.5 rounded-xl border cursor-pointer transition-colors ${
-                    formData.q5_improvement === opt ? 'border-brand-blue bg-blue-50/60 font-semibold' : 'border-slate-200 hover:bg-slate-50'
-                  }`}>
+                  '권역별 순환 당직병원 지정을 통한 야간·휴일 당직 분담',
+                  '필수의료 의무복무 선발전형을 통한 중증외상·응급의사 양성',
+                  '개정 응급의료법 안착과 불가항력 의료사고 법적 지원',
+                  '119와 응급실 간 실시간 수술역량 정보망 고도화'
+                ].map((opt) => (
+                  <label 
+                    key={opt}
+                    className={`flex items-center gap-3 p-3.5 rounded-xl border cursor-pointer text-xs sm:text-sm font-medium transition-all ${
+                      formData.q5_improvement === opt 
+                        ? 'bg-blue-50 border-brand-blue text-brand-blue' 
+                        : 'bg-slate-50 border-slate-200 hover:bg-slate-100 text-slate-800'
+                    }`}
+                  >
                     <input
                       type="radio"
                       name="q5_improvement"
@@ -295,31 +316,31 @@ export default function SurveySection() {
                       checked={formData.q5_improvement === opt}
                       onChange={handleChange}
                       required
-                      className="w-4 h-4 text-brand-blue"
+                      className="text-brand-blue focus:ring-brand-blue"
                     />
-                    <span className="ml-3 text-sm text-slate-800">{opt}</span>
+                    <span>{opt}</span>
                   </label>
                 ))}
               </div>
             </div>
 
-            {/* Q6 */}
-            <div className="space-y-3">
+            {/* Q6 Free comment */}
+            <div className="space-y-2">
               <label className="block text-sm sm:text-base font-bold text-navy-900">
-                6. 추가로 전하고 싶은 의견 (선택)
+                6. 응급의료체계 개선에 대해 제안하고 싶은 의견이 있다면 자유롭게 적어주세요. (선택)
               </label>
               <textarea
                 name="q6_comment"
-                rows={3}
                 value={formData.q6_comment}
                 onChange={handleChange}
-                placeholder="응급의료체계 개선에 관한 자유로운 의견을 남겨주세요."
-                className="w-full p-3.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-blue resize-none"
+                rows={3}
+                placeholder="개인정보(이름, 연락처, 특정 병원명)를 제외한 정책적 제안을 남겨주세요."
+                className="w-full p-3.5 rounded-xl border border-slate-300 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue resize-none"
               />
             </div>
 
-            {/* Consent Checkbox */}
-            <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+            {/* Agreement Checkbox */}
+            <div className="pt-2 border-t border-slate-100">
               <label className="flex items-start gap-3 cursor-pointer">
                 <input
                   type="checkbox"
@@ -327,25 +348,28 @@ export default function SurveySection() {
                   checked={formData.agreed}
                   onChange={handleChange}
                   required
-                  className="w-4 h-4 text-brand-blue rounded border-slate-300 mt-0.5"
+                  className="mt-1 rounded text-brand-blue focus:ring-brand-blue"
                 />
-                <span className="text-xs sm:text-sm font-semibold text-slate-900">
-                  본 응답이 개인식별정보 없이 익명으로 2026 한양학술타운 LION 학술 분석에 활용되는 것에 동의합니다. <span className="text-red-500">*</span>
+                <span className="text-xs text-slate-700 leading-relaxed">
+                  본 설문은 학술 목적의 무기명 조사이며, 개인식별정보를 일절 수집하지 않음에 동의합니다. <span className="text-red-500 font-bold">*</span>
                 </span>
               </label>
-              <p className="text-[11px] text-slate-500 pl-7 leading-relaxed">
-                (이름, 전화번호, 주민번호 등 개인을 특정할 수 있는 정보는 수집 및 저장되지 않습니다.)
-              </p>
             </div>
 
             {/* Submit Button */}
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-4 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-bold text-base shadow-sm transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+              className="w-full py-4 rounded-xl bg-navy-900 hover:bg-navy-800 text-white font-bold text-sm sm:text-base transition-colors shadow-sm flex items-center justify-center gap-2"
             >
-              <Send className="w-4 h-4" />
-              <span>{isSubmitting ? "제출 처리 중..." : "의견 제출하기"}</span>
+              {isSubmitting ? (
+                <span>제출 중...</span>
+              ) : (
+                <>
+                  <Send className="w-4 h-4" />
+                  <span>의견 제출하기</span>
+                </>
+              )}
             </button>
 
           </form>
