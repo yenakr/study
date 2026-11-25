@@ -33,8 +33,6 @@ export default function App() {
       <Navbar 
         activeTab={activeTab} 
         setActiveTab={setActiveTab} 
-        onOpenPdf={handleOpenPdf}
-        onOpenPoster={handleOpenPoster}
       />
       
       {/* Main Content Area */}
