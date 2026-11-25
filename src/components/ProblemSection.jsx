@@ -1,5 +1,5 @@
 import React from 'react';
-import { THREE_CORE_PROBLEMS, ACCEPTANCE_DISTINCTION_NOTE } from '../data/policyData';
+import { THREE_CORE_PROBLEMS, PROBLEM_SECTION_HEADER, ACCEPTANCE_DISTINCTION_NOTE } from '../data/policyData';
 import { AlertCircle, Scale, Building2, Repeat, Users, CheckCircle2 } from 'lucide-react';
 
 export default function ProblemSection() {
@@ -15,11 +15,13 @@ export default function ProblemSection() {
             PROBLEM ANALYSIS
           </span>
           <h2 className="text-2xl sm:text-4xl font-black text-navy-900 tracking-tight">
-            왜 병상을 찾고도 이송이 늦어질까요?
+            {PROBLEM_SECTION_HEADER.title}
           </h2>
-          <p className="text-slate-600 text-base leading-relaxed">
-            중증응급환자 이송 지연은 단순한 응급실 공간 부족이 아니라, 수용정보와 실제 역량의 차이, 반복되는 탐색, 그리고 근본적인 필수 전문인력 부족이 복합적으로 얽혀 발생합니다.
-          </p>
+          <div className="pt-2">
+            <span className="inline-block bg-blue-50 border border-blue-200 text-brand-blue px-4 py-2 rounded-xl text-base sm:text-lg font-extrabold shadow-xs">
+              “{PROBLEM_SECTION_HEADER.corePhrase}”
+            </span>
+          </div>
         </div>
 
         {/* 3 Core Problems (3-Card Layout) */}

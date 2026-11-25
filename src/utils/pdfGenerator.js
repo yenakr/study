@@ -60,9 +60,9 @@ export function generatePolicyPDF() {
     },
     {
       num: "03",
-      title: "Legal & Dispute Support for Severe Emergency Care",
-      goal: "Establish support systems to prevent disproportionate individual liability on medical staff accepting severe patients.",
-      summary: "Compensation for unavoidable accidents without gross negligence, legal counseling, and liability insurance support."
+      title: "Field Settlement Support for Revised Emergency Medical Act",
+      goal: "Support field settlement of criminal liability mitigation rules under the 2026 Emergency Medical Act revision (effective April 2027).",
+      summary: "Link legitimate refusal grounds with hospital records, medical liability insurance support, legal aid, and independent review."
     }
   ];
 

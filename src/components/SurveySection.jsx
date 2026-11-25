@@ -98,10 +98,13 @@ export default function SurveySection() {
             <AlertCircle className="w-5 h-5 text-amber-700 shrink-0" />
             <span>설문 참여 전 유의사항 안내</span>
           </div>
+          <p className="text-xs sm:text-sm font-bold text-red-700 bg-red-50 p-2.5 rounded-lg border border-red-200">
+            본 의견수집은 학술 프로젝트를 위한 익명 의견수집입니다. 의료상담 또는 민원 접수 창구가 아닙니다.
+          </p>
           <ul className="list-disc pl-5 space-y-1 text-slate-800 text-xs">
-            <li><strong>안내:</strong> 본 창구는 <strong>의료상담 또는 민원 접수 창구가 아닙니다.</strong> 응급상황에서는 즉시 119로 신고하시기 바랍니다.</li>
-            <li><strong>개인정보 보호:</strong> 이름, 연락처, 주민등록번호, 병명, 방문 병원명 등 개인을 식별할 수 있는 정보는 일체 수집하지 않습니다.</li>
-            <li><strong>수집 목적 및 이용 범위:</strong> 수집된 의견은 2026 한양학술타운 LION 프로젝트 학술 연구 및 정책제안서 분석에만 익명으로 활용됩니다.</li>
+            <li><strong>개인정보 수집 금지:</strong> 이름, 연락처, 주민등록번호, 구체적인 병명, 병원명 등 개인을 식별할 수 있는 정보는 일체 수집하지 않습니다.</li>
+            <li><strong>수집 목적 및 범위:</strong> 중증응급환자 이송체계 개선방안에 관한 시민 의견 수렴 (이송 경험, 지연 원인 인식, 우선 정책 선호도, 자유 의견)</li>
+            <li><strong>보관 기간:</strong> 2026 한양학술타운 LION 프로젝트 종료 시까지 익명 보관 후 폐기</li>
           </ul>
         </div>
 

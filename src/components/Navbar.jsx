@@ -7,6 +7,7 @@ export default function Navbar({ activeTab, setActiveTab, onOpenPdf, onOpenPoste
 
   const navItems = [
     { id: 'problem', label: '문제 알아보기' },
+    { id: 'issues', label: '2026 주요 이슈' },
     { id: 'research', label: '연구 과정' },
     { id: 'policy', label: '정책 제안' },
     { id: 'er-guide', label: '응급실 바로 알기' },
@@ -21,7 +22,7 @@ export default function Navbar({ activeTab, setActiveTab, onOpenPdf, onOpenPoste
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 bg-navy-900 text-white shadow-md border-b border-navy-800 py-3">
+    <header className="fixed top-0 left-0 right-0 z-40 bg-navy-900 text-white shadow-md border-b border-navy-800 py-3 font-sans">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
@@ -39,15 +40,15 @@ export default function Navbar({ activeTab, setActiveTab, onOpenPdf, onOpenPoste
             </span>
           </button>
 
-          {/* Desktop Navigation Tabs */}
-          <nav className="hidden lg:flex items-center space-x-1" aria-label="주요 메뉴">
+          {/* Desktop Navigation Tabs (7 tabs in exact order) */}
+          <nav className="hidden xl:flex items-center space-x-1" aria-label="주요 메뉴">
             {navItems.map((item) => {
               const isActive = activeTab === item.id;
               return (
                 <button
                   key={item.id}
                   onClick={() => handleTabClick(item.id)}
-                  className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-brand-blue ${
+                  className={`px-2.5 py-1.5 rounded-lg text-xs lg:text-sm font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-brand-blue ${
                     isActive 
                       ? 'bg-brand-blue text-white shadow-sm' 
                       : 'text-slate-300 hover:text-white hover:bg-navy-800'
@@ -63,22 +64,22 @@ export default function Navbar({ activeTab, setActiveTab, onOpenPdf, onOpenPoste
           <div className="hidden sm:flex items-center space-x-2">
             <button
               onClick={onOpenPdf}
-              className="inline-flex items-center px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="inline-flex items-center px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               <FileText className="w-3.5 h-3.5 mr-1.5" />
-              <span>정책제안서 PDF</span>
+              <span>최종 보고서 PDF</span>
             </button>
             <button
               onClick={onOpenPoster}
-              className="inline-flex items-center px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold text-xs transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500"
+              className="inline-flex items-center px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold text-xs transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500"
             >
               <Image className="w-3.5 h-3.5 mr-1.5 text-brand-lightblue" />
               <span>최종 포스터 보기</span>
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center space-x-2">
+          {/* Mobile/Tablet Menu Button */}
+          <div className="xl:hidden flex items-center space-x-2">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-navy-800 focus:outline-none focus:ring-2 focus:ring-brand-blue"
@@ -90,9 +91,9 @@ export default function Navbar({ activeTab, setActiveTab, onOpenPdf, onOpenPoste
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile/Tablet Drawer */}
       {isOpen && (
-        <div className="lg:hidden bg-navy-900 border-b border-navy-800 px-4 pt-3 pb-6 space-y-2 shadow-2xl animate-fadeIn">
+        <div className="xl:hidden bg-navy-900 border-b border-navy-800 px-4 pt-3 pb-6 space-y-2 shadow-2xl animate-fadeIn">
           <div className="space-y-1">
             {navItems.map((item) => {
               const isActive = activeTab === item.id;
@@ -119,7 +120,7 @@ export default function Navbar({ activeTab, setActiveTab, onOpenPdf, onOpenPoste
               className="w-full flex items-center justify-center py-2.5 rounded-lg bg-brand-blue text-white font-bold text-xs"
             >
               <FileText className="w-3.5 h-3.5 mr-1" />
-              <span>정책제안서 PDF</span>
+              <span>최종 보고서 PDF</span>
             </button>
             <button
               onClick={() => { setIsOpen(false); onOpenPoster(); }}

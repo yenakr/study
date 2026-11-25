@@ -57,6 +57,9 @@ export default function PosterModal({ isOpen, onClose }) {
               <Image className="w-8 h-8" />
             </div>
             <div className="space-y-1">
+              <div className="inline-block px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-bold border border-amber-300 mb-1">
+                최종 인쇄본 파일 연결 예정
+              </div>
               <h5 className="font-bold text-base text-navy-900">
                 A0 규격 학술 발표 포스터 (인쇄 및 최종 검수 단계)
               </h5>
@@ -71,15 +74,11 @@ export default function PosterModal({ isOpen, onClose }) {
                 <span>포스터 주요 수록 항목</span>
               </div>
               <ul className="list-disc pl-5 space-y-1 text-slate-700">
-                <li>연구 배경: 왜 병상을 찾고도 이송이 지연되는가?</li>
-                <li>연구 방법: 서울아산병원 전문간호사 인터뷰 및 법·제도 분석</li>
-                <li>핵심 3대 정책: 권역별 순환 당직제, 의무복무 선발전형, 법적 분쟁 지원</li>
-                <li>정책 전환 고찰: 정보통신망에서 배후 전문인력 확보 중심 전환</li>
+                <li>연구 배경: 왜 병상을 찾고도 이송이 지연되는가? (병상과 치료역량의 차이)</li>
+                <li>연구 방법: 서울아산병원 응급실 전문간호사 인터뷰 및 법령·지역사례 분석</li>
+                <li>최종 3대 핵심 정책: 1. 권역별 순환 당직병원 지정제 / 2. 필수의료 의무복무 선발전형 / 3. 개정 응급의료법의 현장 정착 지원</li>
+                <li>정책 전환 고찰: 정보통신망에서 배후 필수의료 전문인력 확보 중심 전환</li>
               </ul>
-            </div>
-
-            <div className="inline-block px-3 py-1 rounded bg-amber-50 text-amber-800 text-xs font-bold border border-amber-200">
-              학술타운 심사 및 전시 당일 고해상도 PDF 링크가 공개됩니다
             </div>
           </div>
 

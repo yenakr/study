@@ -1,37 +1,37 @@
 import React, { useState } from 'react';
-import { CheckCircle, XCircle, RefreshCw, ArrowRight, ShieldCheck, HeartHandshake } from 'lucide-react';
+import { CheckCircle, XCircle, RefreshCw, ArrowRight, HeartHandshake } from 'lucide-react';
 
 export default function QuizSection() {
   const questions = [
     {
       id: 1,
-      question: "응급실은 먼저 온 순서대로 진료받는다.",
+      question: "응급실은 먼저 도착한 순서대로 진료한다.",
       answer: false,
-      explanation: "응급실은 도착 순서가 아닌 중증도(KTAS) 분류에 따라 생명이 위급한 중증환자를 우선 진료합니다. 이에 따라 경증 환자는 진료 대기가 길어질 수 있습니다."
+      explanation: "응급실은 도착 순서가 아니라 환자의 중증도(KTAS)에 따라 생명이 위급한 환자부터 우선 진료합니다. 이에 따라 경증 환자는 진료 대기가 길어질 수 있습니다."
     },
     {
       id: 2,
-      question: "중증응급환자라면 무조건 가장 큰 병원으로 가는 것이 항상 최선이다.",
+      question: "규모가 큰 병원이 항상 가장 빠른 선택이다.",
       answer: false,
-      explanation: "대형 상급종합병원에 환자가 집중되면 대기시간이 길어져 오히려 처치가 늦어질 수 있습니다. 환자 질환과 상태에 적합한 인근 응급의료기관을 찾는 것이 더 빠른 치료로 이어집니다."
+      explanation: "상급종합병원에 환자가 집중되면 대기시간이 길어져 오히려 빠른 처치가 어려울 수 있습니다. 환자의 상태와 질환에 적합한 인근 응급의료기관을 찾는 것이 더 빠른 치료로 이어집니다."
     },
     {
       id: 3,
-      question: "병원 응급실에 빈 침대가 있다면 환자를 무조건 수용할 수 있다.",
-      answer: false,
-      explanation: "응급실 침대가 비어 있어도 해당 질환의 당직 전문의, 응급수술실, 중환자실이 가동되지 않으면 최종 치료가 불가능합니다. 수용 여부는 병상 유무가 아닌 실제 수술·치료 역량에 따라 판단됩니다."
+      question: "병상이 있어도 필요한 전문의나 수술실이 없으면 수용이 어려울 수 있다.",
+      answer: true,
+      explanation: "응급실 침대가 남아 있어도 해당 질환의 담당 전문의 부재나 수술실·중환자실이 만석이면 최종 치료가 불가능합니다. 수용 여부는 병상 유무뿐 아니라 실제 수술과 진료 역량에 따라 결정됩니다."
     },
     {
       id: 4,
-      question: "상태가 위급할수록 이동시간이 길더라도 최종 치료 병원으로 바로 가는 것이 언제나 안전하다.",
-      answer: false,
-      explanation: "이동시간이 길어지면 이송 도중 기도가 막히거나 상태가 급격히 악화될 위험이 있습니다. 가까운 응급실에서 기도 확보 등 초기 생명유지 처치를 먼저 받는 것이 더 안전합니다."
+      question: "응급상황에서는 개인이 병원을 찾기보다 119의 안내를 따르는 것이 중요하다.",
+      answer: true,
+      explanation: "119 구급대는 환자의 중증도와 지역 병원의 실시간 치료 역량을 종합적으로 판단해 최적의 병원으로 이송합니다. 개별 방문 시 진료 불가로 재이송될 위험을 줄일 수 있습니다."
     },
     {
       id: 5,
-      question: "경증환자가 야간·휴일 진료기관이나 동네 병의원을 이용하면 중증환자의 이송 지연을 줄이는 데 도움이 된다.",
+      question: "경증환자의 적정 의료기관 이용은 중증환자의 진료 여력을 보호할 수 있다.",
       answer: true,
-      explanation: "비응급 경증환자가 동네 병의원이나 야간·휴일 진료기관을 이용하면 응급실 과밀화가 완화됩니다. 이를 통해 한시가 급한 중증응급환자의 신속한 진료와 골든타임을 지킬 수 있습니다."
+      explanation: "비응급 경증환자가 동네 병의원이나 야간·휴일 진료기관을 이용하면 응급실 과밀화가 완화됩니다. 이를 통해 한시가 급한 중증응급환자의 신속한 진료 여력과 골든타임을 지킬 수 있습니다."
     }
   ];
 
@@ -71,7 +71,7 @@ export default function QuizSection() {
             응급실 바로 알기 O/X 퀴즈
           </h2>
           <p className="text-slate-600 text-sm">
-            5문항의 퀴즈를 통해 응급실 이용 원칙과 골든타임 보호 방법을 확인해보세요.
+            5문항의 퀴즈를 통해 올바른 응급실 이용 원칙과 골든타임 보호 방법을 확인해보세요.
           </p>
         </div>
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import ProblemSection from './components/ProblemSection';
+import IssuesSection from './components/IssuesSection';
 import ResearchSection from './components/ResearchSection';
 import PolicySection from './components/PolicySection';
 import ErGuideSection from './components/ErGuideSection';
@@ -28,7 +29,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans selection:bg-brand-blue selection:text-white">
-      {/* Global Navigation Header */}
+      {/* Global Navigation Header (7 items in exact specified order) */}
       <Navbar 
         activeTab={activeTab} 
         setActiveTab={setActiveTab} 
@@ -52,21 +53,28 @@ export default function App() {
           </div>
         )}
 
-        {/* 2) 연구 과정 */}
+        {/* 2) 2026 주요 이슈 (신설) */}
+        {activeTab === 'issues' && (
+          <div className="animate-fadeIn">
+            <IssuesSection setActiveTab={setActiveTab} />
+          </div>
+        )}
+
+        {/* 3) 연구 과정 */}
         {activeTab === 'research' && (
           <div className="animate-fadeIn">
             <ResearchSection setActiveTab={setActiveTab} />
           </div>
         )}
 
-        {/* 3) 정책 제안 */}
+        {/* 4) 정책 제안 */}
         {activeTab === 'policy' && (
           <div className="animate-fadeIn">
             <PolicySection onOpenPoster={handleOpenPoster} />
           </div>
         )}
 
-        {/* 4) 응급실 바로 알기 */}
+        {/* 5) 응급실 바로 알기 */}
         {activeTab === 'er-guide' && (
           <div className="animate-fadeIn">
             <ErGuideSection />
@@ -74,7 +82,7 @@ export default function App() {
           </div>
         )}
 
-        {/* 5) 시민 의견 */}
+        {/* 6) 시민 의견 */}
         {activeTab === 'survey' && (
           <div className="animate-fadeIn">
             <SurveySection />
@@ -82,7 +90,7 @@ export default function App() {
           </div>
         )}
 
-        {/* 6) 프로젝트 소개 */}
+        {/* 7) 프로젝트 소개 */}
         {activeTab === 'about' && (
           <div className="animate-fadeIn">
             <AboutSection />
