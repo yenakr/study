@@ -1,6 +1,6 @@
 import React from 'react';
 import { PROJECT_CONFIG } from '../config';
-import { BookOpen, Users, FileText, Award } from 'lucide-react';
+import { BookOpen, Users, FileText, CheckCircle2, Award } from 'lucide-react';
 
 export default function AboutSection() {
   const terms = [
@@ -13,7 +13,7 @@ export default function AboutSection() {
       desc: "구급대와 응급실 간 사전·구두 인계 표준 서식 (Identification, Mechanism, Injuries, Signs, Treatment, Allergies, Medications, Background, Other)."
     },
     {
-      term: "핑퐁 이송 (재이송 / 수용 거부)",
+      term: "핑퐁 이송 (재이송 / 수용 불가)",
       desc: "응급실 수용 불가 통보로 인해 119 구급차가 적정 진료 병원을 찾지 못하고 복수의 의료기관을 전전하는 이송 지연 현상."
     },
     {
@@ -22,105 +22,146 @@ export default function AboutSection() {
     }
   ];
 
-  const interviews = [
-    {
-      group: "119 응급구급대원 (N=5)",
-      topic: "현장 중증도 평가의 한계, 병원 수용 문의 시 무응답 및 지연 경험, 도착 후 구두 인계 시 정보 누락 지점 조사"
-    },
-    {
-      group: "응급의학과 전문의 및 당직 의사 (N=4)",
-      topic: "당직 전문의 부재 및 수술실 만석 시 수용 판단 기준, 구급대 사전 통보의 실효성, 형사·민사적 법적 부담 조망"
-    },
-    {
-      group: "보건정책 및 응급의료 연구원 (N=3)",
-      topic: "응급의료법 제6조(거부금지)와 제48조의2(수용능력 확인)의 제도적 공백 및 24시간 전원조정 허브 법제화 구조 검토"
-    }
-  ];
-
   return (
     <section id="about" className="py-16 bg-slate-50 text-slate-900 border-t border-slate-200 font-sans">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 space-y-10">
         
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto space-y-2">
+        <div className="text-center max-w-3xl mx-auto space-y-2">
           <span className="text-xs font-bold text-brand-blue uppercase tracking-wider block">
-            RESEARCH OVERVIEW & METHODOLOGY
+            ABOUT PROJECT & TEAM
           </span>
           <h2 className="text-2xl sm:text-3xl font-black text-navy-900 tracking-tight">
-            프로젝트 소개 및 학술 연구 방법론
+            프로젝트 및 연구진 소개
           </h2>
           <p className="text-slate-600 text-sm font-semibold">
-            {PROJECT_CONFIG.fullAcademicTitle}
+            {PROJECT_CONFIG.fullAcademicTitle} • 2026 한양학술타운 LION
           </p>
         </div>
 
-        {/* Overview Box */}
+        {/* Project Overview Card */}
         <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pb-6 border-b border-slate-100">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pb-6 border-b border-slate-100">
             <div>
               <span className="text-xs font-semibold text-slate-400 block mb-1">팀명</span>
               <h3 className="text-xl font-extrabold text-navy-900">{PROJECT_CONFIG.teamName}</h3>
+              <p className="text-xs text-brand-blue font-bold mt-0.5">간호학과 × 정책학과 융합팀</p>
             </div>
-            <div>
-              <span className="text-xs font-semibold text-slate-400 block mb-1">연구 구분</span>
-              <div className="text-base font-bold text-brand-blue">{PROJECT_CONFIG.fullAcademicTitle}</div>
+            <div className="md:col-span-2">
+              <span className="text-xs font-semibold text-slate-400 block mb-1">연구 과제명</span>
+              <div className="text-base font-bold text-navy-900 leading-snug">
+                {PROJECT_CONFIG.projectTitle}
+              </div>
             </div>
           </div>
 
-          <div className="bg-navy-900 text-white rounded-xl p-6 text-center">
-            <p className="text-base sm:text-lg font-extrabold leading-relaxed">
+          {/* Core Insight Callout */}
+          <div className="bg-navy-900 text-white rounded-xl p-5 sm:p-6 text-center">
+            <p className="text-sm sm:text-base font-bold leading-relaxed">
               “중증응급환자가 적절한 시간 내 적절한 의료기관에 도착하려면 무엇이 달라져야 하는가?”
+            </p>
+            <p className="text-xs text-slate-300 mt-2">
+              병상이 있어도 필수의료 전문의가 없으면 최종 치료가 불가능한 구조적 문제를 해결하기 위한 학술 융합 연구
             </p>
           </div>
 
-          {/* Members */}
-          <div className="pt-2">
-            <span className="text-xs font-semibold text-slate-400 block mb-3">연구진 구성</span>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {PROJECT_CONFIG.teamMembers.map((member, idx) => (
-                <div key={idx} className="bg-slate-50 p-3 rounded-lg border border-slate-200 text-center font-bold text-navy-900 text-sm">
-                  {member.name}
+          {/* Team Roles */}
+          <div className="space-y-4 pt-2">
+            <h3 className="text-base font-bold text-navy-900 flex items-center gap-2">
+              <Users className="w-4 h-4 text-brand-blue" />
+              <span>연구진 구성 및 세부 역할</span>
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Nursing Team */}
+              <div className="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-extrabold text-navy-900 text-base">간호학과</span>
+                  <span className="text-xs font-bold px-2 py-0.5 rounded bg-blue-100 text-brand-blue">
+                    김다은 · 김예나
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                  응급의료 현장 관점 조사, 전문가 인터뷰 정리, 시민 안내 내용 검토
+                </p>
+              </div>
+
+              {/* Policy Team */}
+              <div className="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-extrabold text-navy-900 text-base">정책학과</span>
+                  <span className="text-xs font-bold px-2 py-0.5 rounded bg-slate-200 text-slate-800">
+                    임채윤 · 노재은
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                  법·제도 검토, 정책 구조와 실행방안 정리
+                </p>
+              </div>
+            </div>
+
+            {/* Joint Role */}
+            <div className="bg-blue-50/60 p-4 rounded-xl border border-blue-100 flex items-start gap-3">
+              <CheckCircle2 className="w-5 h-5 text-brand-blue shrink-0 mt-0.5" />
+              <div className="text-xs sm:text-sm text-slate-800">
+                <span className="font-bold text-brand-blue">공동 역할: </span>
+                <span>{PROJECT_CONFIG.jointRole}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Methodology & Deliverables Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Methodology */}
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4">
+            <h3 className="text-base font-bold text-navy-900 flex items-center gap-2 border-l-4 border-brand-blue pl-3">
+              <BookOpen className="w-4 h-4 text-brand-blue" />
+              <span>연구 방법 (Research Methods)</span>
+            </h3>
+
+            <div className="space-y-2.5 pt-1">
+              {PROJECT_CONFIG.methodology.map((m, idx) => (
+                <div key={idx} className="flex items-center gap-3 text-xs sm:text-sm text-slate-700 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                  <span className="w-6 h-6 rounded-full bg-brand-blue text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    {idx + 1}
+                  </span>
+                  <span className="font-medium">{m}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Deliverables */}
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4">
+            <h3 className="text-base font-bold text-navy-900 flex items-center gap-2 border-l-4 border-brand-blue pl-3">
+              <Award className="w-4 h-4 text-brand-blue" />
+              <span>최종 연구 결과물 (Deliverables)</span>
+            </h3>
+
+            <div className="space-y-2.5 pt-1">
+              {PROJECT_CONFIG.deliverables.map((d, idx) => (
+                <div key={idx} className="flex items-center gap-3 text-xs sm:text-sm text-navy-900 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                  <FileText className="w-4 h-4 text-brand-blue shrink-0" />
+                  <span className="font-bold">{d}</span>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Definition of Terms Section */}
+        {/* Operational Terms Definition */}
         <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4">
-          <h3 className="text-lg font-bold text-navy-900 flex items-center gap-2 border-l-4 border-brand-blue pl-3">
-            <BookOpen className="w-5 h-5 text-brand-blue" />
-            <span>주요 용어의 작업적 정의 (Definition of Operational Terms)</span>
+          <h3 className="text-base font-bold text-navy-900 flex items-center gap-2 border-l-4 border-brand-blue pl-3">
+            <BookOpen className="w-4 h-4 text-brand-blue" />
+            <span>주요 용어의 작업적 정의 (Operational Terms)</span>
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
             {terms.map((item, idx) => (
               <div key={idx} className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
-                <strong className="text-navy-900 font-bold text-sm block">• {item.term}</strong>
+                <strong className="text-navy-900 font-bold text-xs sm:text-sm block">• {item.term}</strong>
                 <p className="text-slate-700 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Expert Interview Methodology */}
-        <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4">
-          <h3 className="text-lg font-bold text-navy-900 flex items-center gap-2 border-l-4 border-brand-blue pl-3">
-            <Users className="w-5 h-5 text-brand-blue" />
-            <span>전문가 심층 인터뷰 조사 방법 (In-depth Expert Interviews)</span>
-          </h3>
-
-          <p className="text-slate-700 text-sm leading-relaxed">
-            간호 현장과 보건 정책의 실질적 문제를 파악하기 위해 구급대원, 전문의, 정책 연구자 대상 반구조화된 인터뷰(Semi-structured Interview)를 실시하였습니다.
-          </p>
-
-          <div className="space-y-3 pt-2">
-            {interviews.map((item, idx) => (
-              <div key={idx} className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
-                <span className="font-bold text-navy-900 text-sm block">{item.group}</span>
-                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                  <strong>조사 및 질적 분석 내용:</strong> {item.topic}
-                </p>
               </div>
             ))}
           </div>

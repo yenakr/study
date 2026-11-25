@@ -1,8 +1,10 @@
 import { jsPDF } from 'jspdf';
 import { PROJECT_CONFIG } from '../config';
+import { CORE_3_POLICIES } from '../data/policyData';
 
 /**
  * CODE BLUE 학술 정책 제안서 PDF 다운로드 생성기
+ * 2026 한양학술타운 LION 최종 결과물
  */
 export function generatePolicyPDF() {
   const doc = new jsPDF({
@@ -11,107 +13,104 @@ export function generatePolicyPDF() {
     format: 'a4'
   });
 
-  // Title Block
+  // Top Navy Bar
   doc.setFillColor(15, 23, 42); // Navy
-  doc.rect(0, 0, 210, 40, 'F');
+  doc.rect(0, 0, 210, 36, 'F');
 
   doc.setTextColor(255, 255, 255);
-  doc.setFontSize(18);
+  doc.setFontSize(16);
   doc.setFont("helvetica", "bold");
-  doc.text("CODE BLUE POLICY PROPOSAL", 15, 20);
+  doc.text("CODE BLUE POLICY PROPOSAL", 15, 18);
 
-  doc.setFontSize(10);
+  doc.setFontSize(9);
   doc.setFont("helvetica", "normal");
-  doc.text("2026 Hanyang Academic Town LION Project", 15, 28);
+  doc.text("2026 Hanyang Academic Town LION Project | Final Report", 15, 26);
 
   // Subheader
   doc.setTextColor(15, 23, 42);
-  doc.setFontSize(13);
+  doc.setFontSize(12);
   doc.setFont("helvetica", "bold");
-  doc.text("Proposals for Improving Emergency Medical Transport Delays", 15, 50);
+  doc.text("Emergency Medical Transport Delays: Core 3 Policy Proposals", 15, 46);
 
   doc.setLineWidth(0.5);
   doc.setDrawColor(30, 100, 212);
-  doc.line(15, 54, 195, 54);
+  doc.line(15, 50, 195, 50);
 
-  // Team info
+  // Project Info
   doc.setFontSize(8.5);
   doc.setTextColor(71, 85, 105);
-  doc.text(`Team: ${PROJECT_CONFIG.teamName} (${PROJECT_CONFIG.fullAcademicTitle})`, 15, 61);
-  doc.text(`Members: Da-eun Kim, Yena Kim, Chae-yoon Lim, Jae-eun No`, 15, 66);
-  doc.text(`Date: 2026. 09 | Hanyang Academic Town LION Project`, 15, 71);
+  doc.setFont("helvetica", "normal");
+  doc.text(`Team: ${PROJECT_CONFIG.teamName} (Nursing x Policy Studies)`, 15, 56);
+  doc.text(`Members: Da-eun Kim, Yena Kim, Chae-yoon Lim, Jae-eun No`, 15, 61);
+  doc.text(`Core Focus: Securing Essential Medical Specialists & Regional Duty Coordination`, 15, 66);
 
-  // Policy Items
-  const proposals = [
+  // 3 Core Policies Content
+  const pdfPolicies = [
     {
       num: "01",
-      title: "Capacity-Reflecting Real-Time Acceptance Information System",
-      issue: "Lack of surgeon and ICU availability info leads to ping-pong transfers.",
-      proposal: "Integrate disease-specific surgeon duty, operating room, and ICU real-time status.",
-      effect: "Reduces hospital search time and ensures golden hour arrival for severe cases."
+      title: "Regional Rotational On-Duty Hospital System",
+      goal: "Rapid identification of hospitals with on-duty specialists within the emergency care region.",
+      summary: "Rotational designation of regional hospitals to secure in-hospital specialist response for severe emergencies."
     },
     {
       num: "02",
-      title: "Mandatory Timestamping & Reason Standardisation for Non-Acceptance",
-      issue: "Information update latency and ambiguous rejection reasons delay dispatch decisions.",
-      proposal: "Mandate timestamping and standard refusal reason codes (e.g. surgeon in surgery).",
-      effect: "Ensures data reliability and provides evidence for regional resource allocation."
+      title: "Mandatory Service Track for Essential Healthcare Admissions",
+      goal: "Recruit students willing to enter essential fields from admission and link education, training, and service.",
+      summary: "Undergraduate track for emergency medicine & critical surgery, comparing 10-year basic vs 15-year enhanced service."
     },
     {
       num: "03",
-      title: "IMIST-AMBO Standard Handover Protocol Between 119 & ER",
-      issue: "Inconsistent verbal handover causes omission of onset time and vital sign trends.",
-      proposal: "Adopt IMIST-AMBO pre-arrival digital transmission and 30-60 second verbal handover.",
-      effect: "Eliminates info gaps and enables immediate treatment preparation prior to arrival."
-    },
-    {
-      num: "04",
-      title: "Triage & Definitive Care-Based Transport Protocol",
-      issue: "Favoring tertiary centers exclusively causes ER overcrowding for non-severe cases.",
-      proposal: "Implement strict triage-matched transport guidelines to regional definitive care centers.",
-      effect: "Protects regional trauma center capacity and optimizes emergency medical resources."
-    },
-    {
-      num: "05",
-      title: "Regional Responsibility Initial Stabilization & Transfer Network",
-      issue: "Local ERs struggle with initial stabilization and manual transfer hospital matching.",
-      proposal: "Establish 24/7 transfer coordination hubs and legal burden mitigation guidelines.",
-      effect: "Allows local ERs to focus on resuscitation while hubs secure definitive transfer."
+      title: "Legal & Dispute Support for Severe Emergency Care",
+      goal: "Establish support systems to prevent disproportionate individual liability on medical staff accepting severe patients.",
+      summary: "Compensation for unavoidable accidents without gross negligence, legal counseling, and liability insurance support."
     }
   ];
 
-  let yPos = 80;
+  let yPos = 76;
 
-  proposals.forEach((p) => {
+  pdfPolicies.forEach((p) => {
     // Card Box
     doc.setFillColor(248, 250, 252);
-    doc.roundedRect(15, yPos, 180, 35, 2, 2, 'F');
+    doc.roundedRect(15, yPos, 180, 36, 2, 2, 'F');
     doc.setDrawColor(226, 232, 240);
-    doc.roundedRect(15, yPos, 180, 35, 2, 2, 'D');
+    doc.roundedRect(15, yPos, 180, 36, 2, 2, 'D');
 
     // Title
     doc.setTextColor(30, 100, 212);
-    doc.setFontSize(9.5);
+    doc.setFontSize(10);
     doc.setFont("helvetica", "bold");
-    doc.text(`[Policy ${p.num}] ${p.title}`, 20, yPos + 7);
+    doc.text(`[Policy ${p.num}] ${p.title}`, 20, yPos + 8);
 
-    // Details
-    doc.setFontSize(8);
+    // Goal & Summary
+    doc.setFontSize(8.5);
     doc.setFont("helvetica", "normal");
     doc.setTextColor(30, 41, 59);
-    
-    doc.text(`- Issue: ${p.issue}`, 22, yPos + 14);
-    doc.text(`- Proposal: ${p.proposal}`, 22, yPos + 21);
-    doc.text(`- Effect: ${p.effect}`, 22, yPos + 28);
+    doc.text(`- Target: ${p.goal}`, 22, yPos + 16);
+    doc.text(`- Operations: ${p.summary}`, 22, yPos + 23);
+    doc.setTextColor(100, 116, 139);
+    doc.text(`- Key Principle: Ensuring continuous care capability rather than mere bed availability.`, 22, yPos + 30);
 
-    yPos += 39;
+    yPos += 42;
   });
 
-  // Footer Disclaimer
+  // Shift Notice
+  doc.setFillColor(239, 246, 255);
+  doc.roundedRect(15, yPos, 180, 26, 2, 2, 'F');
+  doc.setTextColor(30, 64, 175);
+  doc.setFontSize(9);
+  doc.setFont("helvetica", "bold");
+  doc.text("Academic Evolution & Shift in Focus:", 20, yPos + 7);
   doc.setFontSize(8);
-  doc.setTextColor(148, 163, 184);
-  doc.text("CODE BLUE | Academic Policy Brief 2026 - Hanyang Academic Town LION", 105, 285, { align: 'center' });
+  doc.setFont("helvetica", "normal");
+  doc.setTextColor(51, 65, 85);
+  doc.text("Initial research examined bed info & IMIST-AMBO handover protocols (Initial 5 Tasks).", 20, yPos + 13);
+  doc.text("Final policies strategically prioritize securing essential medical specialists, identifying this", 20, yPos + 18);
+  doc.text("as the root cause preventing definitive care even after hospital arrival.", 20, yPos + 23);
 
-  // Save PDF
+  // Footer Disclaimer
+  doc.setFontSize(7.5);
+  doc.setTextColor(148, 163, 184);
+  doc.text("CODE BLUE | 2026 Hanyang Academic Town LION Project Final Deliverable", 105, 285, { align: 'center' });
+
   doc.save(PROJECT_CONFIG.pdfFileName);
 }

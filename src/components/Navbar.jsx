@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { Menu, X, ChevronRight } from 'lucide-react';
+import { Menu, X, ChevronRight, FileText, Image } from 'lucide-react';
 import { PROJECT_CONFIG } from '../config';
 
-export default function Navbar({ activeTab, setActiveTab }) {
+export default function Navbar({ activeTab, setActiveTab, onOpenPdf, onOpenPoster }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { id: 'home', label: 'CODE BLUE', isLogo: true },
     { id: 'problem', label: '문제 알아보기' },
+    { id: 'research', label: '연구 과정' },
+    { id: 'policy', label: '정책 제안' },
     { id: 'er-guide', label: '응급실 바로 알기' },
     { id: 'survey', label: '시민 의견' },
-    { id: 'policy', label: '정책 제안' },
     { id: 'about', label: '프로젝트 소개' },
   ];
 
@@ -21,32 +21,33 @@ export default function Navbar({ activeTab, setActiveTab }) {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-navy-900 text-white shadow-md border-b border-navy-700/60 py-3.5">
+    <header className="fixed top-0 left-0 right-0 z-40 bg-navy-900 text-white shadow-md border-b border-navy-800 py-3">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
-          {/* Logo / Home Tab */}
+          {/* Logo / Home Navigation */}
           <button 
             onClick={() => handleTabClick('home')}
-            className="flex items-center gap-3 text-left focus:outline-none group"
+            className="flex items-center gap-2.5 text-left focus:outline-none focus:ring-2 focus:ring-brand-blue rounded-md px-1 group"
+            aria-label="CODE BLUE 메인으로 이동"
           >
             <span className="font-black text-xl tracking-tight text-white group-hover:text-brand-lightblue transition-colors">
               {PROJECT_CONFIG.teamName}
             </span>
-            <span className="hidden sm:inline-block text-xs text-slate-400 font-medium pl-3 border-l border-slate-700">
+            <span className="hidden sm:inline-block text-xs text-slate-400 font-medium pl-2.5 border-l border-slate-700">
               2026 한양학술타운 LION
             </span>
           </button>
 
           {/* Desktop Navigation Tabs */}
-          <nav className="hidden md:flex items-center space-x-1">
-            {navItems.filter(item => !item.isLogo).map((item) => {
+          <nav className="hidden lg:flex items-center space-x-1" aria-label="주요 메뉴">
+            {navItems.map((item) => {
               const isActive = activeTab === item.id;
               return (
                 <button
                   key={item.id}
                   onClick={() => handleTabClick(item.id)}
-                  className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${
+                  className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-brand-blue ${
                     isActive 
                       ? 'bg-brand-blue text-white shadow-sm' 
                       : 'text-slate-300 hover:text-white hover:bg-navy-800'
@@ -58,12 +59,30 @@ export default function Navbar({ activeTab, setActiveTab }) {
             })}
           </nav>
 
+          {/* Right Action Buttons */}
+          <div className="hidden sm:flex items-center space-x-2">
+            <button
+              onClick={onOpenPdf}
+              className="inline-flex items-center px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              <FileText className="w-3.5 h-3.5 mr-1.5" />
+              <span>정책제안서 PDF</span>
+            </button>
+            <button
+              onClick={onOpenPoster}
+              className="inline-flex items-center px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold text-xs transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500"
+            >
+              <Image className="w-3.5 h-3.5 mr-1.5 text-brand-lightblue" />
+              <span>최종 포스터 보기</span>
+            </button>
+          </div>
+
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="lg:hidden flex items-center space-x-2">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-navy-800 focus:outline-none"
-              aria-label="메뉴 열기"
+              className="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-navy-800 focus:outline-none focus:ring-2 focus:ring-brand-blue"
+              aria-label={isOpen ? "메뉴 닫기" : "메뉴 열기"}
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -71,26 +90,45 @@ export default function Navbar({ activeTab, setActiveTab }) {
         </div>
       </div>
 
-      {/* Mobile Drawer Tabs */}
+      {/* Mobile Drawer */}
       {isOpen && (
-        <div className="md:hidden bg-navy-900 border-b border-navy-700 px-4 pt-3 pb-6 space-y-1.5 shadow-2xl">
-          {navItems.filter(item => !item.isLogo).map((item) => {
-            const isActive = activeTab === item.id;
-            return (
-              <button
-                key={item.id}
-                onClick={() => handleTabClick(item.id)}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-lg text-left text-base font-bold transition-colors ${
-                  isActive 
-                    ? 'bg-brand-blue text-white' 
-                    : 'text-slate-300 hover:bg-navy-800'
-                }`}
-              >
-                <span>{item.label}</span>
-                <ChevronRight className="w-4 h-4 opacity-60" />
-              </button>
-            );
-          })}
+        <div className="lg:hidden bg-navy-900 border-b border-navy-800 px-4 pt-3 pb-6 space-y-2 shadow-2xl animate-fadeIn">
+          <div className="space-y-1">
+            {navItems.map((item) => {
+              const isActive = activeTab === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => handleTabClick(item.id)}
+                  className={`w-full flex items-center justify-between px-4 py-2.5 rounded-lg text-left text-sm font-bold transition-colors ${
+                    isActive 
+                      ? 'bg-brand-blue text-white' 
+                      : 'text-slate-300 hover:bg-navy-800'
+                  }`}
+                >
+                  <span>{item.label}</span>
+                  <ChevronRight className="w-4 h-4 opacity-50" />
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="pt-3 border-t border-navy-800 grid grid-cols-2 gap-2">
+            <button
+              onClick={() => { setIsOpen(false); onOpenPdf(); }}
+              className="w-full flex items-center justify-center py-2.5 rounded-lg bg-brand-blue text-white font-bold text-xs"
+            >
+              <FileText className="w-3.5 h-3.5 mr-1" />
+              <span>정책제안서 PDF</span>
+            </button>
+            <button
+              onClick={() => { setIsOpen(false); onOpenPoster(); }}
+              className="w-full flex items-center justify-center py-2.5 rounded-lg bg-navy-800 border border-slate-700 text-slate-200 font-semibold text-xs"
+            >
+              <Image className="w-3.5 h-3.5 mr-1 text-brand-lightblue" />
+              <span>최종 포스터 보기</span>
+            </button>
+          </div>
         </div>
       )}
     </header>
