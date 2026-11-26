@@ -232,84 +232,84 @@ export default function ErGuideSection({ setActiveTab }) {
           )}
         </div>
 
-        {/* Part 2: Visual Infographic Guide (Replacing Stiff Table) */}
+        {/* Part 2: Visual Action Guideline (Actionable Contrast Matrix) */}
         <div className="text-left space-y-6 pt-4 border-t border-zinc-200">
           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-zinc-200 pb-3">
             <div>
-              <h3 className="text-[22px] font-semibold text-zinc-950">
-                응급의료 5대 핵심 이용 수칙
+              <span className="text-[12px] font-mono font-bold text-[#0B3CFF] uppercase tracking-wider block mb-1">
+                ACTION MATRIX
+              </span>
+              <h3 className="text-[20px] sm:text-[22px] font-bold text-zinc-950">
+                응급의료 5대 핵심 행동 전환 지침
               </h3>
-              <p className="text-[15px] text-zinc-600 mt-1">
-                중증환자의 골든타임을 보호하기 위한 5가지 행동 지침 도식도
-              </p>
             </div>
             <span className="text-[13px] font-mono font-bold text-[#0B3CFF]">
-              ACTION GUIDELINE
+              지양할 행동 ➔ 올바른 수칙
             </span>
           </div>
 
-          {/* 5 Visual Cards with Comparison Chips */}
-          <div className="space-y-4">
-            {guidePrinciples.map((p) => {
-              const IconComponent = p.icon;
-              return (
-                <div 
-                  key={p.num}
-                  className="border border-zinc-300 bg-white p-6 sm:p-7 space-y-4 transition-all hover:border-[#0B3CFF]/60"
-                >
-                  {/* Top Metadata Strip */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-zinc-200">
-                    <div className="flex items-center gap-3">
-                      <span className="w-8 h-8 rounded-[2px] bg-[#0B3CFF] text-white font-mono font-bold text-[14px] flex items-center justify-center shrink-0">
-                        {p.num}
-                      </span>
-                      <span className="text-[13px] font-bold font-mono text-zinc-600 uppercase tracking-wide">
-                        {p.topic}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2 text-[#0B3CFF]">
-                      <IconComponent className="w-4 h-4" />
-                      <span className="text-[13px] font-bold font-mono">CODE BLUE 수칙</span>
-                    </div>
-                  </div>
-
-                  {/* Core Rule Title */}
-                  <h4 className="text-[18px] sm:text-[20px] font-bold text-zinc-950 leading-snug break-keep">
-                    {p.rule}
-                  </h4>
-
-                  {/* Visual Diagram: Contrast Comparison Pathway */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
-                    {/* Wrong Practice */}
-                    <div className="p-3.5 bg-zinc-50 border border-zinc-200 flex items-start gap-2.5">
-                      <div className="w-5 h-5 rounded-full bg-zinc-200 text-zinc-700 flex items-center justify-center shrink-0 mt-0.5">
-                        <X className="w-3.5 h-3.5" />
-                      </div>
-                      <div className="space-y-0.5">
-                        <span className="text-[11px] font-bold text-zinc-500 uppercase block">지양해야 할 행동</span>
-                        <span className="text-[14px] font-medium text-zinc-800 break-keep">{p.wrongAction}</span>
-                      </div>
-                    </div>
-
-                    {/* Right Practice */}
-                    <div className="p-3.5 bg-blue-50/20 border border-[#0B3CFF]/40 flex items-start gap-2.5">
-                      <div className="w-5 h-5 rounded-full bg-[#0B3CFF] text-white flex items-center justify-center shrink-0 mt-0.5">
-                        <Check className="w-3.5 h-3.5" />
-                      </div>
-                      <div className="space-y-0.5">
-                        <span className="text-[11px] font-bold text-[#0B3CFF] uppercase block">올바른 이용 수칙</span>
-                        <span className="text-[14px] font-bold text-zinc-950 break-keep">{p.rightAction}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Context Description */}
-                  <p className="text-[15px] text-zinc-700 leading-relaxed break-keep pt-1">
-                    {p.desc}
-                  </p>
+          {/* 5-Row Visual Comparison Pipeline with Arrows */}
+          <div className="space-y-3">
+            {guidePrinciples.map((p) => (
+              <div 
+                key={p.num}
+                className="border border-zinc-200 bg-white p-4 sm:p-5 rounded-[4px] shadow-xs hover:border-[#0B3CFF]/50 transition-all grid grid-cols-1 md:grid-cols-12 gap-3 items-center"
+              >
+                {/* Number Badge */}
+                <div className="md:col-span-1 flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-[2px] bg-zinc-950 text-white font-mono font-bold text-[13px] flex items-center justify-center shrink-0">
+                    {p.num}
+                  </span>
+                  <span className="text-[13px] font-mono font-bold text-zinc-500 md:hidden">{p.topic}</span>
                 </div>
-              );
-            })}
+
+                {/* Wrong Action (Red/Grey X) */}
+                <div className="md:col-span-5 bg-zinc-50 border border-zinc-200 p-3 rounded-[2px] flex items-center gap-2.5">
+                  <div className="w-5 h-5 rounded-full bg-zinc-200 text-zinc-600 flex items-center justify-center shrink-0">
+                    <X className="w-3.5 h-3.5" />
+                  </div>
+                  <div className="min-w-0">
+                    <span className="text-[10px] font-bold text-zinc-500 uppercase block">하지 말 것</span>
+                    <span className="text-[14px] font-medium text-zinc-800 break-keep line-through decoration-zinc-400">
+                      {p.wrongAction}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Center Transition Arrow (Desktop) */}
+                <div className="hidden md:flex md:col-span-1 justify-center text-[#0B3CFF]">
+                  <div className="w-7 h-7 rounded-full bg-blue-50 border border-[#0B3CFF]/30 flex items-center justify-center">
+                    <ArrowRight className="w-4 h-4 text-[#0B3CFF]" />
+                  </div>
+                </div>
+
+                {/* Right Action (Blue Check) */}
+                <div className="md:col-span-5 bg-blue-50/20 border-2 border-[#0B3CFF] p-3 rounded-[2px] flex items-center gap-2.5 shadow-xs">
+                  <div className="w-5 h-5 rounded-full bg-[#0B3CFF] text-white flex items-center justify-center shrink-0">
+                    <Check className="w-3.5 h-3.5" />
+                  </div>
+                  <div className="min-w-0">
+                    <span className="text-[10px] font-bold text-[#0B3CFF] uppercase block">올바른 수칙</span>
+                    <span className="text-[14px] font-bold text-zinc-950 break-keep">
+                      {p.rightAction}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Core Principle Bottom Callout */}
+          <div className="bg-zinc-900 text-white p-5 rounded-[4px] space-y-1.5 text-left border-l-4 border-[#0B3CFF] shadow-xs">
+            <span className="text-[11px] font-mono font-bold text-[#0B3CFF] uppercase tracking-wide block">
+              CORE PRINCIPLE
+            </span>
+            <p className="text-[15px] sm:text-[16px] font-bold text-white break-keep leading-snug">
+              응급의료기관은 도착 순서나 단순 병상 수가 아니라, 환자의 중증도와 실질적인 수술·전문의 가동 역량에 따라 이용해야 합니다.
+            </p>
+            <p className="text-[13px] text-zinc-400 break-keep">
+              위급 상황 발생 시 직접 병원을 탐색하기보다 119의 중증도(KTAS) 분류와 실시간 전원 지정을 준수하는 것이 골든타임을 지키는 가장 안전한 방법입니다.
+            </p>
           </div>
         </div>
 

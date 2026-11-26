@@ -115,88 +115,134 @@ export default function PolicySection({ onOpenPoster, setActiveTab }) {
                       </ul>
                     </div>
 
-                    {/* Policy Visual Schematic Diagrams */}
+                    {/* Policy Visual Schematic Diagrams with Real Connectors */}
                     {policy.id === 1 && (
-                      <div className="border border-zinc-300 p-5 bg-zinc-50 space-y-3">
-                        <span className="text-[13px] font-mono font-bold text-zinc-600 block uppercase">
-                          운영 모형 체계도: 권역 내 전문의 순환 당직 네트워크
-                        </span>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
-                          <div className="bg-white border border-zinc-300 p-3 space-y-1">
-                            <span className="text-[11px] font-mono text-zinc-500 block">거점병원 A</span>
-                            <span className="font-bold text-[15px] text-zinc-950 block">외과/중증외상 당직</span>
-                            <span className="text-[13px] text-zinc-600 block">월·목 책임 가동</span>
+                      <div className="border border-zinc-200 p-5 sm:p-6 bg-zinc-50/70 space-y-4 rounded-[4px]">
+                        <div className="flex items-center justify-between border-b border-zinc-200 pb-2.5">
+                          <span className="text-[12px] font-mono font-bold text-[#0B3CFF] uppercase tracking-wide">
+                            ROTATING ON-CALL NETWORK SCHEMATIC
+                          </span>
+                          <span className="text-[12px] font-mono text-zinc-500">
+                            권역 내 3대 중증질환 당직 분담 모형
+                          </span>
+                        </div>
+
+                        {/* Central Hub */}
+                        <div className="bg-zinc-950 text-white p-3 rounded-[2px] text-center max-w-md mx-auto shadow-xs space-y-0.5">
+                          <span className="text-[11px] font-mono font-bold text-[#0B3CFF] uppercase block">CONTROL HUB</span>
+                          <span className="text-[14px] font-bold text-white block">119 상황실 & 광역응급의료상황실 24시간 실시간 연계</span>
+                        </div>
+
+                        {/* Connecting Fork Down Lines */}
+                        <div className="flex justify-center -my-1">
+                          <div className="w-2/3 h-3 border-l-2 border-r-2 border-b-2 border-zinc-300"></div>
+                        </div>
+
+                        {/* 3 Hospital Nodes with schedule badges */}
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center pt-1">
+                          <div className="bg-white border-2 border-blue-600/60 p-4 space-y-1.5 rounded-[2px] shadow-xs">
+                            <span className="text-[11px] font-mono font-bold px-2 py-0.5 bg-blue-50 text-[#0B3CFF] rounded-[2px] inline-block">
+                              월 · 목 가동
+                            </span>
+                            <span className="font-bold text-[15px] text-zinc-950 block">거점병원 A</span>
+                            <span className="text-[13px] text-zinc-700 font-medium block">외과 / 중증외상 당직</span>
                           </div>
-                          <div className="bg-white border border-zinc-300 p-3 space-y-1">
-                            <span className="text-[11px] font-mono text-zinc-500 block">거점병원 B</span>
-                            <span className="font-bold text-[15px] text-zinc-950 block">뇌혈관/신경외과 당직</span>
-                            <span className="text-[13px] text-zinc-600 block">화·금 책임 가동</span>
+                          <div className="bg-white border-2 border-blue-600/60 p-4 space-y-1.5 rounded-[2px] shadow-xs">
+                            <span className="text-[11px] font-mono font-bold px-2 py-0.5 bg-blue-50 text-[#0B3CFF] rounded-[2px] inline-block">
+                              화 · 금 가동
+                            </span>
+                            <span className="font-bold text-[15px] text-zinc-950 block">거점병원 B</span>
+                            <span className="text-[13px] text-zinc-700 font-medium block">뇌혈관 / 신경외과 당직</span>
                           </div>
-                          <div className="bg-white border border-zinc-300 p-3 space-y-1">
-                            <span className="text-[11px] font-mono text-zinc-500 block">거점병원 C</span>
-                            <span className="font-bold text-[15px] text-zinc-950 block">흉부심혈관외과 당직</span>
-                            <span className="text-[13px] text-zinc-600 block">수·주말 책임 가동</span>
+                          <div className="bg-white border-2 border-blue-600/60 p-4 space-y-1.5 rounded-[2px] shadow-xs">
+                            <span className="text-[11px] font-mono font-bold px-2 py-0.5 bg-blue-50 text-[#0B3CFF] rounded-[2px] inline-block">
+                              수 · 주말 가동
+                            </span>
+                            <span className="font-bold text-[15px] text-zinc-950 block">거점병원 C</span>
+                            <span className="text-[13px] text-zinc-700 font-medium block">흉부심혈관외과 당직</span>
                           </div>
                         </div>
-                        <div className="text-center pt-1 text-[13px] font-mono text-zinc-700 flex items-center justify-center gap-2">
-                          <span className="w-2 h-2 rounded-full bg-[#0B3CFF]"></span>
-                          <span>119 상황실 및 광역응급의료상황실 24시간 실시간 연계</span>
-                        </div>
+
+                        <p className="text-[12px] text-zinc-600 text-center pt-1 break-keep">
+                          ※ 단일 병원의 365일 당직 부담을 3개 거점병원이 요일별로 분담하여 번아웃과 진료 공백을 동시 해소
+                        </p>
                       </div>
                     )}
 
                     {policy.id === 2 && (
-                      <div className="border border-zinc-300 p-5 bg-zinc-50 space-y-3">
-                        <span className="text-[13px] font-mono font-bold text-zinc-600 block uppercase">
-                          인력 양성 파이프라인 구조도
-                        </span>
-                        <div className="grid grid-cols-1 sm:grid-cols-4 gap-2 text-center">
-                          <div className="bg-white border border-zinc-300 p-3 space-y-1">
-                            <span className="text-[11px] font-mono font-bold text-zinc-500 block">단계 01</span>
+                      <div className="border border-zinc-200 p-5 sm:p-6 bg-zinc-50/70 space-y-4 rounded-[4px]">
+                        <div className="flex items-center justify-between border-b border-zinc-200 pb-2.5">
+                          <span className="text-[12px] font-mono font-bold text-[#0B3CFF] uppercase tracking-wide">
+                            TRAINING & RETENTION PIPELINE
+                          </span>
+                          <span className="text-[12px] font-mono text-zinc-500">
+                            4단계 전주기 양성 파이프라인
+                          </span>
+                        </div>
+
+                        {/* Connected 4-Step Pipeline */}
+                        <div className="grid grid-cols-1 sm:grid-cols-4 gap-2 text-center relative">
+                          <div className="bg-white border border-zinc-200 p-3.5 space-y-1 rounded-[2px]">
+                            <span className="w-5 h-5 rounded-full bg-zinc-950 text-white font-mono text-[10px] font-bold inline-flex items-center justify-center">1</span>
                             <span className="font-bold text-[15px] text-zinc-950 block">특기 선발</span>
-                            <span className="text-[13px] text-zinc-600 block">정원 외 의무선발</span>
+                            <span className="text-[12px] text-zinc-600 block">정원 외 의무선발</span>
                           </div>
-                          <div className="bg-white border border-zinc-300 p-3 space-y-1">
-                            <span className="text-[11px] font-mono font-bold text-zinc-500 block">단계 02</span>
+                          <div className="bg-white border border-zinc-200 p-3.5 space-y-1 rounded-[2px]">
+                            <span className="w-5 h-5 rounded-full bg-zinc-950 text-white font-mono text-[10px] font-bold inline-flex items-center justify-center">2</span>
                             <span className="font-bold text-[15px] text-zinc-950 block">필수과 수련</span>
-                            <span className="text-[13px] text-zinc-600 block">외과/응급 집중</span>
+                            <span className="text-[12px] text-zinc-600 block">외과/응급 집중</span>
                           </div>
-                          <div className="bg-white border border-zinc-300 p-3 space-y-1">
-                            <span className="text-[11px] font-mono font-bold text-zinc-500 block">단계 03</span>
-                            <span className="font-bold text-[15px] text-zinc-950 block">10~15년 복무</span>
-                            <span className="text-[13px] text-zinc-600 block">권역 거점병원 상주</span>
+                          <div className="bg-white border-2 border-[#0B3CFF] p-3.5 space-y-1 rounded-[2px] shadow-xs">
+                            <span className="w-5 h-5 rounded-full bg-[#0B3CFF] text-white font-mono text-[10px] font-bold inline-flex items-center justify-center">3</span>
+                            <span className="font-bold text-[15px] text-[#0B3CFF] block">10~15년 복무</span>
+                            <span className="text-[12px] text-zinc-700 font-medium block">권역 거점병원 상주</span>
                           </div>
-                          <div className="bg-white border border-zinc-300 p-3 space-y-1">
-                            <span className="text-[11px] font-mono font-bold text-zinc-500 block">단계 04</span>
+                          <div className="bg-white border border-zinc-200 p-3.5 space-y-1 rounded-[2px]">
+                            <span className="w-5 h-5 rounded-full bg-zinc-950 text-white font-mono text-[10px] font-bold inline-flex items-center justify-center">4</span>
                             <span className="font-bold text-[15px] text-zinc-950 block">영구 정착</span>
-                            <span className="text-[13px] text-zinc-600 block">지역 필수의료 유지</span>
+                            <span className="text-[12px] text-zinc-600 block">지역 필수의료 유지</span>
                           </div>
                         </div>
+
+                        <p className="text-[12px] text-zinc-600 text-center pt-1 break-keep">
+                          ※ 단기 공보의 대체가 아닌, 10~15년 장기 복무 후 영구 정착을 유도하는 제도적 인센티브 설계
+                        </p>
                       </div>
                     )}
 
                     {policy.id === 3 && (
-                      <div className="border border-zinc-300 p-5 bg-zinc-50 space-y-3">
-                        <span className="text-[13px] font-mono font-bold text-zinc-600 block uppercase">
-                          사법 안전망 및 공적 분쟁지원 절차도
-                        </span>
+                      <div className="border border-zinc-200 p-5 sm:p-6 bg-zinc-50/70 space-y-4 rounded-[4px]">
+                        <div className="flex items-center justify-between border-b border-zinc-200 pb-2.5">
+                          <span className="text-[12px] font-mono font-bold text-[#0B3CFF] uppercase tracking-wide">
+                            LEGAL SAFETY SHIELD WORKFLOW
+                          </span>
+                          <span className="text-[12px] font-mono text-zinc-500">
+                            3단계 공적 보호 체계
+                          </span>
+                        </div>
+
+                        {/* Connected 3-Step Shield Flow */}
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
-                          <div className="bg-white border border-zinc-300 p-3 space-y-1">
-                            <span className="text-[11px] font-mono font-bold text-zinc-500 block">01. 현장 기록화</span>
-                            <span className="font-bold text-[15px] text-zinc-950 block">사유 자동 연계</span>
-                            <span className="text-[13px] text-zinc-600 block">EMR 객관 증빙 보존</span>
+                          <div className="bg-white border border-zinc-200 p-4 space-y-1 rounded-[2px]">
+                            <span className="text-[11px] font-mono font-bold text-zinc-500 block">STEP 01</span>
+                            <span className="font-bold text-[15px] text-zinc-950 block">현장 사유 자동 기록</span>
+                            <span className="text-[12px] text-zinc-600 block">EMR 객관 증빙 보존</span>
                           </div>
-                          <div className="bg-white border border-zinc-300 p-3 space-y-1">
-                            <span className="text-[11px] font-mono font-bold text-zinc-500 block">02. 분쟁 심의</span>
+                          <div className="bg-white border border-zinc-200 p-4 space-y-1 rounded-[2px]">
+                            <span className="text-[11px] font-mono font-bold text-zinc-500 block">STEP 02</span>
                             <span className="font-bold text-[15px] text-zinc-950 block">중재원 우선 감정</span>
-                            <span className="text-[13px] text-zinc-600 block">불가항력성 공적 판단</span>
+                            <span className="text-[12px] text-zinc-600 block">불가항력성 공적 판단</span>
                           </div>
-                          <div className="bg-white border border-zinc-300 p-3 space-y-1">
-                            <span className="text-[11px] font-mono font-bold text-zinc-500 block">03. 사법 보호</span>
-                            <span className="font-bold text-[15px] text-zinc-950 block">공적 변호 연계</span>
-                            <span className="text-[13px] text-zinc-600 block">개인 배상 및 소송 분담</span>
+                          <div className="bg-white border-2 border-[#0B3CFF] p-4 space-y-1 rounded-[2px] shadow-xs">
+                            <span className="text-[11px] font-mono font-bold text-[#0B3CFF] block">STEP 03</span>
+                            <span className="font-bold text-[15px] text-zinc-950 block">공적 변호 & 면책</span>
+                            <span className="text-[12px] text-zinc-700 font-medium block">개인 배상 및 소송 전담</span>
                           </div>
                         </div>
+
+                        <p className="text-[12px] text-zinc-600 text-center pt-1 break-keep">
+                          ※ 의료진 개인에게 전가되던 사법 리스크를 공적 분쟁조정과 법률지원으로 분담하는 안전망
+                        </p>
                       </div>
                     )}
 

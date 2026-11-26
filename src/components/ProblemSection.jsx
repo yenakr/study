@@ -1,45 +1,50 @@
 import React from 'react';
 import { THREE_CORE_PROBLEMS, PROBLEM_SECTION_HEADER, ACCEPTANCE_DISTINCTION_NOTE } from '../data/policyData';
-import { ArrowRight, AlertTriangle, Clock, PhoneCall, Stethoscope, FileWarning } from 'lucide-react';
+import { ArrowRight, ArrowDown, AlertTriangle, Clock, PhoneCall, Stethoscope, FileWarning } from 'lucide-react';
 
 export default function ProblemSection({ setActiveTab }) {
   const mechanismSteps = [
     {
       step: "01",
       title: "119 현장 접촉",
-      desc: "중증도(KTAS 1·2단계) 환자 발생 및 응급처치",
+      desc: "중증도(KTAS 1·2단계) 환자 발생 및 현장 응급처치",
       icon: Clock,
-      status: "현장 이송 시작"
+      status: "현장 이송 시작",
+      statusColor: "text-zinc-600 bg-zinc-100"
     },
     {
       step: "02",
       title: "정보망 단순 조회",
-      desc: "응급의료정보망에서 단순 가용 병상 유무 확인",
+      desc: "응급의료정보망에서 단순 빈 병상 유무만 확인",
       icon: PhoneCall,
-      status: "병상 유무만 표출"
+      status: "병상 유무만 표출",
+      statusColor: "text-zinc-600 bg-zinc-100"
     },
     {
       step: "03",
       title: "수술 역량 결손",
-      desc: "배후 필수진료과 당직 전문의 부재 및 수술실 만석",
+      desc: "배후 필수진료과 당직 전문의 부재 및 중환자실 만석",
       icon: Stethoscope,
       status: "실질적 치료 불가",
+      statusColor: "text-[#0B3CFF] bg-blue-50 border border-[#0B3CFF]/30",
       isBottleneck: true
     },
     {
       step: "04",
       title: "수용 불가 통보",
-      desc: "정당한 사유 객관적 입증 없이 유선 거부 통보",
+      desc: "정당한 사유 객관적 입증 없이 유선 거부 통보 반복",
       icon: FileWarning,
-      status: "재이송 탐색 반복",
+      status: "재이송 탐색 누적",
+      statusColor: "text-[#0B3CFF] bg-blue-50 border border-[#0B3CFF]/30",
       isBottleneck: true
     },
     {
       step: "05",
       title: "골든타임 소실",
-      desc: "다중 병원 전전으로 적기 수술 지연 및 예후 악화",
+      desc: "다중 병원 전전으로 적기 수술 지연 및 예후 급격 악화",
       icon: AlertTriangle,
-      status: "최종 피해 발생",
+      status: "최종 위험 발생",
+      statusColor: "text-white bg-red-600",
       isDanger: true
     }
   ];
@@ -52,62 +57,91 @@ export default function ProblemSection({ setActiveTab }) {
         <div className="space-y-4 text-left border-b border-zinc-200 pb-8">
           <div className="text-[13px] font-mono font-bold text-[#0B3CFF]">SECTION 01 • 현황 분석</div>
           
-          {/* Core Sentence First (20px bold) */}
+          {/* Core Sentence First */}
           <div className="text-[20px] font-bold text-zinc-950 leading-snug break-keep">
             “{PROBLEM_SECTION_HEADER.corePhrase}”
           </div>
 
-          {/* Section Title (36~40px) */}
+          {/* Section Title */}
           <h2 className="font-serif font-bold text-[36px] sm:text-[40px] text-zinc-950 tracking-tight leading-[1.3] break-keep">
             {PROBLEM_SECTION_HEADER.title}
           </h2>
         </div>
 
-        {/* Visual Mechanism Diagram: How Delays Occur */}
-        <div className="border border-zinc-300 bg-white p-6 sm:p-8 text-left space-y-6">
+        {/* Visual Mechanism Process Map: Connected Sequence */}
+        <div className="border border-zinc-200 bg-zinc-50/40 p-6 sm:p-8 text-left space-y-6 rounded-[4px]">
           <div className="border-b border-zinc-200 pb-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-            <h3 className="text-[22px] font-semibold text-zinc-950 break-keep">
-              중증응급환자 수용 실패 및 지연 발생 메커니즘
-            </h3>
-            <span className="text-[13px] font-mono text-zinc-600">
-              인과 체인 구조도
+            <div>
+              <span className="text-[12px] font-mono font-bold text-[#0B3CFF] block uppercase tracking-wider mb-1">
+                CAUSAL MECHANISM PIPELINE
+              </span>
+              <h3 className="text-[20px] sm:text-[22px] font-bold text-zinc-950 break-keep">
+                중증응급환자 수용 실패 및 이송 지연 발생 메커니즘
+              </h3>
+            </div>
+            <span className="text-[13px] font-mono font-medium text-zinc-500">
+              5단계 인과 체인 도식도
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
+          {/* Connected 5-Step Flowchart */}
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-3 relative">
             {mechanismSteps.map((m, idx) => {
               const IconComp = m.icon;
               return (
-                <div 
-                  key={m.step}
-                  className={`p-5 border text-left flex flex-col justify-between min-h-[190px] relative ${
-                    m.isDanger 
-                      ? 'border-zinc-950 bg-zinc-950 text-white' 
-                      : m.isBottleneck 
-                        ? 'border-[#0B3CFF] bg-blue-50/15' 
-                        : 'border-zinc-300 bg-zinc-50'
-                  }`}
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className={`font-mono text-[13px] font-bold ${m.isDanger ? 'text-zinc-300' : 'text-zinc-600'}`}>
-                        {m.step}
-                      </span>
-                      <IconComp className={`w-4 h-4 ${m.isDanger ? 'text-white' : m.isBottleneck ? 'text-[#0B3CFF]' : 'text-zinc-700'}`} />
+                <div key={m.step} className="relative flex flex-col">
+                  {/* Step Box */}
+                  <div 
+                    className={`p-4 sm:p-5 text-left h-full flex flex-col justify-between border rounded-[2px] transition-all bg-white ${
+                      m.isDanger 
+                        ? 'border-red-500 shadow-xs ring-1 ring-red-500/30' 
+                        : m.isBottleneck 
+                          ? 'border-[#0B3CFF] shadow-xs ring-1 ring-[#0B3CFF]/30' 
+                          : 'border-zinc-200'
+                    }`}
+                  >
+                    <div>
+                      {/* Node Top Badge & Icon */}
+                      <div className="flex items-center justify-between mb-2.5">
+                        <span className={`w-6 h-6 rounded-[2px] font-mono text-[12px] font-bold flex items-center justify-center ${
+                          m.isDanger ? 'bg-red-600 text-white' : m.isBottleneck ? 'bg-[#0B3CFF] text-white' : 'bg-zinc-800 text-white'
+                        }`}>
+                          {m.step}
+                        </span>
+                        <IconComp className={`w-4 h-4 ${
+                          m.isDanger ? 'text-red-600' : m.isBottleneck ? 'text-[#0B3CFF]' : 'text-zinc-600'
+                        }`} />
+                      </div>
+
+                      <h4 className="text-[16px] font-bold text-zinc-950 mb-1 leading-snug break-keep">
+                        {m.title}
+                      </h4>
+
+                      <p className="text-[13px] text-zinc-600 leading-relaxed break-keep">
+                        {m.desc}
+                      </p>
                     </div>
-                    <h4 className={`text-[17px] font-bold mb-2 leading-snug break-keep ${m.isDanger ? 'text-white' : 'text-zinc-950'}`}>
-                      {m.title}
-                    </h4>
-                    <p className={`text-[13px] leading-relaxed break-keep ${m.isDanger ? 'text-zinc-300' : 'text-zinc-700'}`}>
-                      {m.desc}
-                    </p>
+
+                    {/* Step Status Badge */}
+                    <div className="pt-3 border-t border-zinc-100 mt-3">
+                      <span className={`text-[11px] font-mono font-bold px-2 py-0.5 rounded-[2px] inline-block ${m.statusColor}`}>
+                        {m.status}
+                      </span>
+                    </div>
                   </div>
 
-                  <div className="pt-3 border-t border-zinc-200/40 mt-3">
-                    <span className={`text-[11px] font-mono font-bold block ${m.isDanger ? 'text-red-400' : m.isBottleneck ? 'text-[#0B3CFF]' : 'text-zinc-600'}`}>
-                      {m.status}
-                    </span>
-                  </div>
+                  {/* Horizontal Connector Arrow (Desktop) */}
+                  {idx < mechanismSteps.length - 1 && (
+                    <div className="hidden md:flex absolute -right-2.5 top-1/2 -translate-y-1/2 z-10 w-5 h-5 rounded-full bg-white border border-zinc-300 items-center justify-center text-zinc-500 shadow-xs">
+                      <ArrowRight className="w-3 h-3" />
+                    </div>
+                  )}
+                  {/* Vertical Connector Arrow (Mobile) */}
+                  {idx < mechanismSteps.length - 1 && (
+                    <div className="md:hidden flex justify-center py-1 text-zinc-400">
+                      <ArrowDown className="w-4 h-4" />
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -118,7 +152,7 @@ export default function ProblemSection({ setActiveTab }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 text-left">
           
           {/* Left Column: Marginalia Context */}
-          <div className="lg:col-span-4 space-y-4 border-l-2 border-zinc-950 pl-5 text-[15px] leading-[1.75] text-zinc-700 break-keep">
+          <div className="lg:col-span-4 space-y-4 border-l-2 border-[#0B3CFF] pl-5 text-[15px] leading-[1.75] text-zinc-700 break-keep">
             <span className="font-bold text-zinc-950 block text-[17px]">진료 역량과 병상의 차이</span>
             <p>
               현행 「응급의료에 관한 법률」 제15조는 정보통신망 구축을 규정하고 있으나, 현장 구급대원이 조회하는 정보는 대부분 '단순 가용 병상 수'입니다.
@@ -166,9 +200,9 @@ export default function ProblemSection({ setActiveTab }) {
           </div>
 
           {/* Table */}
-          <div className="border border-zinc-300 overflow-x-auto">
+          <div className="border border-zinc-200 overflow-x-auto">
             <table className="w-full text-left text-[15px] divide-y divide-zinc-200 min-w-[600px]">
-              <thead className="bg-zinc-50 text-zinc-900 font-semibold border-b border-zinc-300">
+              <thead className="bg-zinc-50 text-zinc-900 font-semibold border-b border-zinc-200">
                 <tr className="min-h-[56px]">
                   <th className="py-4 px-5 w-1/4 border-r border-zinc-200">구분</th>
                   <th className="py-4 px-5 w-3/8 border-r border-zinc-200">법적·상황적 정의</th>
@@ -176,7 +210,7 @@ export default function ProblemSection({ setActiveTab }) {
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-200 bg-white text-zinc-800">
-                <tr className="min-h-[56px]">
+                <tr className="min-h-[56px] hover:bg-zinc-50/50">
                   <td className="py-4 px-5 font-bold border-r border-zinc-200 text-zinc-950 align-top">
                     정당한 수용 불가
                     <span className="block font-normal text-[13px] text-zinc-600 mt-0.5">응급의료법 제6조 단서</span>
@@ -188,7 +222,7 @@ export default function ProblemSection({ setActiveTab }) {
                     해당 필수진료과 당직 전문의가 다른 응급수술 중이거나, 중환자실 및 필수 장비가 물리적으로 만석·고장인 경우
                   </td>
                 </tr>
-                <tr className="min-h-[56px]">
+                <tr className="min-h-[56px] hover:bg-zinc-50/50">
                   <td className="py-4 px-5 font-bold border-r border-zinc-200 text-zinc-950 align-top">
                     부당한 수용 거부
                     <span className="block font-normal text-[13px] text-zinc-600 mt-0.5">진료 거부 금지 위반</span>
