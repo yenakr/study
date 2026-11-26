@@ -1,6 +1,6 @@
 import React from 'react';
 import { RESEARCH_TIMELINE, SHIFT_REASON } from '../data/policyData';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, GitMerge, FileCheck, Stethoscope, Scale } from 'lucide-react';
 
 export default function ResearchSection({ setActiveTab }) {
   return (
@@ -25,6 +25,104 @@ export default function ResearchSection({ setActiveTab }) {
           <p className="text-[17px] md:text-[18px] text-zinc-800 leading-[1.75] font-normal break-keep max-w-[640px]">
             2026년 5월부터 11월까지 진행된 문헌 고찰, 현장 실무자 심층 인터뷰, 법제도 분석을 거쳐 현장 중심의 정책 대안을 도출했습니다.
           </p>
+        </div>
+
+        {/* Visual Diagram: Interdisciplinary Convergence Architecture */}
+        <div className="border border-zinc-300 bg-white p-6 sm:p-8 text-left space-y-6">
+          <div className="border-b border-zinc-200 pb-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+            <h3 className="text-[22px] font-semibold text-zinc-950 break-keep">
+              간호학·정책학 학제 간 융합 연구 모델
+            </h3>
+            <span className="text-[13px] font-mono text-zinc-600">
+              연구 체계도
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+            
+            {/* Nursing Column */}
+            <div className="md:col-span-5 border border-zinc-300 bg-zinc-50 p-6 space-y-4 flex flex-col justify-between">
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-[2px] bg-zinc-950 text-white flex items-center justify-center">
+                    <Stethoscope className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-[13px] font-mono font-bold text-zinc-600 uppercase block">트랙 A</span>
+                    <h4 className="text-[18px] font-bold text-zinc-950">간호학과: 임상 현장 분석</h4>
+                  </div>
+                </div>
+                <ul className="text-[15px] text-zinc-700 space-y-2 pt-2 border-t border-zinc-200 leading-relaxed">
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold text-zinc-950">•</span>
+                    <span>서울아산병원 응급실 전문간호사 자문 인터뷰</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold text-zinc-950">•</span>
+                    <span>119-응급실 구급활동 사전통보 및 인계 분석</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold text-zinc-950">•</span>
+                    <span>배후 진료과(외과/신경외과) 결손 실태 확인</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="pt-3 border-t border-zinc-200 text-[13px] font-bold text-zinc-800">
+                실증적 병목: "수술할 전문의 상주 필요"
+              </div>
+            </div>
+
+            {/* Center Convergence Operator */}
+            <div className="md:col-span-2 flex flex-col items-center justify-center py-4">
+              <div className="w-12 h-12 rounded-full border-2 border-zinc-950 bg-white flex items-center justify-center shadow-xs">
+                <GitMerge className="w-5 h-5 text-zinc-950" />
+              </div>
+              <span className="text-[13px] font-mono font-bold text-zinc-950 mt-2">학제 융합</span>
+              <span className="text-[11px] text-zinc-600 text-center">임상 병목과<br />법제도 연계</span>
+            </div>
+
+            {/* Public Policy Column */}
+            <div className="md:col-span-5 border border-zinc-300 bg-zinc-50 p-6 space-y-4 flex flex-col justify-between">
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-[2px] bg-zinc-950 text-white flex items-center justify-center">
+                    <Scale className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-[13px] font-mono font-bold text-zinc-600 uppercase block">트랙 B</span>
+                    <h4 className="text-[18px] font-bold text-zinc-950">정책학과: 보건의료 법·제도</h4>
+                  </div>
+                </div>
+                <ul className="text-[15px] text-zinc-700 space-y-2 pt-2 border-t border-zinc-200 leading-relaxed">
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold text-zinc-950">•</span>
+                    <span>「응급의료법」 제6조(거부금지)·제48조의2 공백 검토</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold text-zinc-950">•</span>
+                    <span>의료인 사법 리스크와 업무상과실 책임 구조 규명</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold text-zinc-950">•</span>
+                    <span>권역 순환당직제 및 의무복무 선발전형 제도 설계</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="pt-3 border-t border-zinc-200 text-[13px] font-bold text-zinc-800">
+                제도적 해법: "인력 배치 및 사법 안전망"
+              </div>
+            </div>
+
+          </div>
+
+          {/* Resulting Node Banner */}
+          <div className="p-4 bg-zinc-950 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <FileCheck className="w-5 h-5 text-white shrink-0" />
+              <span className="font-bold text-[15px]">최종 정책 도출: 필수의료 전문인력 중심 3대 과제</span>
+            </div>
+            <span className="text-[13px] font-mono text-zinc-300">순환당직제 • 의무복무 선발 • 법적 분쟁지원</span>
+          </div>
         </div>
 
         {/* Timeline Table (1 Table per section rule) */}

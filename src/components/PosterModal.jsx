@@ -55,7 +55,7 @@ export default function PosterModal({ isOpen, onClose }) {
               <div className="pt-3 space-y-1.5">
                 <span className="font-bold text-zinc-950 block text-[16px]">1. 연구 배경 및 문제 정의</span>
                 <p className="text-zinc-700 leading-relaxed break-keep">
-                  단순 병상 유무와 실제 전문의 수술 역량의 괴리, 2026년 5월 의사 1심 집행유예 판결 및 6월 대구 중증환자 사망 송치 사건에서 드러난 '받아도 책임, 받지 않아도 책임'의 제도적 딜레마 분석.
+                  단순 병상 유무와 실제 전문의 수술 역량의 괴리, 2026년 5월 의사 1심 집행유예 판결 및 6월 대구 중증환자 사망 송치 사건에서 드러난 의료진 이중 사법 리스크 구조 분석.
                 </p>
               </div>
 

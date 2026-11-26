@@ -13,7 +13,7 @@ export default function AboutSection({ onOpenPdf, onOpenPoster, setActiveTab }) 
       desc: "구급대와 응급실 간 사전 통보 및 구두 인계 표준 서식으로 환자정보, 사고기전, 손상부위, 생체징후, 처치내용, 알레르기, 약물, 과거력 등을 포함함."
     },
     {
-      term: "재이송 (소위 핑퐁 이송)",
+      term: "응급환자 재이송 (Re-triage)",
       desc: "수용 불가 통보 등으로 119 구급차가 치료 가능한 의료기관을 즉시 찾지 못하고 여러 병원을 연속 탐색·이송하는 현상."
     },
     {

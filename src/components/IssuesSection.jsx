@@ -27,7 +27,7 @@ export default function IssuesSection({ setActiveTab }) {
         {/* 2 Case Studies */}
         <div className="text-left space-y-5">
           <h3 className="text-[22px] font-semibold text-zinc-950 leading-snug break-keep">
-            사법 리스크와 수용 기피의 양면 사례
+            2026년 형사 판결 및 수사 사례 분석
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -122,17 +122,27 @@ export default function IssuesSection({ setActiveTab }) {
         </div>
 
         {/* 4-Step Structural Process Flow */}
-        <div className="border border-zinc-300 bg-white p-7 text-left space-y-5">
-          <h3 className="text-[22px] font-semibold text-zinc-950 leading-snug break-keep">
-            사건·법 개정에서 정책 제안으로 이어지는 인과 구조
-          </h3>
+        <div className="border border-zinc-300 bg-white p-7 text-left space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-zinc-200 pb-3">
+            <h3 className="text-[22px] font-semibold text-zinc-950 leading-snug break-keep">
+              현안에서 정책 과제로의 이행 구조도
+            </h3>
+            <span className="text-[13px] font-mono text-zinc-600">
+              단계별 인과 경로
+            </span>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 border border-zinc-300 divide-y md:divide-y-0 md:divide-x divide-zinc-200 text-left">
-            {flow.map((item) => (
-              <div key={item.step} className="p-5 space-y-2 bg-zinc-50 flex flex-col justify-between">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-3 text-left">
+            {flow.map((item, idx) => (
+              <div key={item.step} className="p-5 space-y-3 bg-zinc-50 border border-zinc-300 flex flex-col justify-between min-h-[160px]">
                 <div>
-                  <div className="text-[13px] font-mono font-bold text-zinc-600 mb-1">
-                    단계 0{item.step}
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[13px] font-mono font-bold text-zinc-950 bg-white border border-zinc-300 px-2 py-0.5">
+                      단계 0{item.step}
+                    </span>
+                    {idx < flow.length - 1 && (
+                      <span className="hidden md:inline text-zinc-400 font-mono">→</span>
+                    )}
                   </div>
                   <h4 className="text-[17px] font-bold text-zinc-950 leading-snug break-keep">
                     {item.title}

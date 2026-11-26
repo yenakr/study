@@ -1,8 +1,49 @@
 import React from 'react';
 import { THREE_CORE_PROBLEMS, PROBLEM_SECTION_HEADER, ACCEPTANCE_DISTINCTION_NOTE } from '../data/policyData';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, AlertTriangle, Clock, PhoneCall, Stethoscope, FileWarning } from 'lucide-react';
 
 export default function ProblemSection({ setActiveTab }) {
+  const mechanismSteps = [
+    {
+      step: "01",
+      title: "119 현장 접촉",
+      desc: "중증도(KTAS 1·2단계) 환자 발생 및 응급처치",
+      icon: Clock,
+      status: "현장 이송 시작"
+    },
+    {
+      step: "02",
+      title: "정보망 단순 조회",
+      desc: "응급의료정보망에서 단순 가용 병상 유무 확인",
+      icon: PhoneCall,
+      status: "병상 유무만 표출"
+    },
+    {
+      step: "03",
+      title: "수술 역량 결손",
+      desc: "배후 필수진료과 당직 전문의 부재 및 수술실 만석",
+      icon: Stethoscope,
+      status: "실질적 치료 불가",
+      isBottleneck: true
+    },
+    {
+      step: "04",
+      title: "수용 불가 통보",
+      desc: "정당한 사유 객관적 입증 없이 유선 거부 통보",
+      icon: FileWarning,
+      status: "재이송 탐색 반복",
+      isBottleneck: true
+    },
+    {
+      step: "05",
+      title: "골든타임 소실",
+      desc: "다중 병원 전전으로 적기 수술 지연 및 예후 악화",
+      icon: AlertTriangle,
+      status: "최종 피해 발생",
+      isDanger: true
+    }
+  ];
+
   return (
     <section id="problem" className="py-24 md:py-28 bg-white text-zinc-900 min-h-screen font-sans border-b border-zinc-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
@@ -22,10 +63,61 @@ export default function ProblemSection({ setActiveTab }) {
           </h2>
         </div>
 
-        {/* Asymmetrical 2-Column */}
+        {/* Visual Mechanism Diagram: How Delays Occur */}
+        <div className="border border-zinc-300 bg-white p-6 sm:p-8 text-left space-y-6">
+          <div className="border-b border-zinc-200 pb-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+            <h3 className="text-[22px] font-semibold text-zinc-950 break-keep">
+              중증응급환자 수용 실패 및 지연 발생 메커니즘
+            </h3>
+            <span className="text-[13px] font-mono text-zinc-600">
+              인과 체인 구조도
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
+            {mechanismSteps.map((m, idx) => {
+              const IconComp = m.icon;
+              return (
+                <div 
+                  key={m.step}
+                  className={`p-5 border text-left flex flex-col justify-between min-h-[190px] relative ${
+                    m.isDanger 
+                      ? 'border-zinc-950 bg-zinc-950 text-white' 
+                      : m.isBottleneck 
+                        ? 'border-[#0B3CFF] bg-blue-50/15' 
+                        : 'border-zinc-300 bg-zinc-50'
+                  }`}
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className={`font-mono text-[13px] font-bold ${m.isDanger ? 'text-zinc-300' : 'text-zinc-600'}`}>
+                        {m.step}
+                      </span>
+                      <IconComp className={`w-4 h-4 ${m.isDanger ? 'text-white' : m.isBottleneck ? 'text-[#0B3CFF]' : 'text-zinc-700'}`} />
+                    </div>
+                    <h4 className={`text-[17px] font-bold mb-2 leading-snug break-keep ${m.isDanger ? 'text-white' : 'text-zinc-950'}`}>
+                      {m.title}
+                    </h4>
+                    <p className={`text-[13px] leading-relaxed break-keep ${m.isDanger ? 'text-zinc-300' : 'text-zinc-700'}`}>
+                      {m.desc}
+                    </p>
+                  </div>
+
+                  <div className="pt-3 border-t border-zinc-200/40 mt-3">
+                    <span className={`text-[11px] font-mono font-bold block ${m.isDanger ? 'text-red-400' : m.isBottleneck ? 'text-[#0B3CFF]' : 'text-zinc-600'}`}>
+                      {m.status}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Asymmetrical 2-Column: Marginalia & 3 Core Problems */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 text-left">
           
-          {/* Left Column: Marginalia Context (Max 2 marginalia per section) */}
+          {/* Left Column: Marginalia Context */}
           <div className="lg:col-span-4 space-y-4 border-l-2 border-zinc-950 pl-5 text-[15px] leading-[1.75] text-zinc-700 break-keep">
             <span className="font-bold text-zinc-950 block text-[17px]">진료 역량과 병상의 차이</span>
             <p>
@@ -36,7 +128,7 @@ export default function ProblemSection({ setActiveTab }) {
             </p>
           </div>
 
-          {/* Right Column: 3 Core Problems (Rows with Text >= 15px) */}
+          {/* Right Column: 3 Core Problems */}
           <div className="lg:col-span-8 divide-y divide-zinc-200 border-y border-zinc-200">
             {THREE_CORE_PROBLEMS.map((problem) => (
               <div key={problem.id} className="py-6 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 items-baseline">
@@ -57,7 +149,7 @@ export default function ProblemSection({ setActiveTab }) {
 
         </div>
 
-        {/* 2-Column Comparison Table (Max 1 Table per section) */}
+        {/* 2-Column Comparison Table */}
         <div className="pt-4 text-left space-y-4">
           <div className="space-y-1.5 max-w-[640px]">
             <h3 className="text-[22px] font-semibold text-zinc-950 leading-snug break-keep">
@@ -73,7 +165,7 @@ export default function ProblemSection({ setActiveTab }) {
             → 표를 가로로 넘겨서 전체 내용을 확인할 수 있습니다.
           </div>
 
-          {/* Table (Min row height 56px, cells >= 15px) */}
+          {/* Table */}
           <div className="border border-zinc-300 overflow-x-auto">
             <table className="w-full text-left text-[15px] divide-y divide-zinc-200 min-w-[600px]">
               <thead className="bg-zinc-50 text-zinc-900 font-semibold border-b border-zinc-300">
@@ -113,7 +205,7 @@ export default function ProblemSection({ setActiveTab }) {
           </div>
         </div>
 
-        {/* Next Section Navigation Link (Min height 44px) */}
+        {/* Next Section Navigation Link */}
         <div className="pt-8 border-t border-zinc-200 flex justify-end">
           <button
             onClick={() => { setActiveTab('issues'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}

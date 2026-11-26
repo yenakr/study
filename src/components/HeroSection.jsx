@@ -1,12 +1,33 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Activity, PhoneCall, Stethoscope, Building2, CheckCircle2, AlertOctagon } from 'lucide-react';
 
 export default function HeroSection({ setActiveTab }) {
   const flowSteps = [
-    { num: "01", stage: "119 구급대 현장", desc: "중증도(KTAS) 1차 판정 및 기본 응급처치 시행" },
-    { num: "02", stage: "수용 병원 유선 확인", desc: "응급실 가용 병상 확인 및 구급활동 사전 통보" },
-    { num: "03", stage: "전문의·수술실 가동 확인", desc: "배후 진료과 당직 전문의와 수술실 실제 치료 가능 여부 확인", highlight: true },
-    { num: "04", stage: "최종 치료 및 입원", desc: "응급 수술, 심혈관 중재시술, 중환자실 집중 치료 연계" }
+    { 
+      num: "01", 
+      stage: "119 구급대 현장", 
+      icon: Activity,
+      desc: "중증도(KTAS) 판정 및 기본 처치 시행" 
+    },
+    { 
+      num: "02", 
+      stage: "수용 병원 유선 확인", 
+      icon: PhoneCall,
+      desc: "응급실 가용 병상 확인 및 사전 통보" 
+    },
+    { 
+      num: "03", 
+      stage: "전문의·수술실 가동 확인", 
+      icon: Stethoscope,
+      desc: "배후 당직의 수술 및 중환자 치료 가능성 확인", 
+      highlight: true 
+    },
+    { 
+      num: "04", 
+      stage: "최종 치료 및 입원", 
+      icon: Building2,
+      desc: "응급 수술 및 중환자실 집중 치료 연계" 
+    }
   ];
 
   return (
@@ -60,64 +81,119 @@ export default function HeroSection({ setActiveTab }) {
             </div>
           </div>
 
-          {/* Right Column: Dilemma Box */}
-          <div className="lg:col-span-5 border border-zinc-300 bg-white p-7 text-left space-y-4">
+          {/* Right Column: Legal Responsibility Structure Diagram */}
+          <div className="lg:col-span-5 border border-zinc-300 bg-white p-7 text-left space-y-5">
             <div className="border-b border-zinc-200 pb-3">
-              <span className="text-[15px] font-bold text-zinc-600 block">
-                현장 딜레마
+              <span className="text-[13px] font-mono font-bold text-zinc-600 block uppercase tracking-wide">
+                응급의료법상 책임 구조 분석
               </span>
-              <h2 className="text-[22px] font-semibold text-zinc-950 mt-1 leading-snug">
-                받아도 책임, 받지 않아도 책임.
+              <h2 className="text-[22px] font-semibold text-zinc-950 mt-1 leading-snug break-keep">
+                수용 여부에 따른 법적 상충 구조
               </h2>
             </div>
 
-            <div className="space-y-3 text-[15px] text-zinc-700 leading-relaxed break-keep">
-              <p>
-                응급의료진은 환자를 수용해 치료한 뒤 결과가 좋지 않으면 업무상과실과 관련된 수사·재판에 노출될 수 있고, 환자를 수용하지 않으면 정당한 사유 없는 진료 거부로 판단될 수 있습니다.
-              </p>
-              <p className="pt-2 border-t border-zinc-100">
-                CODE BLUE는 이 문제를 의료진 개인의 태도로 설명하지 않습니다. 실제로 환자를 받을 수 있는 전문인력과 병원을 확보하고, 수용 판단을 기록하며, 불가피한 결과에 대응할 제도가 함께 필요하다고 봅니다.
+            {/* Geometric Dual-Pathway Diagram */}
+            <div className="space-y-4 pt-1">
+              
+              {/* Branch A: Patient Accepted */}
+              <div className="border border-zinc-300 bg-zinc-50 p-4 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-[15px] text-zinc-950 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-zinc-900 inline-block"></span>
+                    경로 A. 환자 수용 시
+                  </span>
+                  <span className="text-[13px] font-mono text-zinc-600 border border-zinc-200 bg-white px-2 py-0.5">형법 제268조</span>
+                </div>
+                <div className="text-[15px] text-zinc-700 leading-relaxed space-y-1">
+                  <div className="flex items-center gap-2 text-zinc-800 text-[13px]">
+                    <span className="bg-white border border-zinc-300 px-2 py-0.5">당직의 부재 속 처치</span>
+                    <span>→</span>
+                    <span className="bg-white border border-zinc-300 px-2 py-0.5">치료 결과 악화</span>
+                  </div>
+                  <p className="pt-1 text-zinc-800 font-medium">
+                    결과 악화 시 업무상과실치사상 혐의로 형사 수사 및 재판 노출
+                  </p>
+                </div>
+              </div>
+
+              {/* Branch B: Admission Rejected */}
+              <div className="border border-zinc-300 bg-zinc-50 p-4 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-[15px] text-zinc-950 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-zinc-900 inline-block"></span>
+                    경로 B. 수용 불가 통보 시
+                  </span>
+                  <span className="text-[13px] font-mono text-zinc-600 border border-zinc-200 bg-white px-2 py-0.5">응급의료법 제6조</span>
+                </div>
+                <div className="text-[15px] text-zinc-700 leading-relaxed space-y-1">
+                  <div className="flex items-center gap-2 text-zinc-800 text-[13px]">
+                    <span className="bg-white border border-zinc-300 px-2 py-0.5">치료 역량 한계</span>
+                    <span>→</span>
+                    <span className="bg-white border border-zinc-300 px-2 py-0.5">사유 입증 한계</span>
+                  </div>
+                  <p className="pt-1 text-zinc-800 font-medium">
+                    객관적 사유 미인정 시 정당한 사유 없는 진료 거부로 형벌 적용
+                  </p>
+                </div>
+              </div>
+
+              {/* Core Synthesis Conclusion */}
+              <p className="text-[13px] text-zinc-600 leading-relaxed border-t border-zinc-200 pt-3 break-keep">
+                의료진 개인의 태도 문제가 아닌, 배후 필수인력 결손과 입법적 공백이 겹친 구조적 딜레마로 규명됩니다.
               </p>
             </div>
           </div>
 
         </div>
 
-        {/* 4-Step Process: Row Height & Font Sizes */}
-        <div className="pt-10 border-t border-zinc-300 text-left space-y-5">
+        {/* 4-Step Process: Visual Pipeline Diagram */}
+        <div className="pt-10 border-t border-zinc-300 text-left space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
             <h3 className="text-[20px] font-bold text-zinc-950 leading-snug break-keep">
-              병상이 있어도 필요한 전문의가 없으면 최종 치료가 어렵습니다.
+              중증응급환자 4단계 이송·수용 프로세스
             </h3>
-            <span className="text-[13px] text-zinc-600 shrink-0">
-              중증응급환자 4단계 이송·수용 체계
+            <span className="text-[13px] font-mono text-zinc-600">
+              이송 단계별 가동성 점검 구조
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 border border-zinc-300 bg-white divide-y md:divide-y-0 md:divide-x divide-zinc-200">
-            {flowSteps.map((s) => (
-              <div 
-                key={s.num} 
-                className={`p-5 text-left min-h-[140px] flex flex-col justify-between ${s.highlight ? 'bg-zinc-50' : 'bg-white'}`}
-              >
-                <div>
-                  <div className="flex items-baseline justify-between mb-2">
-                    <span className="font-mono text-[15px] font-bold text-zinc-600">{s.num}</span>
-                    {s.highlight && (
-                      <span className="text-[13px] font-bold text-[#0B3CFF] bg-blue-50 border border-blue-200 px-2 py-0.5 rounded">
-                        핵심 병목
-                      </span>
-                    )}
+          {/* Visual Step Pipeline with Connectors */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-3 relative">
+            {flowSteps.map((s, idx) => {
+              const IconComponent = s.icon;
+              return (
+                <div 
+                  key={s.num} 
+                  className={`p-6 text-left min-h-[170px] flex flex-col justify-between border relative ${
+                    s.highlight 
+                      ? 'border-[#0B3CFF] bg-blue-50/20' 
+                      : 'border-zinc-300 bg-white'
+                  }`}
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <span className="w-7 h-7 rounded-[2px] bg-zinc-950 text-white font-mono text-[13px] font-bold flex items-center justify-center">
+                          {s.num}
+                        </span>
+                        <IconComponent className={`w-4 h-4 ${s.highlight ? 'text-[#0B3CFF]' : 'text-zinc-700'}`} />
+                      </div>
+                      {s.highlight && (
+                        <span className="text-[13px] font-bold text-[#0B3CFF] border border-[#0B3CFF] bg-white px-2 py-0.5 rounded-[2px]">
+                          주요 병목
+                        </span>
+                      )}
+                    </div>
+                    <h4 className="text-[17px] font-bold text-zinc-950 mb-2 leading-snug break-keep">
+                      {s.stage}
+                    </h4>
                   </div>
-                  <h4 className="text-[17px] font-bold text-zinc-950 mb-1.5 leading-snug">
-                    {s.stage}
-                  </h4>
+                  <p className="text-[15px] text-zinc-700 leading-relaxed break-keep">
+                    {s.desc}
+                  </p>
                 </div>
-                <p className="text-[15px] text-zinc-700 leading-relaxed break-keep">
-                  {s.desc}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Bottom Reader Guide */}
