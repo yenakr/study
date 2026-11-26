@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, CheckCircle, XCircle, RefreshCw } from 'lucide-react';
+import { ArrowRight, RefreshCw } from 'lucide-react';
 
 export default function ErGuideSection({ setActiveTab }) {
   const questions = [
@@ -39,8 +39,8 @@ export default function ErGuideSection({ setActiveTab }) {
     {
       num: "01",
       topic: "진료 순서의 원칙",
-      rule: "중증도(KTAS) 분류 순",
-      desc: "생체징후가 불안정한 중증환자(1~2단계)가 먼저 진료실로 이동하며, 경증환자는 대기시간이 발생할 수 있습니다."
+      rule: "중증도 분류 순",
+      desc: "생체징후가 불안정한 중증환자(KTAS 1~2단계)가 먼저 진료실로 이동하며, 경증환자는 대기시간이 발생할 수 있습니다."
     },
     {
       num: "02",
@@ -92,54 +92,63 @@ export default function ErGuideSection({ setActiveTab }) {
   };
 
   return (
-    <section id="er-guide" className="py-14 md:py-20 bg-white text-zinc-900 min-h-screen font-sans border-b border-zinc-200">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <section id="er-guide" className="py-24 sm:py-28 bg-[#FAF9F5] text-zinc-900 min-h-screen font-sans border-b border-zinc-200">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Section Header (Left-aligned) */}
-        <div className="space-y-3 text-left border-b border-zinc-200 pb-6">
-          <div className="text-xs font-mono font-bold text-zinc-500">SECTION 05 • 시민 안내 및 인식 개선</div>
-          <h2 className="font-serif font-black text-2xl sm:text-3xl text-zinc-950 tracking-tight leading-snug">
+        <div className="space-y-4 text-left border-b border-zinc-200 pb-8">
+          <div className="text-[13px] font-mono font-bold text-zinc-600 uppercase tracking-widest">
+            SECTION 05 • 시민 안내 및 이용 수칙
+          </div>
+
+          {/* 핵심 한 문장 (20px bold) */}
+          <p className="text-[20px] font-bold text-zinc-950 leading-snug break-keep">
+            응급상황에서는 직접 병원을 찾기보다 119의 안내를 따르는 것이 가장 안전합니다.
+          </p>
+
+          <h2 className="text-[36px] sm:text-[40px] font-serif font-bold text-zinc-950 tracking-tight leading-tight break-keep">
             응급실 바로 알기: 인식 점검과 이용 수칙
           </h2>
-          <p className="text-sm sm:text-base text-zinc-700 font-medium">
-            응급상황에서는 직접 병원을 찾기보다 119의 안내를 따르세요.
+
+          <p className="text-[17px] md:text-[18px] text-zinc-800 leading-[1.75] font-normal break-keep max-w-[640px]">
+            응급의료체계의 병목 현상을 줄이고 중증환자의 골든타임을 지키기 위해 시민이 숙지해야 할 핵심 상식과 이용 수칙을 제공합니다.
           </p>
         </div>
 
         {/* Part 1: Interactive O/X Quiz */}
         <div className="text-left space-y-4">
-          <div className="flex items-baseline justify-between border-b border-zinc-200 pb-2">
-            <h3 className="font-serif font-bold text-base text-zinc-900">
-              응급의료 상식 O/X 점검 (총 5문항)
+          <div className="flex items-baseline justify-between border-b border-zinc-200 pb-3">
+            <h3 className="text-[22px] font-semibold text-zinc-950">
+              응급의료 상식 점검
             </h3>
             {!showResult && (
-              <span className="text-xs font-mono text-zinc-500">
+              <span className="text-[13px] font-mono font-bold text-zinc-600">
                 문항 {currentStep + 1} / {questions.length}
               </span>
             )}
           </div>
 
           {!showResult ? (
-            <div className="border border-zinc-300 bg-[#FAF9F5] p-6 space-y-5">
+            <div className="border border-zinc-300 bg-white p-6 sm:p-8 space-y-6">
               
-              <div className="bg-white border border-zinc-200 p-4">
-                <span className="text-xs font-mono font-bold text-zinc-400 block mb-1">질문 0{currentStep + 1}</span>
-                <p className="font-bold text-sm sm:text-base text-zinc-950 leading-snug">
+              <div className="bg-[#FAF9F5] border border-zinc-200 p-5 space-y-2">
+                <span className="text-[13px] font-mono font-bold text-zinc-600 block">질문 0{currentStep + 1}</span>
+                <p className="font-bold text-[18px] sm:text-[20px] text-zinc-950 leading-snug break-keep">
                   {questions[currentStep].question}
                 </p>
               </div>
 
               {/* O / X Selection Buttons */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-4">
                 <button
                   onClick={() => handleSelectAnswer(currentStep, true)}
                   disabled={userAnswers[currentStep] !== undefined}
-                  className={`py-6 font-bold text-2xl border transition-colors ${
+                  className={`min-h-[56px] py-4 font-bold text-2xl border transition-colors ${
                     userAnswers[currentStep] === true
                       ? questions[currentStep].answer === true
-                        ? 'border-emerald-700 bg-emerald-50 text-emerald-900'
-                        : 'border-red-700 bg-red-50 text-red-900'
-                      : 'border-zinc-300 bg-white text-zinc-900 hover:border-zinc-900'
+                        ? 'border-emerald-700 bg-emerald-50 text-emerald-950'
+                        : 'border-red-700 bg-red-50 text-red-950'
+                      : 'border-zinc-300 bg-white text-zinc-900 hover:border-zinc-950'
                   }`}
                 >
                   O
@@ -148,39 +157,39 @@ export default function ErGuideSection({ setActiveTab }) {
                 <button
                   onClick={() => handleSelectAnswer(currentStep, false)}
                   disabled={userAnswers[currentStep] !== undefined}
-                  className={`py-6 font-bold text-2xl border transition-colors ${
+                  className={`min-h-[56px] py-4 font-bold text-2xl border transition-colors ${
                     userAnswers[currentStep] === false
                       ? questions[currentStep].answer === false
-                        ? 'border-emerald-700 bg-emerald-50 text-emerald-900'
-                        : 'border-red-700 bg-red-50 text-red-900'
-                      : 'border-zinc-300 bg-white text-zinc-900 hover:border-zinc-900'
+                        ? 'border-emerald-700 bg-emerald-50 text-emerald-950'
+                        : 'border-red-700 bg-red-50 text-red-950'
+                      : 'border-zinc-300 bg-white text-zinc-900 hover:border-zinc-950'
                   }`}
                 >
                   X
                 </button>
               </div>
 
-              {/* Answer Explanation Box (Max 2 sentences) */}
+              {/* Answer Explanation Box */}
               {userAnswers[currentStep] !== undefined && (
-                <div className="p-4 bg-white border border-zinc-300 space-y-3 animate-fadeIn">
-                  <div className="flex items-baseline gap-2">
-                    <span className="font-bold text-xs text-zinc-900">
-                      {userAnswers[currentStep] === questions[currentStep].answer ? '정답입니다.' : '해설'}
+                <div className="p-6 bg-[#FAF9F5] border border-zinc-300 space-y-4 animate-fadeIn">
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-bold text-[16px] text-zinc-950">
+                      {userAnswers[currentStep] === questions[currentStep].answer ? '정답입니다' : '해설'}
                     </span>
-                    <span className="text-xs text-zinc-500 font-mono">
+                    <span className="text-[13px] text-zinc-600 font-mono">
                       (정답: {questions[currentStep].answer ? 'O' : 'X'})
                     </span>
                   </div>
-                  <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed">
+                  <p className="text-[15px] text-zinc-800 leading-relaxed break-keep">
                     {questions[currentStep].explanation}
                   </p>
 
-                  <div className="flex justify-end pt-1">
+                  <div className="flex justify-end pt-2">
                     <button
                       onClick={nextQuestion}
-                      className="px-4 py-2 bg-zinc-900 text-white text-xs font-semibold rounded hover:bg-zinc-800 transition-colors"
+                      className="min-h-[44px] px-6 py-2.5 bg-zinc-950 text-white text-[15px] font-semibold rounded-[2px] hover:bg-zinc-800 transition-colors"
                     >
-                      {currentStep < questions.length - 1 ? '다음 문항 보기' : '퀴즈 완료'}
+                      {currentStep < questions.length - 1 ? '다음 문항' : '결과 확인'}
                     </button>
                   </div>
                 </div>
@@ -188,53 +197,59 @@ export default function ErGuideSection({ setActiveTab }) {
 
             </div>
           ) : (
-            <div className="border border-zinc-300 bg-white p-6 text-left space-y-3 animate-fadeIn">
-              <h4 className="font-serif font-bold text-base text-zinc-950">
+            <div className="border border-zinc-300 bg-white p-6 sm:p-8 text-left space-y-4 animate-fadeIn">
+              <h4 className="text-[22px] font-semibold text-zinc-950">
                 올바른 응급실 이용이 중증환자의 골든타임을 지킵니다
               </h4>
-              <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed">
-                응급의료체계는 119 구급대원과 병원 의료진의 대응뿐 아니라, 시민 여러분의 협력으로 유지됩니다. 위급 상황에서는 개별적인 병원 탐색보다 119의 상태 분류와 이송 안내를 따라주시기 바랍니다.
+              <p className="text-[17px] text-zinc-800 leading-[1.75] font-normal break-keep max-w-[640px]">
+                응급의료체계는 119 구급대원과 병원 의료진의 대응뿐 아니라 시민 여러분의 협력으로 유지됩니다. 위급 상황에서는 개별적인 병원 탐색보다 119의 중증도 분류와 이송 안내를 따라주시기 바랍니다.
               </p>
-              <button
-                onClick={resetQuiz}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-zinc-300 bg-zinc-50 text-zinc-800 text-xs font-semibold rounded hover:bg-zinc-100"
-              >
-                <RefreshCw className="w-3 h-3" />
-                <span>퀴즈 다시 풀기</span>
-              </button>
+              <div className="pt-2">
+                <button
+                  onClick={resetQuiz}
+                  className="min-h-[44px] inline-flex items-center gap-2 px-5 py-2.5 border border-zinc-300 bg-white text-zinc-900 text-[15px] font-semibold rounded-[2px] hover:bg-zinc-50"
+                >
+                  <RefreshCw className="w-4 h-4" />
+                  <span>다시 풀기</span>
+                </button>
+              </div>
             </div>
           )}
         </div>
 
-        {/* Part 2: Editorial Reference Table (5 Core Utilization Principles) */}
-        <div className="text-left space-y-3 pt-4 border-t border-zinc-200">
-          <h3 className="font-serif font-bold text-base text-zinc-900">
-            응급의료 5대 핵심 이용 수칙 정리표
+        {/* Part 2: Editorial Reference Table */}
+        <div className="text-left space-y-4 pt-4 border-t border-zinc-200">
+          <h3 className="text-[22px] font-semibold text-zinc-950">
+            응급의료 5대 핵심 이용 수칙
           </h3>
 
-          <div className="border border-zinc-200 overflow-x-auto">
-            <table className="w-full text-left text-xs sm:text-sm divide-y divide-zinc-200">
-              <thead className="bg-[#FAF9F5] text-zinc-700 font-semibold">
+          <p className="text-[13px] text-zinc-600 block md:hidden">
+            → 표를 가로로 넘겨서 전체 내용을 확인할 수 있습니다
+          </p>
+
+          <div className="border border-zinc-200 bg-white overflow-x-auto">
+            <table className="w-full text-left text-[15px] divide-y divide-zinc-200">
+              <thead className="bg-[#F4F1EA] text-zinc-900 font-semibold">
                 <tr>
-                  <th className="py-2.5 px-4 w-12 border-r border-zinc-200 font-mono">번호</th>
-                  <th className="py-2.5 px-4 w-1/4 border-r border-zinc-200">구분 항목</th>
-                  <th className="py-2.5 px-4 w-1/4 border-r border-zinc-200 font-bold">핵심 수칙</th>
-                  <th className="py-2.5 px-4">세부 설명 및 배경</th>
+                  <th className="py-4 px-4 sm:px-6 w-20 border-r border-zinc-200 font-mono">번호</th>
+                  <th className="py-4 px-4 sm:px-6 w-1/4 border-r border-zinc-200">구분 항목</th>
+                  <th className="py-4 px-4 sm:px-6 w-1/4 border-r border-zinc-200 font-bold">핵심 수칙</th>
+                  <th className="py-4 px-4 sm:px-6">세부 설명 및 배경</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-200 bg-white text-zinc-800">
+              <tbody className="divide-y divide-zinc-200 text-zinc-800">
                 {guidePrinciples.map((p) => (
-                  <tr key={p.num} className="hover:bg-zinc-50/60 transition-colors">
-                    <td className="py-3 px-4 font-mono font-bold border-r border-zinc-200 text-zinc-500">
+                  <tr key={p.num} className="hover:bg-zinc-50 transition-colors">
+                    <td className="py-4 px-4 sm:px-6 font-mono font-bold border-r border-zinc-200 text-zinc-950 align-top">
                       {p.num}
                     </td>
-                    <td className="py-3 px-4 font-bold border-r border-zinc-200 text-zinc-900">
+                    <td className="py-4 px-4 sm:px-6 font-bold border-r border-zinc-200 text-zinc-950 align-top">
                       {p.topic}
                     </td>
-                    <td className="py-3 px-4 font-bold border-r border-zinc-200 text-zinc-900">
+                    <td className="py-4 px-4 sm:px-6 font-bold border-r border-zinc-200 text-zinc-950 align-top">
                       {p.rule}
                     </td>
-                    <td className="py-3 px-4 text-zinc-600 leading-relaxed">
+                    <td className="py-4 px-4 sm:px-6 text-zinc-700 leading-relaxed align-top break-keep">
                       {p.desc}
                     </td>
                   </tr>
@@ -245,13 +260,13 @@ export default function ErGuideSection({ setActiveTab }) {
         </div>
 
         {/* Next Section Navigation Link */}
-        <div className="pt-6 border-t border-zinc-200 flex justify-end">
+        <div className="pt-8 border-t border-zinc-200 flex justify-end">
           <button
             onClick={() => { setActiveTab('survey'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="inline-flex items-center px-4 py-2 bg-zinc-900 hover:bg-zinc-800 text-white text-xs sm:text-sm font-semibold rounded transition-colors"
+            className="inline-flex items-center min-h-[44px] px-6 py-3 bg-zinc-950 hover:bg-zinc-800 text-white text-[15px] font-semibold rounded-[2px] transition-colors gap-2"
           >
-            <span>다음: 6. 시민 의견 수렴</span>
-            <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+            <span>시민 의견 보기</span>
+            <ArrowRight className="w-4 h-4" />
           </button>
         </div>
 

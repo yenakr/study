@@ -88,14 +88,23 @@ export default function App() {
 
         {/* 6) 시민 의견 */}
         {activeTab === 'survey' && (
-          <div className="animate-fadeIn py-14 md:py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-            <div className="space-y-3 text-left border-b border-zinc-200 pb-6">
-              <div className="text-xs font-mono font-bold text-zinc-500">SECTION 06 • 시민 참여 및 의견 수렴</div>
-              <h2 className="font-serif font-black text-2xl sm:text-3xl text-zinc-950 tracking-tight leading-snug">
+          <div className="animate-fadeIn py-24 sm:py-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            <div className="space-y-4 text-left border-b border-zinc-200 pb-8">
+              <div className="text-[13px] font-mono font-bold text-zinc-600 uppercase tracking-widest">
+                SECTION 06 • 시민 참여 및 의견 수렴
+              </div>
+
+              {/* 핵심 한 문장 (20px bold) */}
+              <p className="text-[20px] font-bold text-zinc-950 leading-snug break-keep">
+                중증응급환자 이송체계 개선을 위해 시민 여러분의 소중한 경험과 고견을 모읍니다.
+              </p>
+
+              <h2 className="text-[36px] sm:text-[40px] font-serif font-bold text-zinc-950 tracking-tight leading-tight break-keep">
                 응급의료체계에 관한 시민 의견 수렴
               </h2>
-              <p className="text-sm sm:text-base text-zinc-700 font-medium">
-                중증응급환자 이송 지연 개선방안에 관한 시민 여러분의 경험과 의견을 익명으로 경청합니다.
+
+              <p className="text-[17px] md:text-[18px] text-zinc-800 leading-[1.75] font-normal break-keep max-w-[640px]">
+                중증응급환자 이송 지연 개선방안에 관한 시민 여러분의 경험과 의견을 익명으로 경청하여 학술 연구 분석에 반영합니다.
               </p>
             </div>
 

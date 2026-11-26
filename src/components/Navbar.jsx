@@ -6,13 +6,13 @@ export default function Navbar({ activeTab, setActiveTab }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { id: 'problem', label: '1. 문제 분석' },
-    { id: 'issues', label: '2. 2026 주요 이슈' },
-    { id: 'research', label: '3. 연구 과정' },
-    { id: 'policy', label: '4. 정책 제안' },
-    { id: 'er-guide', label: '5. 응급실 바로 알기' },
-    { id: 'survey', label: '6. 시민 의견' },
-    { id: 'about', label: '7. 프로젝트 소개' },
+    { id: 'problem', label: '문제 분석' },
+    { id: 'issues', label: '2026 현안' },
+    { id: 'research', label: '연구 과정' },
+    { id: 'policy', label: '3대 정책' },
+    { id: 'er-guide', label: '응급실 가이드' },
+    { id: 'survey', label: '시민 의견' },
+    { id: 'about', label: '프로젝트 소개' },
   ];
 
   const handleTabClick = (id) => {
@@ -22,25 +22,25 @@ export default function Navbar({ activeTab, setActiveTab }) {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 bg-[#FAF9F5]/95 backdrop-blur-xs border-b border-zinc-200 py-3 font-sans transition-all">
+    <header className="fixed top-0 left-0 right-0 z-40 bg-[#FAF9F5]/95 backdrop-blur-xs border-b border-zinc-200 font-sans">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between min-h-[56px]">
           
-          {/* Logo / Editorial Masthead */}
+          {/* Logo / Masthead */}
           <button 
             onClick={() => handleTabClick('home')}
-            className="flex items-baseline gap-3 text-left focus:outline-none focus:ring-1 focus:ring-zinc-900 group"
+            className="flex items-baseline gap-3 text-left focus:outline-none min-h-[44px] py-2"
             aria-label="CODE BLUE 메인으로 이동"
           >
-            <span className="font-serif font-black text-xl tracking-tight text-zinc-900 group-hover:text-accent transition-colors">
+            <span className="font-serif font-black text-[22px] tracking-tight text-zinc-950">
               {PROJECT_CONFIG.teamName}
             </span>
-            <span className="hidden sm:inline-block text-xs text-zinc-500 font-normal pl-3 border-l border-zinc-300">
-              2026 한양학술타운 LION 정책 브리프
+            <span className="hidden sm:inline-block text-[15px] text-zinc-600 font-normal pl-3 border-l border-zinc-300">
+              2026 한양학술타운 LION
             </span>
           </button>
 
-          {/* Desktop Navigation Tabs */}
+          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-1" aria-label="주요 목차">
             {navItems.map((item) => {
               const isActive = activeTab === item.id;
@@ -48,10 +48,10 @@ export default function Navbar({ activeTab, setActiveTab }) {
                 <button
                   key={item.id}
                   onClick={() => handleTabClick(item.id)}
-                  className={`px-2.5 py-1 text-xs md:text-sm font-medium transition-colors border-b-2 ${
+                  className={`px-3 py-2 text-[15px] min-h-[44px] flex items-center transition-colors border-b-2 font-medium ${
                     isActive 
-                      ? 'border-zinc-900 text-zinc-950 font-bold' 
-                      : 'border-transparent text-zinc-600 hover:text-zinc-900 hover:border-zinc-300'
+                      ? 'border-zinc-950 text-zinc-950 font-bold text-[#0B3CFF]' 
+                      : 'border-transparent text-zinc-600 hover:text-zinc-950 hover:border-zinc-300'
                   }`}
                 >
                   {item.label}
@@ -64,7 +64,7 @@ export default function Navbar({ activeTab, setActiveTab }) {
           <div className="lg:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-1.5 text-zinc-700 hover:text-zinc-950 border border-zinc-300 rounded focus:outline-none"
+              className="p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center text-zinc-800 border border-zinc-300 rounded focus:outline-none"
               aria-label={isOpen ? "메뉴 닫기" : "메뉴 열기"}
             >
               {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -82,9 +82,9 @@ export default function Navbar({ activeTab, setActiveTab }) {
               <button
                 key={item.id}
                 onClick={() => handleTabClick(item.id)}
-                className={`w-full text-left px-3 py-2 text-sm font-medium border-l-2 ${
+                className={`w-full text-left px-3 py-3 min-h-[44px] text-[15px] font-medium border-l-2 flex items-center ${
                   isActive 
-                    ? 'border-zinc-900 bg-zinc-100 text-zinc-950 font-bold' 
+                    ? 'border-zinc-950 bg-zinc-100 text-zinc-950 font-bold text-[#0B3CFF]' 
                     : 'border-transparent text-zinc-600 hover:bg-zinc-50'
                 }`}
               >

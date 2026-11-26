@@ -7,6 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        codeblue: '#0B3CFF',
         paper: {
           50: '#FAF9F5',
           100: '#F4F2EB',
@@ -16,17 +17,7 @@ export default {
           900: '#18181B',
           800: '#27272A',
           700: '#3F3F46',
-          500: '#71717A',
-          400: '#A1A1AA',
-        },
-        accent: {
-          DEFAULT: '#0F2942', // Single editorial deep navy
-          dark: '#0A1A2B',
-          light: '#1E3E62',
-        },
-        crimson: {
-          DEFAULT: '#881337', // Restricted alert point color
-          light: '#FFE4E6',
+          600: '#52525B',
         }
       },
       fontFamily: {
