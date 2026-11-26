@@ -7,20 +7,22 @@ export default function PosterModal({ isOpen, onClose }) {
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/60 backdrop-blur-xs font-sans"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/60 backdrop-blur-xs font-sans text-left"
       role="dialog"
       aria-modal="true"
       aria-labelledby="poster-modal-title"
     >
-      <div className="bg-white max-w-2xl w-full max-h-[90vh] flex flex-col border border-zinc-300 shadow-xl overflow-hidden text-left">
+      <div className="bg-white max-w-2xl w-full max-h-[90vh] flex flex-col border border-zinc-300 shadow-xl overflow-hidden">
         
         {/* Header */}
         <div className="bg-zinc-50 p-5 sm:p-6 flex items-center justify-between border-b border-zinc-200 shrink-0">
           <div>
-            <span className="font-mono text-[13px] font-bold text-zinc-600 block">학술 포스터</span>
             <h3 id="poster-modal-title" className="font-serif font-bold text-[20px] text-zinc-950">
-              2026 한양학술타운 LION 최종 포스터 요약
+              연구 요약 포스터
             </h3>
+            <p className="text-[13px] text-zinc-500 mt-0.5">
+              한양대학교 정책학과 간호학과 융합 연구
+            </p>
           </div>
           <button
             onClick={onClose}
@@ -32,61 +34,56 @@ export default function PosterModal({ isOpen, onClose }) {
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 sm:p-8 overflow-y-auto space-y-6 text-zinc-900 text-[15px] leading-relaxed bg-zinc-100/60">
+        <div className="p-6 sm:p-8 overflow-y-auto space-y-6 text-zinc-900 text-[15px] leading-relaxed">
           
-          <div className="bg-white p-6 border border-zinc-300 space-y-2">
-            <span className="font-mono text-[13px] font-bold text-zinc-600 block">연구 과제명</span>
-            <h4 className="font-serif font-bold text-[20px] text-zinc-950 break-keep">
-              {PROJECT_CONFIG.projectTitle}
+          <div className="border-b border-zinc-200 pb-4">
+            <span className="text-[12px] font-mono font-bold text-[#0052FF] uppercase block mb-1">
+              핵심 명제
+            </span>
+            <h4 className="font-serif font-bold text-[22px] text-zinc-950 leading-snug break-keep">
+              "병상은 있는데, 수술할 전문의가 없다"
             </h4>
-            <p className="text-[15px] text-zinc-700">
-              소속 및 연구진: 한양대학교 정책학과 간호학과 (김다은·김예나·임채윤·노재은)
+            <p className="text-[15px] text-zinc-700 mt-2 break-keep">
+              중증응급환자 이송 지연은 단순 병상 부족이 아닌, 배후 응급수술 전문의 결손과 의료진의 사법 리스크에서 비롯됩니다.
             </p>
           </div>
 
-          {/* Poster Content Summary */}
-          <div className="bg-white p-6 border border-zinc-300 space-y-6">
-            <div className="border-b border-zinc-200 pb-3">
-              <span className="font-bold text-zinc-950 text-[16px]">포스터 패널 구성 및 수록 내용</span>
+          {/* 3 Core Points */}
+          <div className="space-y-5">
+            <div className="space-y-1">
+              <h5 className="font-bold text-zinc-950 text-[16px]">
+                1. 현상과 원인
+              </h5>
+              <p className="text-zinc-700 leading-relaxed break-keep">
+                전국 119 구급대 재이송 사유 1위는 전문의 부재입니다. 현행 정보망이 단순 병상 유무만 조회하여, 실제 수술 가능 여부를 파악하지 못해 지연이 반복됩니다.
+              </p>
             </div>
 
-            <div className="space-y-4 divide-y divide-zinc-200 text-[15px]">
-              <div className="pt-3 space-y-1.5">
-                <span className="font-bold text-zinc-950 block text-[16px]">1. 연구 배경 및 문제 정의</span>
-                <p className="text-zinc-700 leading-relaxed break-keep">
-                  단순 병상 유무와 실제 전문의 수술 역량의 괴리, 2026년 5월 의사 1심 집행유예 판결 및 6월 대구 중증환자 사망 송치 사건에서 드러난 의료진 이중 사법 리스크 구조 분석.
-                </p>
-              </div>
+            <div className="space-y-1">
+              <h5 className="font-bold text-zinc-950 text-[16px]">
+                2. 현장의 법적 상충
+              </h5>
+              <p className="text-zinc-700 leading-relaxed break-keep">
+                수술할 전문의가 없는 상태에서 환자를 받으면 결과 악화 시 업무상과실치사죄로 입건되고, 수용을 거부하면 진료거부죄로 처벌받는 구조적 모순이 존재합니다.
+              </p>
+            </div>
 
-              <div className="pt-3 space-y-1.5">
-                <span className="font-bold text-zinc-950 block text-[16px]">2. 융합 연구 방법론</span>
-                <p className="text-zinc-700 leading-relaxed break-keep">
-                  서울아산병원 응급실 전문간호사 심층 인터뷰 질적 분석 및 「응급의료에 관한 법률」 제6조(거부금지)와 제48조의2(수용능력 확인)의 입법 공백 검토.
-                </p>
-              </div>
-
-              <div className="pt-3 space-y-1.5">
-                <span className="font-bold text-zinc-950 block text-[16px]">3. 3대 핵심 정책 대안</span>
-                <p className="text-zinc-700 leading-relaxed break-keep">
-                  ① 권역별 순환 당직병원 지정제: 응급의료진료권 단위 순환 분담<br />
-                  ② 필수의료 의무복무 선발전형: 10년 기본안 및 15년 강화안 비교 검토<br />
-                  ③ 개정 응급의료법의 현장 정착 지원: 수용 판단 기록 연계 및 공적 분쟁지원
-                </p>
-              </div>
-
-              <div className="pt-3 space-y-1.5">
-                <span className="font-bold text-zinc-950 block text-[16px]">4. 정책 전환의 의의</span>
-                <p className="text-zinc-700 leading-relaxed break-keep">
-                  초기 전산 정보망 중심 과제에서 출발하여, 배후 필수진료과 전문의 인력 확보와 사법 안전망 구축이 선행되어야 함을 증명한 연구 궤적 제시.
-                </p>
-              </div>
+            <div className="space-y-1">
+              <h5 className="font-bold text-zinc-950 text-[16px]">
+                3. 3대 정책 대안
+              </h5>
+              <ul className="text-zinc-700 space-y-1.5 pl-4 list-disc leading-relaxed break-keep">
+                <li><strong>요일별 전문의 순환 당직제:</strong> 권역 내 거점병원이 요일별로 수술 당직을 분담</li>
+                <li><strong>10~15년 의무복무 선발제:</strong> 권역 거점병원에 장기 상주할 필수의료 전문의 양성</li>
+                <li><strong>의료사고 사법 안전망:</strong> EMR 기반 중재원 감정 및 공적 분쟁지원</li>
+              </ul>
             </div>
           </div>
 
         </div>
 
         {/* Footer */}
-        <div className="p-4 sm:p-5 bg-white border-t border-zinc-200 flex justify-end shrink-0">
+        <div className="p-4 sm:p-5 bg-zinc-50 border-t border-zinc-200 flex justify-end shrink-0">
           <button
             onClick={onClose}
             className="min-h-[44px] px-6 py-2.5 bg-zinc-950 hover:bg-zinc-800 text-white font-semibold text-[15px] rounded-[2px] transition-colors"

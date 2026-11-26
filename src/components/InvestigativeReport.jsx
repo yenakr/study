@@ -31,7 +31,7 @@ export default function InvestigativeReport({ onOpenPdf, onOpenPoster, onScrollT
         {/* 본문 (18px 이상, 줄간격 1.8, 40자 이내) */}
         <div className="space-y-6 text-[18px] sm:text-[20px] text-zinc-800 leading-[1.8] font-normal break-keep max-w-[640px]">
           <p>
-            2026년 대한민국 응급의료 현장의 민낯입니다. 119 구급차는 사이렌을 울리며 도심을 질주하지만, 환자를 태운 채 1시간 넘게 도로 위를 전전합니다.
+            119 구급차는 사이렌을 울리며 도심을 질주하지만, 환자를 태운 채 1시간 넘게 도로 위를 전전합니다.
           </p>
           <p>
             병원에 침대가 없어서가 아닙니다. 장비가 낡아서도 아닙니다. 막상 도착한 병원에는 환자의 배를 열고 뇌혈관을 이어 붙일 수술 의사가 단 한 명도 남아있지 않았습니다.
@@ -317,10 +317,10 @@ export default function InvestigativeReport({ onOpenPdf, onOpenPoster, onScrollT
 
         <div className="space-y-4 text-[18px] text-zinc-800 leading-[1.8] break-keep max-w-[640px] mb-12">
           <p>
-            본 연구는 한양대학교 간호학과의 응급실 현장 임상 분석과 정책학과의 보건의료 법·제도 설계를 결합한 학제 간 융합 정책 프로젝트입니다.
+            응급환자가 길 위에서 시간을 잃지 않도록, 받을 수 있는 병원에 수술할 전문의가 상주하는 체계로의 전환이 필요합니다.
           </p>
-          <p>
-            우리는 더 이상 구급차 안에서 억울하게 생명을 잃는 환자가 없도록, 그리고 사명감으로 응급실을 지키는 의사가 억울하게 죄인이 되지 않도록 실질적인 법 개정을 촉구합니다.
+          <p className="text-zinc-500 text-[15px]">
+            한양대학교 정책학과 간호학과 CODE BLUE
           </p>
         </div>
 
