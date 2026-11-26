@@ -4,30 +4,30 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #030712;
-  color: #f8fafc;
+  background-color: #ffffff;
+  color: #09090b;
 }
 
 body {
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   word-break: keep-all;
-  background-color: #030712;
-  color: #f8fafc;
+  background-color: #ffffff;
+  color: #09090b;
 }
 
-/* Custom dark scrollbar */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #030712;
+  background: #f8fafc;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #cbd5e1;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #00E5FF;
+  background: #0052ff;
 }
 
 /* Emergency Signal Pulse Animation */
@@ -41,10 +41,7 @@ body {
   animation: ecgPulse 2.4s ease-in-out infinite;
 }
 
-/* Neon glow utility */
+/* Glow utility */
 .glow-electric-blue {
-  text-shadow: 0 0 20px rgba(0, 229, 255, 0.45);
-}
-.glow-emergency-red {
-  text-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+  text-shadow: 0 0 24px rgba(0, 229, 255, 0.45);
 }
