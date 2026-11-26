@@ -2,12 +2,9 @@ import React, { useState } from 'react';
 import { CORE_3_POLICIES, INITIAL_5_PROPOSALS } from '../data/policyData';
 import { generatePolicyPDF } from '../utils/pdfGenerator';
 import PdfPreviewModal from './PdfPreviewModal';
-import { 
-  CheckCircle2, ChevronDown, ChevronUp, Lightbulb, 
-  TrendingUp, HelpCircle, FileText, Download 
-} from 'lucide-react';
+import { ChevronDown, ChevronUp, ArrowRight, FileText, Image } from 'lucide-react';
 
-export default function PolicySection() {
+export default function PolicySection({ onOpenPoster, setActiveTab }) {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [expandedPolicyId, setExpandedPolicyId] = useState(1);
   const [isInitialTasksOpen, setIsInitialTasksOpen] = useState(false);
@@ -17,106 +14,104 @@ export default function PolicySection() {
   };
 
   return (
-    <section id="policy" className="py-16 md:py-20 bg-slate-50 text-slate-900 min-h-screen font-sans">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <section id="policy" className="py-14 md:py-20 bg-[#FAF9F5] text-zinc-900 min-h-screen font-sans border-b border-zinc-200">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <h2 className="text-2xl sm:text-4xl font-black text-navy-900 tracking-tight">
+        {/* Section Header (Left-aligned) */}
+        <div className="space-y-3 text-left border-b border-zinc-300 pb-6">
+          <div className="text-xs font-mono font-bold text-zinc-500">SECTION 04 • 정책 제안</div>
+          <h2 className="font-serif font-black text-2xl sm:text-3xl text-zinc-950 tracking-tight leading-snug">
             중증응급환자 이송 지연 개선을 위한 3대 핵심 정책
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-            CODE BLUE는 이송 절차와 정보망의 정비를 넘어, 환자를 맡을 필수진료과 전문의가 상주하도록 하는 <strong>인력 중심 3대 정책</strong>을 제안합니다.
+          <p className="text-sm sm:text-base text-zinc-700 font-medium">
+            이송 정보망 정비를 넘어, 환자를 실제로 맡아 수술할 필수진료과 전문의를 안정적으로 확보·유지하기 위한 인력 중심 3대 과제입니다.
           </p>
         </div>
 
-        {/* 3 Core Policies Container */}
-        <div className="space-y-6">
+        {/* 3 Core Policy Briefs: Formal Paper Document Layout */}
+        <div className="space-y-6 text-left">
           {CORE_3_POLICIES.map((policy) => {
             const isExpanded = expandedPolicyId === policy.id;
             return (
               <article 
                 key={policy.id}
-                className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden transition-all hover:border-slate-300"
+                className="bg-white border border-zinc-300 shadow-xs"
               >
-                {/* Header Row */}
-                <div className="p-6 sm:p-8 space-y-4">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4">
-                    <div className="flex items-center gap-3">
-                      <span className="w-8 h-8 rounded-lg bg-navy-900 text-white font-bold text-xs flex items-center justify-center">
-                        0{policy.id}
-                      </span>
-                      <h3 className="text-xl sm:text-2xl font-black text-navy-900">
+                {/* Header Strip */}
+                <div className="p-6 border-b border-zinc-200 space-y-3">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+                    <div className="flex items-baseline gap-2.5">
+                      <span className="font-mono text-xs font-bold text-zinc-500">POLICY 0{policy.id}</span>
+                      <h3 className="font-serif font-black text-lg sm:text-xl text-zinc-950">
                         {policy.title}
                       </h3>
                     </div>
-                    <span className="text-xs font-bold bg-blue-50 text-brand-blue px-2.5 py-1 rounded w-max">
+                    <span className="text-xs font-medium text-zinc-600 bg-zinc-100 px-2 py-0.5 border border-zinc-200 w-max">
                       {policy.badge}
                     </span>
                   </div>
 
-                  {/* Target Goal */}
-                  <div className="bg-blue-50/70 p-4 rounded-xl border border-blue-100 flex items-start gap-3">
-                    <Lightbulb className="w-5 h-5 text-brand-blue shrink-0 mt-0.5" />
-                    <div>
-                      <span className="text-xs font-bold text-brand-blue block mb-0.5">목표</span>
-                      <p className="text-sm sm:text-base font-bold text-navy-900 leading-snug">
-                        {policy.target}
-                      </p>
-                    </div>
+                  {/* Goal Definition */}
+                  <div className="bg-[#FAF9F5] border-l-2 border-zinc-900 p-3 text-xs sm:text-sm">
+                    <span className="font-bold text-zinc-900 block text-xs mb-0.5">정책 목표</span>
+                    <p className="text-zinc-800 font-medium leading-relaxed">
+                      {policy.target}
+                    </p>
                   </div>
 
-                  {/* Problem & Proposal Summary */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
-                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
-                      <span className="font-bold text-red-600 block text-xs">현황 및 문제점</span>
-                      <p className="text-slate-700 leading-relaxed font-normal">
+                  {/* Problem & Core Proposal 2-Col Table */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm pt-2">
+                    <div className="space-y-1">
+                      <span className="font-bold text-zinc-900 text-xs block">현황 및 문제점</span>
+                      <p className="text-zinc-600 leading-relaxed">
                         {policy.issue}
                       </p>
                     </div>
-                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
-                      <span className="font-bold text-brand-blue block text-xs">핵심 제안</span>
-                      <p className="text-slate-700 leading-relaxed font-normal">
+                    <div className="space-y-1">
+                      <span className="font-bold text-zinc-900 text-xs block">핵심 제안</span>
+                      <p className="text-zinc-700 leading-relaxed font-medium">
                         {policy.proposal}
                       </p>
                     </div>
                   </div>
                 </div>
 
-                {/* Expand Toggle Button */}
-                <div className="px-6 sm:px-8 pb-6">
+                {/* Expand / Collapse Control */}
+                <div className="px-6 py-2.5 bg-zinc-50/70 border-b border-zinc-200 flex items-center justify-between text-xs">
                   <button
                     onClick={() => togglePolicy(policy.id)}
-                    className="w-full py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs sm:text-sm flex items-center justify-between transition-colors focus:outline-none"
+                    className="font-semibold text-zinc-800 hover:text-zinc-950 flex items-center gap-1 focus:outline-none"
                     aria-expanded={isExpanded}
                   >
-                    <span>{isExpanded ? '상세 내용 접기' : '상세 운영방안 및 기대효과 보기'}</span>
-                    {isExpanded ? <ChevronUp className="w-4 h-4 text-brand-blue" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
+                    <span>{isExpanded ? '상세 운영방안 및 법적 검토 접기' : '세부 운영방안, 차별점 및 기대효과 펼치기'}</span>
+                    {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
                   </button>
                 </div>
 
-                {/* Expanded Details Body */}
+                {/* Expanded Editorial Body */}
                 {isExpanded && (
-                  <div className="px-6 sm:px-8 pb-8 pt-2 space-y-5 text-xs sm:text-sm text-slate-800 bg-slate-50/60 border-t border-slate-100 animate-fadeIn">
+                  <div className="p-6 bg-white space-y-5 text-xs sm:text-sm text-zinc-800 border-t border-zinc-100 animate-fadeIn">
                     
                     {/* Operations */}
-                    <div className="space-y-2">
-                      <h4 className="font-bold text-navy-900 text-sm flex items-center gap-1.5">
-                        <CheckCircle2 className="w-4 h-4 text-brand-blue" />
-                        <span>운영방안</span>
+                    <div className="space-y-1.5">
+                      <h4 className="font-bold text-zinc-950 text-xs uppercase tracking-wide">
+                        세부 운영방안
                       </h4>
-                      <ul className="list-disc pl-5 space-y-1 text-slate-700">
+                      <ul className="border border-zinc-200 divide-y divide-zinc-100 bg-[#FAF9F5]">
                         {policy.operations.map((op, i) => (
-                          <li key={i} className="leading-relaxed">{op}</li>
+                          <li key={i} className="py-2 px-3 text-zinc-700 leading-relaxed flex items-baseline gap-2">
+                            <span className="font-mono text-zinc-400 text-xs shrink-0">{i + 1}.</span>
+                            <span>{op}</span>
+                          </li>
                         ))}
                       </ul>
                     </div>
 
                     {/* Policy 1 Distinction */}
                     {policy.distinction && (
-                      <div className="bg-white p-4 rounded-xl border border-blue-200 space-y-1">
-                        <span className="text-brand-blue block font-bold text-xs">차별점</span>
-                        <p className="text-slate-700 leading-relaxed font-medium">
+                      <div className="p-3.5 border border-zinc-200 bg-zinc-50 space-y-1">
+                        <span className="font-bold text-zinc-900 text-xs block">기존 법정 제도와의 차별점</span>
+                        <p className="text-zinc-700 leading-relaxed text-xs">
                           {policy.distinction}
                         </p>
                       </div>
@@ -124,9 +119,9 @@ export default function PolicySection() {
 
                     {/* Policy 2 Duration Review */}
                     {policy.durationReview && (
-                      <div className="bg-white p-4 rounded-xl border border-slate-200 space-y-1">
-                        <span className="text-navy-900 block font-bold text-xs">복무기간 검토</span>
-                        <p className="text-slate-700 leading-relaxed">
+                      <div className="p-3.5 border border-zinc-200 bg-zinc-50 space-y-1">
+                        <span className="font-bold text-zinc-900 text-xs block">의무 복무기간 비교 검토</span>
+                        <p className="text-zinc-700 leading-relaxed text-xs">
                           {policy.durationReview}
                         </p>
                       </div>
@@ -134,9 +129,9 @@ export default function PolicySection() {
 
                     {/* Policy 2 Distinction from Local Doctor */}
                     {policy.distinctionFromLocalDoctor && (
-                      <div className="bg-white p-4 rounded-xl border border-slate-200 space-y-1">
-                        <span className="text-brand-blue block font-bold text-xs">지역의사제와의 차이</span>
-                        <p className="text-slate-700 leading-relaxed">
+                      <div className="p-3.5 border border-zinc-200 bg-zinc-50 space-y-1">
+                        <span className="font-bold text-zinc-900 text-xs block">지역의사제와의 차이점</span>
+                        <p className="text-zinc-700 leading-relaxed text-xs">
                           {policy.distinctionFromLocalDoctor}
                         </p>
                       </div>
@@ -144,36 +139,32 @@ export default function PolicySection() {
 
                     {/* Legal Notice */}
                     {policy.legalNotice && (
-                      <div className="bg-amber-50 p-4 rounded-xl border border-amber-200 text-amber-900 space-y-1">
-                        <span className="block font-bold text-xs">법적 보호 범위 및 환자안전</span>
-                        <p className="leading-relaxed">{policy.legalNotice}</p>
+                      <div className="p-3.5 border border-amber-300 bg-amber-50/70 text-amber-950 space-y-1">
+                        <span className="font-bold text-xs block">법적 보호 범위 및 환자안전 원칙</span>
+                        <p className="leading-relaxed text-xs">
+                          {policy.legalNotice}
+                        </p>
                       </div>
                     )}
 
-                    {/* Expected Effects */}
-                    <div className="space-y-2">
-                      <h4 className="font-bold text-emerald-800 text-sm flex items-center gap-1.5">
-                        <TrendingUp className="w-4 h-4 text-emerald-600" />
-                        <span>기대효과</span>
-                      </h4>
-                      <ul className="list-disc pl-5 space-y-1 text-slate-700">
-                        {policy.effects.map((ef, i) => (
-                          <li key={i} className="leading-relaxed">{ef}</li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Considerations */}
-                    <div className="space-y-2 bg-white p-4 rounded-xl border border-slate-200">
-                      <h4 className="font-bold text-navy-900 text-sm flex items-center gap-1.5">
-                        <HelpCircle className="w-4 h-4 text-slate-500" />
-                        <span>검토 사항 및 주의 문구</span>
-                      </h4>
-                      <ul className="list-disc pl-5 space-y-1 text-slate-600">
-                        {policy.considerations.map((cs, i) => (
-                          <li key={i} className="leading-relaxed">{cs}</li>
-                        ))}
-                      </ul>
+                    {/* Expected Effects & Considerations 2-Col Table */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+                      <div className="space-y-1">
+                        <span className="font-bold text-zinc-900 text-xs block">기대 효과</span>
+                        <ul className="list-disc pl-4 space-y-1 text-xs text-zinc-600">
+                          {policy.effects.map((ef, i) => (
+                            <li key={i} className="leading-relaxed">{ef}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="space-y-1">
+                        <span className="font-bold text-zinc-900 text-xs block">추진 시 고려사항</span>
+                        <ul className="list-disc pl-4 space-y-1 text-xs text-zinc-600">
+                          {policy.considerations.map((cs, i) => (
+                            <li key={i} className="leading-relaxed">{cs}</li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
 
                   </div>
@@ -183,64 +174,71 @@ export default function PolicySection() {
           })}
         </div>
 
-        {/* Initial 5 Proposals (Collapsed Accordion Section) */}
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
-            <div>
-              <h3 className="text-lg font-black text-navy-900">
-                초기 검토 과제
-              </h3>
-            </div>
+        {/* Initial 5 Tasks in Collapsed Academic Appendix */}
+        <div className="border border-zinc-300 bg-white p-5 text-left space-y-3">
+          <div className="flex items-center justify-between border-b border-zinc-200 pb-2">
+            <h4 className="font-serif font-bold text-sm text-zinc-900">
+              초기 검토 과제 (이전 5대 제도 개선안)
+            </h4>
             <button
               onClick={() => setIsInitialTasksOpen(!isInitialTasksOpen)}
-              className="inline-flex items-center text-xs sm:text-sm font-bold text-brand-blue hover:text-blue-700 transition-colors focus:outline-none"
+              className="text-xs font-semibold text-zinc-700 hover:underline flex items-center gap-0.5"
             >
-              <span>{isInitialTasksOpen ? '접기' : '초기 5대 과제 펼쳐보기'}</span>
-              {isInitialTasksOpen ? <ChevronUp className="w-4 h-4 ml-1" /> : <ChevronDown className="w-4 h-4 ml-1" />}
+              <span>{isInitialTasksOpen ? '접기' : '내용 보기'}</span>
+              {isInitialTasksOpen ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
             </button>
           </div>
 
-          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+          <p className="text-xs text-zinc-600 leading-relaxed">
             {INITIAL_5_PROPOSALS.notice}
-          </div>
+          </p>
 
           {isInitialTasksOpen && (
-            <div className="space-y-3 pt-2 animate-fadeIn">
+            <div className="space-y-2 pt-2 border-t border-zinc-100">
               {INITIAL_5_PROPOSALS.items.map((item, idx) => (
-                <div key={idx} className="p-3.5 bg-slate-50 rounded-xl border border-slate-200 text-xs sm:text-sm space-y-1">
-                  <strong className="text-navy-900 font-bold block">{idx + 1}. {item.title}</strong>
-                  <p className="text-slate-600 leading-relaxed">{item.desc}</p>
+                <div key={idx} className="p-2.5 bg-zinc-50 border border-zinc-200 text-xs">
+                  <span className="font-bold text-zinc-900 block mb-0.5">{idx + 1}. {item.title}</span>
+                  <span className="text-zinc-600 leading-relaxed">{item.desc}</span>
                 </div>
               ))}
             </div>
           )}
         </div>
 
-        {/* Bottom Document Bar */}
-        <div className="bg-navy-900 text-white rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-center sm:text-left space-y-1">
-            <h4 className="font-bold text-base text-white">학술 보고서 전문</h4>
-            <p className="text-slate-400 text-xs">
-              2026 한양학술타운 LION 공식 제안서 전문 열람 및 PDF 다운로드
-            </p>
+        {/* Document Action Strip: Modal Previews */}
+        <div className="border border-zinc-300 bg-white p-5 text-left flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h4 className="font-serif font-bold text-sm text-zinc-950">공식 연구 산출물 열람</h4>
+            <p className="text-xs text-zinc-500 mt-0.5">2026 한양학술타운 LION 심사용 정책제안서 및 학술 포스터</p>
           </div>
 
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex flex-wrap items-center gap-2">
             <button
               onClick={() => setIsPreviewOpen(true)}
-              className="px-4 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition-colors"
+              className="px-3.5 py-1.5 border border-zinc-900 bg-zinc-900 text-white text-xs font-semibold rounded hover:bg-zinc-800 transition-colors inline-flex items-center gap-1.5"
             >
-              <FileText className="w-3.5 h-3.5 mr-1.5 inline" />
-              <span>보고서 미리보기</span>
+              <FileText className="w-3.5 h-3.5" />
+              <span>보고서 전문 열람 (PDF)</span>
             </button>
             <button
-              onClick={generatePolicyPDF}
-              className="px-4 py-2.5 rounded-lg bg-brand-blue hover:bg-blue-600 text-white font-bold text-xs transition-colors shadow-sm"
+              onClick={onOpenPoster}
+              className="px-3.5 py-1.5 border border-zinc-300 bg-white text-zinc-800 text-xs font-semibold rounded hover:bg-zinc-50 transition-colors inline-flex items-center gap-1.5"
             >
-              <Download className="w-3.5 h-3.5 mr-1.5 inline" />
-              <span>PDF 내려받기</span>
+              <Image className="w-3.5 h-3.5" />
+              <span>A0 학술 포스터 열람</span>
             </button>
           </div>
+        </div>
+
+        {/* Next Section Navigation Link */}
+        <div className="pt-6 border-t border-zinc-200 flex justify-end">
+          <button
+            onClick={() => { setActiveTab('er-guide'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+            className="inline-flex items-center px-4 py-2 bg-zinc-900 hover:bg-zinc-800 text-white text-xs sm:text-sm font-semibold rounded transition-colors"
+          >
+            <span>다음: 5. 응급실 바로 알기</span>
+            <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+          </button>
         </div>
 
       </div>

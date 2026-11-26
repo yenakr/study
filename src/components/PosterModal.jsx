@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Image, Award, CheckCircle2, FileText, Info } from 'lucide-react';
+import { X, Image, Info } from 'lucide-react';
 import { PROJECT_CONFIG } from '../config';
 
 export default function PosterModal({ isOpen, onClose }) {
@@ -7,90 +7,96 @@ export default function PosterModal({ isOpen, onClose }) {
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy-900/80 backdrop-blur-sm animate-fadeIn font-sans"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-900/60 backdrop-blur-xs font-sans"
       role="dialog"
       aria-modal="true"
       aria-labelledby="poster-modal-title"
     >
-      <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
+      <div className="bg-white max-w-2xl w-full max-h-[90vh] flex flex-col border border-zinc-300 shadow-xl overflow-hidden text-left">
         
         {/* Header */}
-        <div className="bg-navy-900 text-white p-5 flex items-center justify-between border-b border-navy-800 shrink-0">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded bg-brand-blue flex items-center justify-center font-bold text-white text-sm">
-              A0
-            </div>
-            <div>
-              <h3 id="poster-modal-title" className="font-bold text-base text-white">
-                2026 한양학술타운 LION 최종 학술 포스터
-              </h3>
-              <p className="text-xs text-slate-300">CODE BLUE 프로젝트 연구 발표 자료</p>
-            </div>
+        <div className="bg-[#FAF9F5] p-4 sm:p-5 flex items-center justify-between border-b border-zinc-200 shrink-0">
+          <div>
+            <span className="font-mono text-xs text-zinc-500 block">A0 학술 발표 인쇄물</span>
+            <h3 id="poster-modal-title" className="font-serif font-bold text-base text-zinc-950">
+              2026 한양학술타운 LION 최종 학술 포스터 요약
+            </h3>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-navy-800 transition-colors focus:outline-none"
+            className="p-1 text-zinc-500 hover:text-zinc-900 border border-zinc-300 rounded focus:outline-none"
             aria-label="닫기"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 sm:p-8 overflow-y-auto space-y-6 text-slate-900 text-sm leading-relaxed bg-slate-50">
+        <div className="p-6 sm:p-8 overflow-y-auto space-y-6 text-zinc-900 text-xs sm:text-sm leading-relaxed bg-[#FAF9F5]">
           
-          <div className="bg-white p-6 rounded-xl border border-slate-200 text-center space-y-3">
-            <span className="text-xs font-bold text-brand-blue uppercase tracking-wider block">
-              FINAL ACADEMIC POSTER
-            </span>
-            <h4 className="text-lg font-black text-navy-900">
-              중증응급환자 이송 지연 문제 개선을 위한 응급의료체계 분석과 정책 제안
+          <div className="bg-white p-5 border border-zinc-300 space-y-2">
+            <span className="font-mono text-[11px] text-zinc-500 block">연구 과제명</span>
+            <h4 className="font-serif font-black text-base text-zinc-950">
+              {PROJECT_CONFIG.projectTitle}
             </h4>
-            <p className="text-xs text-slate-500 font-medium">
-              간호학과(김다은·김예나) × 정책학과(임채윤·노재은)
+            <p className="text-xs text-zinc-600">
+              연구진: 간호학과(김다은·김예나) × 정책학과(임채윤·노재은)
             </p>
           </div>
 
-          {/* Poster Preview Card */}
-          <div className="bg-white p-6 rounded-xl border-2 border-dashed border-slate-300 text-center space-y-4">
-            <div className="w-16 h-16 rounded-2xl bg-blue-50 text-brand-blue flex items-center justify-center mx-auto">
-              <Image className="w-8 h-8" />
-            </div>
-            <div className="space-y-1">
-              <div className="inline-block px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-bold border border-amber-300 mb-1">
-                최종 인쇄본 파일 연결 예정
-              </div>
-              <h5 className="font-bold text-base text-navy-900">
-                A0 규격 학술 발표 포스터 (인쇄 및 최종 검수 단계)
-              </h5>
-              <p className="text-xs text-slate-600 max-w-md mx-auto leading-relaxed">
-                본 포스터는 2026 한양학술타운 LION 현장 발표를 위해 제작된 고해상도 학술 인쇄물입니다.
-              </p>
+          {/* Poster Content Summary */}
+          <div className="bg-white p-5 border border-zinc-300 space-y-4">
+            <div className="flex items-center justify-between border-b border-zinc-200 pb-2">
+              <span className="font-bold text-zinc-900 text-xs">포스터 패널 구성 및 수록 내용</span>
+              <span className="font-mono text-[11px] text-zinc-500">규격: A0 Vertical (841×1189mm)</span>
             </div>
 
-            <div className="bg-slate-50 p-4 rounded-lg text-left text-xs space-y-2 border border-slate-200">
-              <div className="flex items-center gap-2 font-bold text-navy-900">
-                <Info className="w-4 h-4 text-brand-blue shrink-0" />
-                <span>포스터 주요 수록 항목</span>
+            <div className="space-y-3 divide-y divide-zinc-100 text-xs">
+              <div className="pt-2 space-y-1">
+                <span className="font-bold text-zinc-900 block">1. 연구 배경 및 문제 정의</span>
+                <p className="text-zinc-600">
+                  단순 병상 유무와 실제 전문의 수술 역량의 괴리, 2026년 5월 의사 1심 집행유예 판결 및 6월 대구 중증환자 사망 송치 사건에서 드러난 '받아도 책임, 받지 않아도 책임'의 제도적 딜레마 분석.
+                </p>
               </div>
-              <ul className="list-disc pl-5 space-y-1 text-slate-700">
-                <li>연구 배경: 왜 병상을 찾고도 이송이 지연되는가? (병상과 치료역량의 차이)</li>
-                <li>연구 방법: 서울아산병원 응급실 전문간호사 인터뷰 및 법령·지역사례 분석</li>
-                <li>최종 3대 핵심 정책: 1. 권역별 순환 당직병원 지정제 / 2. 필수의료 의무복무 선발전형 / 3. 개정 응급의료법의 현장 정착 지원</li>
-                <li>정책 전환 고찰: 정보통신망에서 배후 필수의료 전문인력 확보 중심 전환</li>
-              </ul>
+
+              <div className="pt-2 space-y-1">
+                <span className="font-bold text-zinc-900 block">2. 융합 연구 방법론</span>
+                <p className="text-zinc-600">
+                  서울아산병원 응급실 전문간호사 심층 인터뷰 질적 분석 및 「응급의료에 관한 법률」 제6조(거부금지)와 제48조의2(수용능력 확인)의 입법 공백 검토.
+                </p>
+              </div>
+
+              <div className="pt-2 space-y-1">
+                <span className="font-bold text-zinc-900 block">3. 3대 핵심 정책 대안</span>
+                <p className="text-zinc-600">
+                  ① 권역별 순환 당직병원 지정제 (응급의료진료권 단위 순환 분담)<br />
+                  ② 필수의료 의무복무 선발전형 (10년 기본안 / 15년 강화안 비교 검토)<br />
+                  ③ 개정 응급의료법의 현장 정착 지원 (수용 판단 기록 연계 및 공적 분쟁지원)
+                </p>
+              </div>
+
+              <div className="pt-2 space-y-1">
+                <span className="font-bold text-zinc-900 block">4. 정책 전환의 의의</span>
+                <p className="text-zinc-600">
+                  초기 전산 정보망 중심 과제에서 출발하여, 배후 필수진료과 전문의 인력 확보와 사법 안전망 구축이 선행되어야 함을 증명한 연구 궤적 제시.
+                </p>
+              </div>
+            </div>
+
+            <div className="p-3 bg-zinc-50 border border-zinc-200 text-zinc-600 text-[11px]">
+              * 본 포스터는 2026 한양학술타운 LION 최종 심사 현장에 인쇄물로 게시·발표됩니다.
             </div>
           </div>
 
         </div>
 
         {/* Footer */}
-        <div className="p-4 bg-white border-t border-slate-200 flex justify-end shrink-0">
+        <div className="p-4 bg-white border-t border-zinc-200 flex justify-end shrink-0">
           <button
             onClick={onClose}
-            className="px-5 py-2.5 rounded-lg bg-navy-900 hover:bg-navy-800 text-white font-bold text-xs transition-colors"
+            className="px-4 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-white font-semibold text-xs rounded transition-colors"
           >
-            확인 및 닫기
+            닫기
           </button>
         </div>
 
