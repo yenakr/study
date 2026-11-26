@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, RefreshCw } from 'lucide-react';
+import { ArrowRight, RefreshCw, Activity, Building2, Stethoscope, PhoneCall, Clock, Check, X } from 'lucide-react';
 
 export default function ErGuideSection({ setActiveTab }) {
   const questions = [
@@ -39,32 +39,47 @@ export default function ErGuideSection({ setActiveTab }) {
     {
       num: "01",
       topic: "진료 순서의 원칙",
-      rule: "중증도 분류 순",
-      desc: "생체징후가 불안정한 중증환자(KTAS 1~2단계)가 먼저 진료실로 이동하며, 경증환자는 대기시간이 발생할 수 있습니다."
+      rule: "도착 순서가 아닌 중증도(KTAS) 분류 순 진료",
+      icon: Activity,
+      wrongAction: "먼저 도착한 순서대로 접수·진료 요구",
+      rightAction: "생체징후 위급 환자(KTAS 1·2단계) 우선 진료",
+      desc: "생체징후가 불안정한 중증외상 및 뇌·심혈관 환자가 먼저 처치실로 이동하며, 비응급 환자는 대기시간이 발생할 수 있습니다."
     },
     {
       num: "02",
       topic: "의료기관 선택",
-      rule: "질환 적합 병원 우선",
-      desc: "무조건 상급종합병원으로 이동하기보다 해당 증상(골절, 화상, 소아 등) 치료가 가능한 지역 응급의료기관이 더 신속합니다."
+      rule: "무조건 대형병원보다 질환 적합 병원 우선",
+      icon: Building2,
+      wrongAction: "상급종합병원 응급실 무조건 방문",
+      rightAction: "증상별(골절·화상·소아) 치료 가능 지역기관 선택",
+      desc: "대형병원으로의 무조건 이동은 긴 대기로 빠른 처치를 방해합니다. 환자의 증상에 맞는 인근 지역 응급의료기관이 골든타임을 지킵니다."
     },
     {
       num: "03",
       topic: "수용 가능의 기준",
-      rule: "전문의·수술실 가동 여부",
-      desc: "단순 빈 침대 유무가 아니라, 환자 질환을 처치할 당직 전문의와 수술실·중환자실 배후 진료과 가동 상태가 결정합니다."
+      rule: "단순 빈 침대가 아닌 전문의·수술실 가동성 확인",
+      icon: Stethoscope,
+      wrongAction: "남은 빈 병상 수만 보고 병원 이동",
+      rightAction: "배후 당직 전문의 상주 및 수술실 가동 확인",
+      desc: "침대가 남아 있어도 응급 수술을 집도할 전문의가 없거나 중환자실이 만석이면 수용이 불가합니다. 실제 수술 가능 여부가 기준입니다."
     },
     {
       num: "04",
       topic: "이송 시 행동 요령",
-      rule: "119 구급대 안내 준수",
-      desc: "개별적으로 병원을 직접 찾다가 수용 불가 통보를 받는 것보다, 119의 사전 통보 및 지정 이송을 따르는 것이 안전합니다."
+      rule: "개별 이동보다 119 구급대의 지정 안내 준수",
+      icon: PhoneCall,
+      wrongAction: "사전 확인 없이 자차로 개별 병원 탐색",
+      rightAction: "119 구급대의 실시간 치료역량 조회 및 이송 준수",
+      desc: "자가용 등으로 개별 방문하다 수용 불가 통보를 받는 위험을 방지하고, 119의 전문적인 사전 수용 확인 이송을 따르는 것이 안전합니다."
     },
     {
       num: "05",
       topic: "골든타임 보호",
-      rule: "경증 질환 분산 이용",
-      desc: "야간·휴일 진료기관이나 달빛어린이병원 등 동네 병의원을 적극 이용할 때 초응급환자의 진료 공간이 유지됩니다."
+      rule: "경증 질환 분산 이용으로 중증환자 진료 공간 유지",
+      icon: Clock,
+      wrongAction: "경증 감기·단순 장염으로 대형 응급실 이용",
+      rightAction: "달빛어린이병원 및 동네 야간·휴일 진료기관 이용",
+      desc: "비응급 환자가 지역 1·2차 병의원을 분산 이용할 때, 분초를 다투는 심정지·중증외상 초응급환자의 응급실 진료 역량이 확보됩니다."
     }
   ];
 
@@ -111,7 +126,7 @@ export default function ErGuideSection({ setActiveTab }) {
           </h2>
 
           <p className="text-[17px] md:text-[18px] text-zinc-800 leading-[1.75] font-normal break-keep max-w-[640px]">
-            응급의료체계의 병목 현상을 줄이고 중증환자의 골든타임을 지키기 위해 시민이 숙지해야 할 핵심 상식과 이용 수칙을 제공합니다.
+            응급의료체계의 병목 현상을 줄이고 중증환자의 골든타임을 지키기 위해 시민이 숙지해야 할 핵심 상식과 이용 수칙을 도식화하여 안내합니다.
           </p>
         </div>
 
@@ -217,45 +232,84 @@ export default function ErGuideSection({ setActiveTab }) {
           )}
         </div>
 
-        {/* Part 2: Editorial Reference Table */}
-        <div className="text-left space-y-4 pt-4 border-t border-zinc-200">
-          <h3 className="text-[22px] font-semibold text-zinc-950">
-            응급의료 5대 핵심 이용 수칙
-          </h3>
+        {/* Part 2: Visual Infographic Guide (Replacing Stiff Table) */}
+        <div className="text-left space-y-6 pt-4 border-t border-zinc-200">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-zinc-200 pb-3">
+            <div>
+              <h3 className="text-[22px] font-semibold text-zinc-950">
+                응급의료 5대 핵심 이용 수칙
+              </h3>
+              <p className="text-[15px] text-zinc-600 mt-1">
+                중증환자의 골든타임을 보호하기 위한 5가지 행동 지침 도식도
+              </p>
+            </div>
+            <span className="text-[13px] font-mono font-bold text-[#0B3CFF]">
+              ACTION GUIDELINE
+            </span>
+          </div>
 
-          <p className="text-[13px] text-zinc-600 block md:hidden">
-            → 표를 가로로 넘겨서 전체 내용을 확인할 수 있습니다
-          </p>
+          {/* 5 Visual Cards with Comparison Chips */}
+          <div className="space-y-4">
+            {guidePrinciples.map((p) => {
+              const IconComponent = p.icon;
+              return (
+                <div 
+                  key={p.num}
+                  className="border border-zinc-300 bg-white p-6 sm:p-7 space-y-4 transition-all hover:border-[#0B3CFF]/60"
+                >
+                  {/* Top Metadata Strip */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-zinc-200">
+                    <div className="flex items-center gap-3">
+                      <span className="w-8 h-8 rounded-[2px] bg-[#0B3CFF] text-white font-mono font-bold text-[14px] flex items-center justify-center shrink-0">
+                        {p.num}
+                      </span>
+                      <span className="text-[13px] font-bold font-mono text-zinc-600 uppercase tracking-wide">
+                        {p.topic}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-[#0B3CFF]">
+                      <IconComponent className="w-4 h-4" />
+                      <span className="text-[13px] font-bold font-mono">CODE BLUE 수칙</span>
+                    </div>
+                  </div>
 
-          <div className="border border-zinc-200 bg-white overflow-x-auto">
-            <table className="w-full text-left text-[15px] divide-y divide-zinc-200">
-              <thead className="bg-zinc-50 text-zinc-900 font-semibold border-b border-zinc-200">
-                <tr>
-                  <th className="py-4 px-4 sm:px-6 w-20 border-r border-zinc-200 font-mono">번호</th>
-                  <th className="py-4 px-4 sm:px-6 w-1/4 border-r border-zinc-200">구분 항목</th>
-                  <th className="py-4 px-4 sm:px-6 w-1/4 border-r border-zinc-200 font-bold">핵심 수칙</th>
-                  <th className="py-4 px-4 sm:px-6">세부 설명 및 배경</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-zinc-200 text-zinc-800">
-                {guidePrinciples.map((p) => (
-                  <tr key={p.num} className="hover:bg-zinc-50 transition-colors">
-                    <td className="py-4 px-4 sm:px-6 font-mono font-bold border-r border-zinc-200 text-zinc-950 align-top">
-                      {p.num}
-                    </td>
-                    <td className="py-4 px-4 sm:px-6 font-bold border-r border-zinc-200 text-zinc-950 align-top">
-                      {p.topic}
-                    </td>
-                    <td className="py-4 px-4 sm:px-6 font-bold border-r border-zinc-200 text-zinc-950 align-top">
-                      {p.rule}
-                    </td>
-                    <td className="py-4 px-4 sm:px-6 text-zinc-700 leading-relaxed align-top break-keep">
-                      {p.desc}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                  {/* Core Rule Title */}
+                  <h4 className="text-[18px] sm:text-[20px] font-bold text-zinc-950 leading-snug break-keep">
+                    {p.rule}
+                  </h4>
+
+                  {/* Visual Diagram: Contrast Comparison Pathway */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+                    {/* Wrong Practice */}
+                    <div className="p-3.5 bg-zinc-50 border border-zinc-200 flex items-start gap-2.5">
+                      <div className="w-5 h-5 rounded-full bg-zinc-200 text-zinc-700 flex items-center justify-center shrink-0 mt-0.5">
+                        <X className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="space-y-0.5">
+                        <span className="text-[11px] font-bold text-zinc-500 uppercase block">지양해야 할 행동</span>
+                        <span className="text-[14px] font-medium text-zinc-800 break-keep">{p.wrongAction}</span>
+                      </div>
+                    </div>
+
+                    {/* Right Practice */}
+                    <div className="p-3.5 bg-blue-50/20 border border-[#0B3CFF]/40 flex items-start gap-2.5">
+                      <div className="w-5 h-5 rounded-full bg-[#0B3CFF] text-white flex items-center justify-center shrink-0 mt-0.5">
+                        <Check className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="space-y-0.5">
+                        <span className="text-[11px] font-bold text-[#0B3CFF] uppercase block">올바른 이용 수칙</span>
+                        <span className="text-[14px] font-bold text-zinc-950 break-keep">{p.rightAction}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Context Description */}
+                  <p className="text-[15px] text-zinc-700 leading-relaxed break-keep pt-1">
+                    {p.desc}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
 
