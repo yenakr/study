@@ -5,19 +5,13 @@ import SurveySection from './components/SurveySection';
 import SurveyResultsSection from './components/SurveyResultsSection';
 import Footer from './components/Footer';
 import PdfPreviewModal from './components/PdfPreviewModal';
-import PosterModal from './components/PosterModal';
 
 export default function App() {
   const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
-  const [isPosterModalOpen, setIsPosterModalOpen] = useState(false);
   const [surveyRefreshTrigger, setSurveyRefreshTrigger] = useState(0);
 
   const handleOpenPdf = () => {
     setIsPdfModalOpen(true);
-  };
-
-  const handleOpenPoster = () => {
-    setIsPosterModalOpen(true);
   };
 
   const handleSurveySubmitted = () => {
@@ -37,16 +31,14 @@ export default function App() {
       {/* Editorial Navigation Header */}
       <Navbar 
         onOpenPdf={handleOpenPdf}
-        onOpenPoster={handleOpenPoster}
       />
       
       {/* Main Investigative Documentary Feature */}
       <main className="flex-grow pt-14">
         
-        {/* Core Investigative Feature (Comfortable White Base + 1 Fullscreen Dark Blue Intermission) */}
+        {/* Core Investigative Feature */}
         <InvestigativeReport 
           onOpenPdf={handleOpenPdf}
-          onOpenPoster={handleOpenPoster}
           onScrollToSurvey={handleScrollToSurvey}
         />
 
@@ -71,15 +63,10 @@ export default function App() {
 
       </main>
 
-      {/* Artifact Modals */}
+      {/* Official Proposal Modal */}
       <PdfPreviewModal 
         isOpen={isPdfModalOpen} 
         onClose={() => setIsPdfModalOpen(false)} 
-      />
-      
-      <PosterModal 
-        isOpen={isPosterModalOpen} 
-        onClose={() => setIsPosterModalOpen(false)} 
       />
 
       {/* Clean Attribution Footer */}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Menu, X, FileText, Image } from 'lucide-react';
+import { Menu, X, FileText } from 'lucide-react';
 
-export default function Navbar({ onOpenPdf, onOpenPoster }) {
+export default function Navbar({ onOpenPdf }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
@@ -58,20 +58,13 @@ export default function Navbar({ onOpenPdf, onOpenPoster }) {
 
             <div className="h-4 w-px bg-zinc-200 mx-2"></div>
 
-            {/* Academic Artifact Actions */}
+            {/* Academic Policy Proposal Action */}
             <button
               onClick={onOpenPdf}
-              className="px-3 py-1.5 text-[14px] min-h-[44px] flex items-center gap-1.5 text-zinc-800 hover:text-zinc-950 transition-colors border border-zinc-300 rounded-[2px] bg-white hover:bg-zinc-50"
+              className="px-3.5 py-1.5 text-[14px] min-h-[44px] flex items-center gap-1.5 text-zinc-800 hover:text-zinc-950 transition-colors border border-zinc-300 rounded-[2px] bg-white hover:bg-zinc-50 font-medium"
             >
               <FileText className="w-3.5 h-3.5 text-[#0052FF]" />
               <span>정책제안서</span>
-            </button>
-            <button
-              onClick={onOpenPoster}
-              className="px-3 py-1.5 text-[14px] min-h-[44px] flex items-center gap-1.5 text-zinc-800 hover:text-zinc-950 transition-colors border border-zinc-300 rounded-[2px] bg-white hover:bg-zinc-50"
-            >
-              <Image className="w-3.5 h-3.5 text-[#0052FF]" />
-              <span>포스터</span>
             </button>
           </nav>
 
@@ -100,20 +93,13 @@ export default function Navbar({ onOpenPdf, onOpenPoster }) {
               {link.label}
             </button>
           ))}
-          <div className="pt-2 grid grid-cols-2 gap-2">
+          <div className="pt-2">
             <button
               onClick={() => { setIsOpen(false); onOpenPdf(); }}
               className="w-full py-2.5 px-3 min-h-[44px] text-[14px] font-semibold text-zinc-900 bg-white border border-zinc-300 rounded-[2px] flex items-center justify-center gap-1.5"
             >
               <FileText className="w-4 h-4 text-[#0052FF]" />
               <span>정책제안서</span>
-            </button>
-            <button
-              onClick={() => { setIsOpen(false); onOpenPoster(); }}
-              className="w-full py-2.5 px-3 min-h-[44px] text-[14px] font-semibold text-zinc-900 bg-white border border-zinc-300 rounded-[2px] flex items-center justify-center gap-1.5"
-            >
-              <Image className="w-4 h-4 text-[#0052FF]" />
-              <span>포스터</span>
             </button>
           </div>
         </div>

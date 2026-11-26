@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowRight, AlertTriangle, FileText, Image, MessageSquare } from 'lucide-react';
 
-export default function InvestigativeReport({ onOpenPdf, onOpenPoster, onScrollToSurvey }) {
+export default function InvestigativeReport({ onOpenPdf, onScrollToSurvey }) {
   return (
     <div className="bg-white text-zinc-900 font-sans selection:bg-[#0052FF] selection:text-white">
       
@@ -324,8 +324,8 @@ export default function InvestigativeReport({ onOpenPdf, onOpenPoster, onScrollT
           </p>
         </div>
 
-        {/* 3대 핵심 학술 자료 액션 */}
-        <div className="pt-8 border-t border-zinc-200 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {/* 핵심 학술 자료 및 참여 액션 */}
+        <div className="pt-8 border-t border-zinc-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
           
           <button
             onClick={onOpenPdf}
@@ -336,17 +336,6 @@ export default function InvestigativeReport({ onOpenPdf, onOpenPoster, onScrollT
               <FileText className="w-4 h-4 text-[#0052FF]" />
             </div>
             <span className="text-[13px] text-zinc-600 block">3대 대안과 법 조문 개정안</span>
-          </button>
-
-          <button
-            onClick={onOpenPoster}
-            className="p-5 text-left bg-zinc-50 border border-zinc-200 hover:border-zinc-950 transition-all rounded-[2px] group"
-          >
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[16px] font-bold text-zinc-950 block">학술 포스터</span>
-              <Image className="w-4 h-4 text-[#0052FF]" />
-            </div>
-            <span className="text-[13px] text-zinc-600 block">연구 요약 및 정책 패널</span>
           </button>
 
           <button
