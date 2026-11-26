@@ -59,8 +59,8 @@ export default function PdfPreviewModal({ isOpen, onClose }) {
                 <span className="font-bold text-zinc-950 text-[15px]">{PROJECT_CONFIG.teamName}</span>
               </div>
               <div>
-                <span className="text-zinc-600 block font-mono">참여 전공</span>
-                <span className="font-bold text-zinc-950 text-[15px]">간호학과 × 정책학과</span>
+                <span className="text-zinc-600 block font-mono">소속</span>
+                <span className="font-bold text-zinc-950 text-[15px]">한양대학교 정책학과 간호학과</span>
               </div>
               <div>
                 <span className="text-zinc-600 block font-mono">연구진</span>

@@ -40,7 +40,7 @@ export default function PosterModal({ isOpen, onClose }) {
               {PROJECT_CONFIG.projectTitle}
             </h4>
             <p className="text-[15px] text-zinc-700">
-              연구진: 간호학과(김다은·김예나) × 정책학과(임채윤·노재은)
+              소속 및 연구진: 한양대학교 정책학과 간호학과 (김다은·김예나·임채윤·노재은)
             </p>
           </div>
 

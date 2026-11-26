@@ -4,8 +4,8 @@ export const PROJECT_CONFIG = {
   teamName: "CODE BLUE",
   projectTitle: "중증응급환자 이송 지연 문제 개선을 위한 응급의료체계 분석과 정책 제안",
   academicTitle: "2026 한양학술타운 LION 프로젝트",
-  majors: "간호학과 × 정책학과",
-  fullAcademicTitle: "간호학과 × 정책학과 융합 학술 연구 프로젝트",
+  majors: "한양대학교 정책학과 간호학과",
+  fullAcademicTitle: "한양대학교 정책학과 간호학과 융합 학술 연구 프로젝트",
   
   teamMembers: [
     { name: "김다은", dept: "간호학과", role: "응급의료 현장 관점 조사, 전문가 인터뷰 정리, 시민 안내 내용 검토" },

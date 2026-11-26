@@ -39,7 +39,7 @@ export default function HeroSection({ setActiveTab }) {
           <div>
             <span className="font-semibold text-[#0B3CFF]">2026 한양학술타운 LION</span>
             <span className="mx-2">|</span>
-            <span>간호학과 × 정책학과 융합 연구 브리프</span>
+            <span>한양대학교 정책학과 간호학과 융합 연구 브리프</span>
           </div>
           <div>발행 2026년 11월 • 팀 <strong className="font-bold text-[#0B3CFF]">CODE BLUE</strong></div>
         </div>
