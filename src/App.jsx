@@ -1,20 +1,13 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
-import HeroSection from './components/HeroSection';
-import ProblemSection from './components/ProblemSection';
-import IssuesSection from './components/IssuesSection';
-import ResearchSection from './components/ResearchSection';
-import PolicySection from './components/PolicySection';
-import ErGuideSection from './components/ErGuideSection';
+import InvestigativeReport from './components/InvestigativeReport';
 import SurveySection from './components/SurveySection';
 import SurveyResultsSection from './components/SurveyResultsSection';
-import AboutSection from './components/AboutSection';
 import Footer from './components/Footer';
 import PdfPreviewModal from './components/PdfPreviewModal';
 import PosterModal from './components/PosterModal';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('home');
   const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
   const [isPosterModalOpen, setIsPosterModalOpen] = useState(false);
   const [surveyRefreshTrigger, setSurveyRefreshTrigger] = useState(0);
@@ -31,104 +24,55 @@ export default function App() {
     setSurveyRefreshTrigger(prev => prev + 1);
   };
 
+  const handleScrollToSurvey = () => {
+    const el = document.getElementById('survey');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div className="min-h-screen flex flex-col bg-white text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white">
-      {/* Editorial Navigation Header */}
+    <div className="min-h-screen flex flex-col bg-[#030712] text-zinc-100 font-sans selection:bg-[#00E5FF] selection:text-black">
+      
+      {/* Emergency Navigation Header */}
       <Navbar 
-        activeTab={activeTab} 
-        setActiveTab={setActiveTab} 
+        onOpenPdf={handleOpenPdf}
+        onOpenPoster={handleOpenPoster}
+        onScrollTo={handleScrollToSurvey}
       />
       
-      {/* Main Content Area */}
+      {/* Main Investigative Documentary Feature (3-minute cinematic scroll) */}
       <main className="flex-grow pt-14">
-        {/* Home Overview View */}
-        {activeTab === 'home' && (
-          <div className="animate-fadeIn">
-            <HeroSection setActiveTab={setActiveTab} />
+        
+        {/* Core Investigative Feature */}
+        <InvestigativeReport 
+          onOpenPdf={handleOpenPdf}
+          onOpenPoster={handleOpenPoster}
+          onScrollToSurvey={handleScrollToSurvey}
+        />
+
+        {/* Civic Survey & Real-Time Voice Section */}
+        <section id="survey" className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto border-t border-zinc-900 text-left">
+          <div className="space-y-4 mb-10">
+            <span className="text-[14px] font-mono font-bold tracking-widest text-[#00E5FF] uppercase block">
+              시민 참여 • 공론의 장
+            </span>
+            <h2 className="font-serif font-bold text-[32px] sm:text-[40px] text-white tracking-tight leading-snug break-keep">
+              응급의료체계 개선에 관한 시민 의견 수렴
+            </h2>
+            <p className="text-[17px] sm:text-[18px] text-zinc-300 leading-[1.8] break-keep max-w-[640px]">
+              응급실 이송 지연에 관한 여러분의 실제 경험과 제도 개선에 대한 생각을 들려주세요. 수집된 의견은 한양학술타운 연구팀의 정책 제안서에 반영됩니다.
+            </p>
           </div>
-        )}
 
-        {/* 1) 문제 분석 */}
-        {activeTab === 'problem' && (
-          <div className="animate-fadeIn">
-            <ProblemSection setActiveTab={setActiveTab} />
-          </div>
-        )}
+          <SurveySection onSubmitted={handleSurveySubmitted} />
+          
+          <SurveyResultsSection refreshTrigger={surveyRefreshTrigger} />
+        </section>
 
-        {/* 2) 2026 주요 이슈 */}
-        {activeTab === 'issues' && (
-          <div className="animate-fadeIn">
-            <IssuesSection setActiveTab={setActiveTab} />
-          </div>
-        )}
-
-        {/* 3) 연구 과정 */}
-        {activeTab === 'research' && (
-          <div className="animate-fadeIn">
-            <ResearchSection setActiveTab={setActiveTab} />
-          </div>
-        )}
-
-        {/* 4) 정책 제안 */}
-        {activeTab === 'policy' && (
-          <div className="animate-fadeIn">
-            <PolicySection 
-              onOpenPoster={handleOpenPoster} 
-              setActiveTab={setActiveTab} 
-            />
-          </div>
-        )}
-
-        {/* 5) 응급실 바로 알기 (통합 퀴즈 및 수칙 표) */}
-        {activeTab === 'er-guide' && (
-          <div className="animate-fadeIn">
-            <ErGuideSection setActiveTab={setActiveTab} />
-          </div>
-        )}
-
-        {/* 6) 시민 의견 */}
-        {activeTab === 'survey' && (
-          <div className="animate-fadeIn py-24 sm:py-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-            <div className="space-y-4 text-left border-b border-zinc-200 pb-8">
-              <div className="text-[13px] font-mono font-bold text-[#0B3CFF] uppercase tracking-widest">
-                SECTION 06 • 시민 참여 및 의견 수렴
-              </div>
-
-              {/* 핵심 한 문장 (20px bold) */}
-              <p className="text-[20px] font-bold text-zinc-950 leading-snug break-keep">
-                중증응급환자 이송체계 개선을 위해 시민 여러분의 소중한 경험과 고견을 모읍니다.
-              </p>
-
-              <h2 className="text-[36px] sm:text-[40px] font-serif font-bold text-zinc-950 tracking-tight leading-tight break-keep">
-                응급의료체계에 관한 시민 의견 수렴
-              </h2>
-
-              <p className="text-[17px] md:text-[18px] text-zinc-800 leading-[1.75] font-normal break-keep max-w-[640px]">
-                중증응급환자 이송 지연 개선방안에 관한 시민 여러분의 경험과 의견을 익명으로 경청하여 학술 연구 분석에 반영합니다.
-              </p>
-            </div>
-
-            <SurveySection onSubmitted={handleSurveySubmitted} />
-            <SurveyResultsSection 
-              refreshTrigger={surveyRefreshTrigger} 
-              setActiveTab={setActiveTab} 
-            />
-          </div>
-        )}
-
-        {/* 7) 프로젝트 소개 */}
-        {activeTab === 'about' && (
-          <div className="animate-fadeIn">
-            <AboutSection 
-              onOpenPdf={handleOpenPdf}
-              onOpenPoster={handleOpenPoster}
-              setActiveTab={setActiveTab} 
-            />
-          </div>
-        )}
       </main>
 
-      {/* Global Modals for Academic Artifacts */}
+      {/* Artifact Modals */}
       <PdfPreviewModal 
         isOpen={isPdfModalOpen} 
         onClose={() => setIsPdfModalOpen(false)} 
@@ -139,8 +83,9 @@ export default function App() {
         onClose={() => setIsPosterModalOpen(false)} 
       />
 
-      {/* Mandatory Disclaimer Footer */}
+      {/* Clean Attribution Footer */}
       <Footer />
+
     </div>
   );
 }

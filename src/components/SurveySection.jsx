@@ -77,73 +77,59 @@ export default function SurveySection({ onSubmitted }) {
   };
 
   return (
-    <div className="text-left space-y-8">
+    <div className="text-left space-y-6">
       
-      {/* Editorial Notice Box */}
-      <div className="border border-zinc-300 bg-white p-6 sm:p-8 space-y-3">
-        <div className="flex items-center gap-2 font-bold text-zinc-950 text-[17px]">
-          <AlertCircle className="w-5 h-5 text-zinc-900 shrink-0" />
-          <span>설문 참여 안내 및 개인정보 처리 원칙</span>
+      {/* Notice Box */}
+      <div className="border border-zinc-800 bg-[#050B18] p-6 space-y-3 rounded-[4px]">
+        <div className="flex items-center gap-2 font-bold text-white text-[16px]">
+          <AlertCircle className="w-5 h-5 text-[#00E5FF] shrink-0" />
+          <span>시민 참여 안내 및 익명성 보장 원칙</span>
         </div>
-        <p className="font-semibold text-zinc-900 text-[15px] break-keep">
-          본 조사는 학술 연구 목적의 익명 의견 수렴입니다. 의료상담 또는 민원 접수 창구가 아닙니다.
+        <p className="font-medium text-zinc-300 text-[15px] break-keep">
+          본 조사는 학술 연구 목적의 익명 의견 수렴입니다. 이름, 연락처 등 일체의 개인 식별 정보는 수집하지 않습니다.
         </p>
-        <ul className="space-y-1.5 text-[15px] text-zinc-700">
-          <li className="flex items-start gap-2">
-            <span className="text-zinc-950 font-bold shrink-0">•</span>
-            <span><strong>수집 금지 항목:</strong> 이름, 연락처, 주민등록번호, 구체적인 병명, 병원명은 일절 수집하지 않습니다.</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-zinc-950 font-bold shrink-0">•</span>
-            <span><strong>수집 목적:</strong> 중증응급환자 이송체계 개선방안에 관한 시민 의견 수렴 및 학술 통계 분석</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-zinc-950 font-bold shrink-0">•</span>
-            <span><strong>보관 기간:</strong> 2026 한양학술타운 LION 프로젝트 종료 시까지 익명 보관</span>
-          </li>
-        </ul>
       </div>
 
       {/* Already Submitted State */}
       {alreadySubmitted && !submitted ? (
-        <div className="border border-zinc-300 bg-white p-6 sm:p-8 space-y-4">
-          <div className="flex items-center gap-2 font-bold text-zinc-950 text-[18px]">
-            <ShieldCheck className="w-5 h-5 text-zinc-900" />
+        <div className="border border-zinc-800 bg-[#050B18] p-6 sm:p-8 space-y-4 rounded-[4px]">
+          <div className="flex items-center gap-2 font-bold text-white text-[18px]">
+            <ShieldCheck className="w-5 h-5 text-[#00E5FF]" />
             <span>이미 설문 응답 제출이 완료되었습니다</span>
           </div>
-          <p className="text-[15px] text-zinc-700 leading-relaxed break-keep">
+          <p className="text-[15px] text-zinc-400 leading-relaxed break-keep">
             1인 1회 응답 원칙에 따라 무기명 등록되었습니다. 아래 실시간 통계에서 결과를 확인하실 수 있습니다.
           </p>
           <button
             onClick={resetDuplicateLock}
-            className="min-h-[44px] inline-flex items-center gap-2 px-5 py-2.5 border border-zinc-300 bg-white text-zinc-900 text-[15px] font-semibold rounded-[2px] hover:bg-zinc-50"
+            className="min-h-[44px] inline-flex items-center gap-2 px-5 py-2.5 border border-zinc-700 bg-zinc-900 text-white text-[14px] font-semibold rounded-[2px] hover:border-[#00E5FF] transition-colors"
           >
-            <RefreshCw className="w-4 h-4" />
+            <RefreshCw className="w-4 h-4 text-[#00E5FF]" />
             <span>새 응답 작성하기</span>
           </button>
         </div>
       ) : submitted ? (
-        <div className="border border-zinc-300 bg-white p-6 sm:p-8 space-y-3 animate-fadeIn">
-          <div className="flex items-center gap-2 font-bold text-zinc-950 text-[18px]">
-            <CheckCircle2 className="w-5 h-5 text-emerald-700" />
+        <div className="border border-zinc-800 bg-[#050B18] p-6 sm:p-8 space-y-3 rounded-[4px] animate-fadeIn">
+          <div className="flex items-center gap-2 font-bold text-white text-[18px]">
+            <CheckCircle2 className="w-5 h-5 text-[#00E5FF]" />
             <span>소중한 의견이 등록되었습니다</span>
           </div>
-          <p className="text-[15px] text-zinc-700 leading-relaxed break-keep">
+          <p className="text-[15px] text-zinc-300 leading-relaxed break-keep">
             응답 내용은 필수의료 전문인력 확보와 응급의료체계 개선 학술 분석에 소중히 활용됩니다.
           </p>
         </div>
       ) : (
         /* Academic Questionnaire Form */
-        <form onSubmit={handleSubmit} className="border border-zinc-300 bg-white p-6 sm:p-8 space-y-8">
+        <form onSubmit={handleSubmit} className="border border-zinc-800 bg-[#050B18] p-6 sm:p-8 space-y-8 rounded-[4px]">
           
           {/* Q1 */}
           <div className="space-y-3">
-            <label className="block text-[17px] font-bold text-zinc-950 break-keep">
-              1. 최근 응급실을 이용하거나 보호자로 방문한 경험이 있습니까? <span className="text-[#0B3CFF] font-bold">*</span>
+            <label className="block text-[17px] font-bold text-white break-keep">
+              1. 최근 응급실을 이용하거나 보호자로 방문한 경험이 있습니까? <span className="text-[#00E5FF]">*</span>
             </label>
             <div className="space-y-2">
               {['최근 1년 이내 방문 경험이 있다', '1년 이전에 방문한 경험이 있다', '응급실 방문 경험이 없다'].map((opt) => (
-                <label key={opt} className="flex items-center gap-3 text-[15px] text-zinc-800 cursor-pointer min-h-[36px]">
+                <label key={opt} className="flex items-center gap-3 text-[15px] text-zinc-300 cursor-pointer min-h-[36px]">
                   <input
                     type="radio"
                     name="q1_experience"
@@ -151,7 +137,7 @@ export default function SurveySection({ onSubmitted }) {
                     checked={formData.q1_experience === opt}
                     onChange={handleChange}
                     required
-                    className="w-4 h-4 text-zinc-950 focus:ring-zinc-950"
+                    className="w-4 h-4 text-[#00E5FF] focus:ring-[#00E5FF] bg-zinc-900 border-zinc-700"
                   />
                   <span>{opt}</span>
                 </label>
@@ -160,60 +146,56 @@ export default function SurveySection({ onSubmitted }) {
           </div>
 
           {/* Q2 */}
-          <div className="space-y-3">
-            <label className="block text-[17px] font-bold text-zinc-950 break-keep">
-              2. 응급실 이용 시 가장 크게 우려되었거나 겪었던 문제는 무엇입니까? <span className="text-[#0B3CFF] font-bold">*</span>
+          <div className="space-y-3 border-t border-zinc-800 pt-6">
+            <label className="block text-[17px] font-bold text-white break-keep">
+              2. 응급실 이용 시 가장 불편했거나 불안했던 점은 무엇입니까? <span className="text-[#00E5FF]">*</span>
             </label>
             <div className="space-y-2">
               {[
-                '긴 대기시간과 처치 지연',
-                '당장 수술이나 처치를 담당할 전문의 부재',
-                '환자 상태에 대한 설명과 진료 진행 안내 부족',
-                '수용 불가 통보로 인한 타 병원 재이송 불안',
+                '긴 대기시간 및 우선순위 안내 부족',
+                '수술 또는 전문의 부재로 인한 전원 불안',
+                '응급실 의료진의 불친절 또는 설명 부족',
+                '경증/중증 구분 없는 혼잡함',
                 '기타'
               ].map((opt) => (
-                <div key={opt}>
-                  <label className="flex items-center gap-3 text-[15px] text-zinc-800 cursor-pointer min-h-[36px]">
-                    <input
-                      type="radio"
-                      name="q2_inconvenience"
-                      value={opt}
-                      checked={formData.q2_inconvenience === opt}
-                      onChange={handleChange}
-                      required
-                      className="w-4 h-4 text-zinc-950 focus:ring-zinc-950"
-                    />
-                    <span>{opt}</span>
-                  </label>
-                  {opt === '기타' && formData.q2_inconvenience === '기타' && (
-                    <input
-                      type="text"
-                      name="q2_other_text"
-                      value={formData.q2_other_text}
-                      onChange={handleChange}
-                      placeholder="기타 내용을 간략히 입력해주세요"
-                      className="mt-2 ml-7 w-full max-w-md p-3 border border-zinc-300 text-[15px] rounded-[2px] focus:outline-none focus:ring-1 focus:ring-zinc-950"
-                      required
-                    />
-                  )}
-                </div>
+                <label key={opt} className="flex items-center gap-3 text-[15px] text-zinc-300 cursor-pointer min-h-[36px]">
+                  <input
+                    type="radio"
+                    name="q2_inconvenience"
+                    value={opt}
+                    checked={formData.q2_inconvenience === opt}
+                    onChange={handleChange}
+                    required
+                    className="w-4 h-4 text-[#00E5FF] focus:ring-[#00E5FF] bg-zinc-900 border-zinc-700"
+                  />
+                  <span>{opt}</span>
+                </label>
               ))}
             </div>
+            {formData.q2_inconvenience === '기타' && (
+              <input
+                type="text"
+                placeholder="직접 입력해주세요"
+                value={formData.q2_other_text}
+                onChange={(e) => setFormData(prev => ({ ...prev, q2_other_text: e.target.value }))}
+                className="w-full mt-2 p-3 bg-zinc-900 border border-zinc-700 text-white rounded-[2px] text-[15px] focus:outline-none focus:border-[#00E5FF]"
+              />
+            )}
           </div>
 
           {/* Q3 */}
-          <div className="space-y-3">
-            <label className="block text-[17px] font-bold text-zinc-950 break-keep">
-              3. 중증응급환자 이송 지연(재이송)의 가장 주된 원인은 무엇이라고 보십니까? <span className="text-[#0B3CFF] font-bold">*</span>
+          <div className="space-y-3 border-t border-zinc-800 pt-6">
+            <label className="block text-[17px] font-bold text-white break-keep">
+              3. 중증응급환자가 여러 병원을 전전하는 가장 큰 원인은 무엇이라고 생각하십니까? <span className="text-[#00E5FF]">*</span>
             </label>
             <div className="space-y-2">
               {[
-                '수술과 중환자 진료를 담당할 필수진료과 전문의 부족',
-                '119와 병원 간의 실시간 치료역량 정보 공유 부족',
-                '경증 환자의 대형병원 응급실 과밀 이용',
-                '의료사고 발생 시 의료진 개인에게 가해지는 과도한 법적 책임'
+                '수술 집도 전문의 및 중환자실 집중치료 인력 부족',
+                '응급실 병상 부족 및 단순 시설 한계',
+                '의료진의 사법 리스크 기피 및 방어진료',
+                '경증환자의 대형병원 응급실 과밀 이용'
               ].map((opt) => (
-                <label key={opt} className="flex items-center gap-3 text-[15px] text-zinc-800 cursor-pointer min-h-[36px]">
+                <label key={opt} className="flex items-center gap-3 text-[15px] text-zinc-300 cursor-pointer min-h-[36px]">
                   <input
                     type="radio"
                     name="q3_cause"
@@ -221,7 +203,7 @@ export default function SurveySection({ onSubmitted }) {
                     checked={formData.q3_cause === opt}
                     onChange={handleChange}
                     required
-                    className="w-4 h-4 text-zinc-950 focus:ring-zinc-950"
+                    className="w-4 h-4 text-[#00E5FF] focus:ring-[#00E5FF] bg-zinc-900 border-zinc-700"
                   />
                   <span>{opt}</span>
                 </label>
@@ -230,13 +212,13 @@ export default function SurveySection({ onSubmitted }) {
           </div>
 
           {/* Q4 */}
-          <div className="space-y-3">
-            <label className="block text-[17px] font-bold text-zinc-950 break-keep">
-              4. 빈 침대가 있어도 수술할 전문의가 없으면 환자 수용이 어렵다는 사실을 알고 계셨습니까? <span className="text-[#0B3CFF] font-bold">*</span>
+          <div className="space-y-3 border-t border-zinc-800 pt-6">
+            <label className="block text-[17px] font-bold text-white break-keep">
+              4. 병상이 남아있어도 수술할 전문의가 없으면 수용이 어려울 수 있다는 점을 알고 계셨습니까? <span className="text-[#00E5FF]">*</span>
             </label>
             <div className="space-y-2">
-              {['알고 있었다', '이번 안내/연구를 통해 처음 알게 되었다'].map((opt) => (
-                <label key={opt} className="flex items-center gap-3 text-[15px] text-zinc-800 cursor-pointer min-h-[36px]">
+              {['잘 알고 있었다', '들어본 적은 있으나 자세히는 몰랐다', '전혀 몰랐다 (침대만 있으면 치료 가능한 줄 알았다)'].map((opt) => (
+                <label key={opt} className="flex items-center gap-3 text-[15px] text-zinc-300 cursor-pointer min-h-[36px]">
                   <input
                     type="radio"
                     name="q4_awareness"
@@ -244,7 +226,7 @@ export default function SurveySection({ onSubmitted }) {
                     checked={formData.q4_awareness === opt}
                     onChange={handleChange}
                     required
-                    className="w-4 h-4 text-zinc-950 focus:ring-zinc-950"
+                    className="w-4 h-4 text-[#00E5FF] focus:ring-[#00E5FF] bg-zinc-900 border-zinc-700"
                   />
                   <span>{opt}</span>
                 </label>
@@ -253,18 +235,18 @@ export default function SurveySection({ onSubmitted }) {
           </div>
 
           {/* Q5 */}
-          <div className="space-y-3">
-            <label className="block text-[17px] font-bold text-zinc-950 break-keep">
-              5. 중증응급환자 이송 지연 해소를 위해 가장 시급한 대책은 무엇이라고 생각하십니까? <span className="text-[#0B3CFF] font-bold">*</span>
+          <div className="space-y-3 border-t border-zinc-800 pt-6">
+            <label className="block text-[17px] font-bold text-white break-keep">
+              5. 응급환자 이송 지연을 줄이기 위해 가장 시급한 대책은 무엇이라고 보십니까? <span className="text-[#00E5FF]">*</span>
             </label>
             <div className="space-y-2">
               {[
-                '권역별 순환 당직병원 지정을 통한 야간·휴일 당직 분담',
-                '필수의료 의무복무 선발전형을 통한 중증외상·응급 전문의 양성',
-                '개정 응급의료법 안착과 불가항력 의료사고 법적 지원',
-                '119와 응급실 간 실시간 수술역량 정보망 고도화'
+                '권역별 전문의 순환 당직제 도입 (야간·휴일 당직 공조)',
+                '10~15년 의무복무 필수의료 전문의 양성 (지역 거점 상주)',
+                '의료사고 사법 리스크 완화 및 공적 분쟁지원 안전망',
+                '119 이송지침 준수 및 경증환자 분산 이용 유도'
               ].map((opt) => (
-                <label key={opt} className="flex items-center gap-3 text-[15px] text-zinc-800 cursor-pointer min-h-[36px]">
+                <label key={opt} className="flex items-center gap-3 text-[15px] text-zinc-300 cursor-pointer min-h-[36px]">
                   <input
                     type="radio"
                     name="q5_improvement"
@@ -272,7 +254,7 @@ export default function SurveySection({ onSubmitted }) {
                     checked={formData.q5_improvement === opt}
                     onChange={handleChange}
                     required
-                    className="w-4 h-4 text-zinc-950 focus:ring-zinc-950"
+                    className="w-4 h-4 text-[#00E5FF] focus:ring-[#00E5FF] bg-zinc-900 border-zinc-700"
                   />
                   <span>{opt}</span>
                 </label>
@@ -281,52 +263,43 @@ export default function SurveySection({ onSubmitted }) {
           </div>
 
           {/* Q6 Comment */}
-          <div className="space-y-2">
-            <label className="block text-[17px] font-bold text-zinc-950 break-keep">
-              6. 응급의료체계 개선에 관한 자유 의견 (선택)
+          <div className="space-y-3 border-t border-zinc-800 pt-6">
+            <label className="block text-[17px] font-bold text-white break-keep">
+              6. 응급의료체계 개선이나 연구팀에 전하고 싶은 의견이 있다면 자유롭게 적어주세요.
             </label>
             <textarea
               name="q6_comment"
+              rows={4}
               value={formData.q6_comment}
               onChange={handleChange}
-              rows={3}
-              placeholder="개인정보(이름, 연락처, 특정 병원명)를 제외한 정책적 의견을 남겨주세요."
-              className="w-full p-3 border border-zinc-300 text-[15px] rounded-[2px] focus:outline-none focus:ring-1 focus:ring-zinc-950 resize-none"
+              placeholder="자유롭게 고견을 남겨주세요."
+              className="w-full p-4 bg-zinc-900 border border-zinc-700 text-white rounded-[2px] text-[15px] focus:outline-none focus:border-[#00E5FF] leading-relaxed"
             />
           </div>
 
-          {/* Agreement Checkbox */}
-          <div className="pt-4 border-t border-zinc-200">
-            <label className="flex items-start gap-3 cursor-pointer text-[15px] text-zinc-800">
+          {/* Agreement */}
+          <div className="border-t border-zinc-800 pt-6 space-y-4">
+            <label className="flex items-start gap-3 cursor-pointer">
               <input
                 type="checkbox"
                 name="agreed"
                 checked={formData.agreed}
                 onChange={handleChange}
                 required
-                className="w-4 h-4 mt-1 rounded-[2px] text-zinc-950 focus:ring-zinc-950"
+                className="w-5 h-5 mt-0.5 text-[#00E5FF] focus:ring-[#00E5FF] bg-zinc-900 border-zinc-700 shrink-0"
               />
-              <span className="break-keep">
-                본 조사는 학술 연구 목적의 익명 설문이며, 개인식별정보를 일체 수집하지 않음에 동의합니다. <span className="text-[#0B3CFF] font-bold">*</span>
+              <span className="text-[14px] text-zinc-300 leading-snug break-keep">
+                (필수) 본 응답 내용은 연구 목적 외로 사용되지 않으며, 개인 식별 정보가 수집되지 않음에 동의합니다.
               </span>
             </label>
-          </div>
 
-          {/* Submit Button */}
-          <div>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="min-h-[44px] px-8 py-3 bg-[#0B3CFF] hover:bg-blue-700 text-white font-semibold text-[15px] rounded-[2px] transition-colors inline-flex items-center gap-2 shadow-xs"
+              className="w-full min-h-[50px] py-3.5 bg-[#00E5FF] hover:bg-[#00c8e0] text-black font-bold text-[16px] rounded-[2px] transition-all flex items-center justify-center gap-2 shadow-md disabled:opacity-50"
             >
-              {isSubmitting ? (
-                <span>제출 처리 중...</span>
-              ) : (
-                <>
-                  <Send className="w-4 h-4" />
-                  <span>설문 제출하기</span>
-                </>
-              )}
+              <Send className="w-4 h-4" />
+              <span>{isSubmitting ? '등록 중...' : '시민 의견 제출하기'}</span>
             </button>
           </div>
 
