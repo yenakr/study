@@ -17,9 +17,9 @@ export default function PosterModal({ isOpen, onClose }) {
         {/* Header */}
         <div className="bg-zinc-50 p-5 sm:p-6 flex items-center justify-between border-b border-zinc-200 shrink-0">
           <div>
-            <span className="font-mono text-[13px] font-bold text-zinc-600 block">학술 발표 인쇄물</span>
+            <span className="font-mono text-[13px] font-bold text-zinc-600 block">발표 인쇄물</span>
             <h3 id="poster-modal-title" className="font-serif font-bold text-[20px] text-zinc-950">
-              2026 한양학술타운 LION 최종 학술 포스터 요약
+              2026 한양학술타운 LION 최종 포스터 요약
             </h3>
           </div>
           <button

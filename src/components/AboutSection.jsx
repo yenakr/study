@@ -154,15 +154,15 @@ export default function AboutSection({ onOpenPdf, onOpenPoster, setActiveTab }) 
 
             <div className="border border-zinc-300 p-5 space-y-3 bg-zinc-50 flex flex-col justify-between">
               <div className="space-y-1.5">
-                <span className="font-bold text-[17px] text-zinc-950 block">02. A0 학술 포스터</span>
-                <p className="text-[15px] text-zinc-700 leading-relaxed">한양학술타운 LION 발표용 고해상도 학술 인쇄물</p>
+                <span className="font-bold text-[17px] text-zinc-950 block">02. 포스터</span>
+                <p className="text-[15px] text-zinc-700 leading-relaxed">한양학술타운 LION 발표용 고해상도 인쇄물</p>
               </div>
               <button
                 onClick={onOpenPoster}
                 className="min-h-[44px] inline-flex items-center gap-2 text-[15px] font-bold text-[#0B3CFF] hover:underline pt-2"
               >
                 <Image className="w-4 h-4" />
-                <span>학술 포스터</span>
+                <span>포스터</span>
               </button>
             </div>
 

@@ -308,7 +308,7 @@ export default function PolicySection({ onOpenPoster, setActiveTab }) {
         <div className="border border-zinc-300 bg-white p-6 sm:p-8 text-left flex flex-col sm:flex-row sm:items-center justify-between gap-6">
           <div className="space-y-1">
             <h4 className="text-[20px] font-semibold text-zinc-950">공식 연구 산출물 열람</h4>
-            <p className="text-[15px] text-zinc-600">2026 한양학술타운 LION 정책제안서 및 학술 포스터</p>
+            <p className="text-[15px] text-zinc-600">2026 한양학술타운 LION 정책제안서 및 포스터</p>
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
@@ -324,7 +324,7 @@ export default function PolicySection({ onOpenPoster, setActiveTab }) {
               className="min-h-[44px] px-5 py-2.5 border border-zinc-300 bg-white hover:bg-zinc-50 text-zinc-900 text-[15px] font-semibold rounded-[2px] transition-colors inline-flex items-center gap-2"
             >
               <Image className="w-4 h-4" />
-              <span>학술 포스터</span>
+              <span>포스터</span>
             </button>
           </div>
         </div>
