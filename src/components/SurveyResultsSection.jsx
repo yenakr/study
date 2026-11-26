@@ -107,7 +107,7 @@ export default function SurveyResultsSection({ refreshTrigger, setActiveTab }) {
           onClick={() => { setActiveTab('about'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
           className="inline-flex items-center min-h-[44px] px-6 py-3 bg-zinc-950 hover:bg-zinc-800 text-white text-[15px] font-semibold rounded-[2px] transition-colors gap-2"
         >
-          <span>프로젝트 소개 보기</span>
+          <span>프로젝트 소개</span>
           <ArrowRight className="w-4 h-4" />
         </button>
       </div>

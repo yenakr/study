@@ -317,14 +317,14 @@ export default function PolicySection({ onOpenPoster, setActiveTab }) {
               className="min-h-[44px] px-5 py-2.5 bg-zinc-950 hover:bg-zinc-800 text-white text-[15px] font-semibold rounded-[2px] transition-colors inline-flex items-center gap-2"
             >
               <FileText className="w-4 h-4" />
-              <span>보고서 보기</span>
+              <span>정책제안서</span>
             </button>
             <button
               onClick={onOpenPoster}
               className="min-h-[44px] px-5 py-2.5 border border-zinc-300 bg-white hover:bg-zinc-50 text-zinc-900 text-[15px] font-semibold rounded-[2px] transition-colors inline-flex items-center gap-2"
             >
               <Image className="w-4 h-4" />
-              <span>포스터 보기</span>
+              <span>학술 포스터</span>
             </button>
           </div>
         </div>
@@ -335,7 +335,7 @@ export default function PolicySection({ onOpenPoster, setActiveTab }) {
             onClick={() => { setActiveTab('er-guide'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
             className="inline-flex items-center min-h-[44px] px-6 py-3 bg-zinc-950 hover:bg-zinc-800 text-white text-[15px] font-semibold rounded-[2px] transition-colors gap-2"
           >
-            <span>응급실 가이드 보기</span>
+            <span>응급실 가이드</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>

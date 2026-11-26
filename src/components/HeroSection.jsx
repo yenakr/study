@@ -64,19 +64,19 @@ export default function HeroSection({ setActiveTab }) {
                 onClick={() => { setActiveTab('issues'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 className="min-h-[44px] px-5 py-2.5 bg-zinc-950 text-white text-[15px] font-semibold rounded hover:bg-zinc-800 transition-colors inline-flex items-center"
               >
-                2026 현안 보기
+                2026 현안
               </button>
               <button
                 onClick={() => { setActiveTab('policy'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 className="min-h-[44px] px-5 py-2.5 bg-white text-zinc-950 border border-zinc-300 text-[15px] font-semibold rounded hover:bg-zinc-50 transition-colors inline-flex items-center"
               >
-                3대 정책 보기
+                3대 정책
               </button>
               <button
                 onClick={() => { setActiveTab('research'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 className="min-h-[44px] px-5 py-2.5 bg-white text-zinc-700 border border-zinc-200 text-[15px] font-medium rounded hover:bg-zinc-50 transition-colors inline-flex items-center"
               >
-                연구 과정 보기
+                연구 과정
               </button>
             </div>
           </div>
@@ -202,7 +202,7 @@ export default function HeroSection({ setActiveTab }) {
               onClick={() => { setActiveTab('problem'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
               className="min-h-[44px] inline-flex items-center text-[15px] font-bold text-zinc-950 hover:underline"
             >
-              <span>문제 분석 보기</span>
+              <span>문제 분석</span>
               <ArrowRight className="w-4 h-4 ml-1.5" />
             </button>
           </div>

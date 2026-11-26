@@ -211,7 +211,7 @@ export default function ProblemSection({ setActiveTab }) {
             onClick={() => { setActiveTab('issues'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
             className="min-h-[44px] inline-flex items-center px-5 py-2.5 bg-zinc-950 hover:bg-zinc-800 text-white text-[15px] font-semibold rounded transition-colors"
           >
-            <span>2026 현안 보기</span>
+            <span>2026 현안</span>
             <ArrowRight className="w-4 h-4 ml-2" />
           </button>
         </div>

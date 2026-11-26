@@ -148,7 +148,7 @@ export default function AboutSection({ onOpenPdf, onOpenPoster, setActiveTab }) 
                 className="min-h-[44px] inline-flex items-center gap-2 text-[15px] font-bold text-zinc-950 hover:underline pt-2"
               >
                 <FileText className="w-4 h-4" />
-                <span>보고서 보기</span>
+                <span>정책제안서</span>
               </button>
             </div>
 
@@ -162,7 +162,7 @@ export default function AboutSection({ onOpenPdf, onOpenPoster, setActiveTab }) 
                 className="min-h-[44px] inline-flex items-center gap-2 text-[15px] font-bold text-zinc-950 hover:underline pt-2"
               >
                 <Image className="w-4 h-4" />
-                <span>포스터 보기</span>
+                <span>학술 포스터</span>
               </button>
             </div>
 
