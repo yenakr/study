@@ -30,7 +30,5 @@ export const PROJECT_CONFIG = {
     "CODE BLUE 웹사이트"
   ],
 
-  footerDisclaimer: "본 사이트는 2026 한양학술타운 LION CODE BLUE 팀의 학술 프로젝트 결과물입니다. 실시간 병상정보, 의료기관 추천, 중증도 판정 또는 의료상담을 제공하지 않습니다. 응급상황에서는 119의 안내를 따르세요.",
-
   pdfFileName: "CODE_BLUE_중증응급환자_이송지연_개선_최종정책제안서.pdf"
 };
