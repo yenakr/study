@@ -60,7 +60,7 @@ export default function SurveyResultsSection({ refreshTrigger, setActiveTab }) {
                           <span className="font-mono font-bold text-zinc-950 shrink-0">{pct}% ({item.count}명)</span>
                         </div>
                         <div className="w-full bg-zinc-100 h-2 overflow-hidden">
-                          <div className="bg-zinc-950 h-full" style={{ width: `${pct}%` }} />
+                          <div className="bg-[#0B3CFF] h-full" style={{ width: `${pct}%` }} />
                         </div>
                       </div>
                     );
@@ -85,7 +85,7 @@ export default function SurveyResultsSection({ refreshTrigger, setActiveTab }) {
                           <span className="font-mono font-bold text-zinc-950 shrink-0">{pct}% ({item.count}명)</span>
                         </div>
                         <div className="w-full bg-zinc-100 h-2 overflow-hidden">
-                          <div className="bg-zinc-950 h-full" style={{ width: `${pct}%` }} />
+                          <div className="bg-[#0B3CFF] h-full" style={{ width: `${pct}%` }} />
                         </div>
                       </div>
                     );
@@ -105,7 +105,7 @@ export default function SurveyResultsSection({ refreshTrigger, setActiveTab }) {
       <div className="pt-8 border-t border-zinc-200 flex justify-end">
         <button
           onClick={() => { setActiveTab('about'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-          className="inline-flex items-center min-h-[44px] px-6 py-3 bg-zinc-950 hover:bg-zinc-800 text-white text-[15px] font-semibold rounded-[2px] transition-colors gap-2"
+          className="inline-flex items-center min-h-[44px] px-6 py-3 bg-[#0B3CFF] hover:bg-blue-700 text-white text-[15px] font-semibold rounded-[2px] transition-colors shadow-xs gap-2"
         >
           <span>프로젝트 소개</span>
           <ArrowRight className="w-4 h-4" />

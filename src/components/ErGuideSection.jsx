@@ -97,7 +97,7 @@ export default function ErGuideSection({ setActiveTab }) {
         
         {/* Section Header (Left-aligned) */}
         <div className="space-y-4 text-left border-b border-zinc-200 pb-8">
-          <div className="text-[13px] font-mono font-bold text-zinc-600 uppercase tracking-widest">
+          <div className="text-[13px] font-mono font-bold text-[#0B3CFF] uppercase tracking-widest">
             SECTION 05 • 시민 안내 및 이용 수칙
           </div>
 
@@ -187,7 +187,7 @@ export default function ErGuideSection({ setActiveTab }) {
                   <div className="flex justify-end pt-2">
                     <button
                       onClick={nextQuestion}
-                      className="min-h-[44px] px-6 py-2.5 bg-zinc-950 text-white text-[15px] font-semibold rounded-[2px] hover:bg-zinc-800 transition-colors"
+                      className="min-h-[44px] px-6 py-2.5 bg-[#0B3CFF] text-white text-[15px] font-semibold rounded-[2px] hover:bg-blue-700 transition-colors shadow-xs"
                     >
                       {currentStep < questions.length - 1 ? '다음 문항' : '결과 확인'}
                     </button>
@@ -263,7 +263,7 @@ export default function ErGuideSection({ setActiveTab }) {
         <div className="pt-8 border-t border-zinc-200 flex justify-end">
           <button
             onClick={() => { setActiveTab('survey'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="inline-flex items-center min-h-[44px] px-6 py-3 bg-zinc-950 hover:bg-zinc-800 text-white text-[15px] font-semibold rounded-[2px] transition-colors gap-2"
+            className="inline-flex items-center min-h-[44px] px-6 py-3 bg-[#0B3CFF] hover:bg-blue-700 text-white text-[15px] font-semibold rounded-[2px] transition-colors shadow-xs gap-2"
           >
             <span>시민 의견</span>
             <ArrowRight className="w-4 h-4" />

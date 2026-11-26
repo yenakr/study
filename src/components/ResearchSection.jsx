@@ -9,7 +9,7 @@ export default function ResearchSection({ setActiveTab }) {
         
         {/* Section Header (Left-aligned) */}
         <div className="space-y-4 text-left border-b border-zinc-200 pb-8">
-          <div className="text-[13px] font-mono font-bold text-zinc-600 uppercase tracking-widest">
+          <div className="text-[13px] font-mono font-bold text-[#0B3CFF] uppercase tracking-widest">
             SECTION 03 • 연구 방법 및 타임라인
           </div>
           
@@ -74,8 +74,8 @@ export default function ResearchSection({ setActiveTab }) {
 
             {/* Center Convergence Operator */}
             <div className="md:col-span-2 flex flex-col items-center justify-center py-4">
-              <div className="w-12 h-12 rounded-full border-2 border-zinc-950 bg-white flex items-center justify-center shadow-xs">
-                <GitMerge className="w-5 h-5 text-zinc-950" />
+              <div className="w-12 h-12 rounded-full border-2 border-[#0B3CFF] bg-blue-50/40 flex items-center justify-center shadow-xs">
+                <GitMerge className="w-5 h-5 text-[#0B3CFF]" />
               </div>
               <span className="text-[13px] font-mono font-bold text-zinc-950 mt-2">학제 융합</span>
               <span className="text-[11px] text-zinc-600 text-center">임상 병목과<br />법제도 연계</span>
@@ -116,12 +116,12 @@ export default function ResearchSection({ setActiveTab }) {
           </div>
 
           {/* Resulting Node Banner */}
-          <div className="p-4 bg-zinc-950 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="p-4 bg-[#0B3CFF] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
             <div className="flex items-center gap-2">
               <FileCheck className="w-5 h-5 text-white shrink-0" />
               <span className="font-bold text-[15px]">최종 정책 도출: 필수의료 전문인력 중심 3대 과제</span>
             </div>
-            <span className="text-[13px] font-mono text-zinc-300">순환당직제 • 의무복무 선발 • 법적 분쟁지원</span>
+            <span className="text-[13px] font-mono text-blue-100">순환당직제 • 의무복무 선발 • 법적 분쟁지원</span>
           </div>
         </div>
 
@@ -213,7 +213,7 @@ export default function ResearchSection({ setActiveTab }) {
         <div className="pt-8 border-t border-zinc-200 flex justify-end">
           <button
             onClick={() => { setActiveTab('policy'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="inline-flex items-center min-h-[44px] px-6 py-3 bg-zinc-950 hover:bg-zinc-800 text-white text-[15px] font-semibold rounded-[2px] transition-colors gap-2"
+            className="inline-flex items-center min-h-[44px] px-6 py-3 bg-[#0B3CFF] hover:bg-blue-700 text-white text-[15px] font-semibold rounded-[2px] transition-colors shadow-xs gap-2"
           >
             <span>3대 정책</span>
             <ArrowRight className="w-4 h-4" />

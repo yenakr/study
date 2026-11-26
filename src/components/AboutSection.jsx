@@ -28,7 +28,7 @@ export default function AboutSection({ onOpenPdf, onOpenPoster, setActiveTab }) 
         
         {/* Section Header (Left-aligned) */}
         <div className="space-y-4 text-left border-b border-zinc-200 pb-8">
-          <div className="text-[13px] font-mono font-bold text-zinc-600 uppercase tracking-widest">
+          <div className="text-[13px] font-mono font-bold text-[#0B3CFF] uppercase tracking-widest">
             SECTION 07 • 연구진 및 프로젝트 소개
           </div>
 
@@ -145,7 +145,7 @@ export default function AboutSection({ onOpenPdf, onOpenPoster, setActiveTab }) 
               </div>
               <button
                 onClick={onOpenPdf}
-                className="min-h-[44px] inline-flex items-center gap-2 text-[15px] font-bold text-zinc-950 hover:underline pt-2"
+                className="min-h-[44px] inline-flex items-center gap-2 text-[15px] font-bold text-[#0B3CFF] hover:underline pt-2"
               >
                 <FileText className="w-4 h-4" />
                 <span>정책제안서</span>
@@ -159,7 +159,7 @@ export default function AboutSection({ onOpenPdf, onOpenPoster, setActiveTab }) 
               </div>
               <button
                 onClick={onOpenPoster}
-                className="min-h-[44px] inline-flex items-center gap-2 text-[15px] font-bold text-zinc-950 hover:underline pt-2"
+                className="min-h-[44px] inline-flex items-center gap-2 text-[15px] font-bold text-[#0B3CFF] hover:underline pt-2"
               >
                 <Image className="w-4 h-4" />
                 <span>학술 포스터</span>
@@ -208,7 +208,7 @@ export default function AboutSection({ onOpenPdf, onOpenPoster, setActiveTab }) 
         <div className="pt-8 border-t border-zinc-200 flex justify-end">
           <button
             onClick={() => { setActiveTab('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="inline-flex items-center min-h-[44px] px-6 py-3 bg-zinc-950 hover:bg-zinc-800 text-white text-[15px] font-semibold rounded-[2px] transition-colors gap-2"
+            className="inline-flex items-center min-h-[44px] px-6 py-3 bg-[#0B3CFF] hover:bg-blue-700 text-white text-[15px] font-semibold rounded-[2px] transition-colors shadow-xs gap-2"
           >
             <ArrowUp className="w-4 h-4" />
             <span>처음으로 이동</span>

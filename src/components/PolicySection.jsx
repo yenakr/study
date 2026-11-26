@@ -18,7 +18,7 @@ export default function PolicySection({ onOpenPoster, setActiveTab }) {
         
         {/* Section Header (Left-aligned) */}
         <div className="space-y-4 text-left border-b border-zinc-200 pb-8">
-          <div className="text-[13px] font-mono font-bold text-zinc-600 uppercase tracking-widest">
+          <div className="text-[13px] font-mono font-bold text-[#0B3CFF] uppercase tracking-widest">
             SECTION 04 • 정책 제안
           </div>
 
@@ -49,7 +49,7 @@ export default function PolicySection({ onOpenPoster, setActiveTab }) {
                 <div className="p-6 sm:p-8 border-b border-zinc-200 space-y-5">
                   <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3">
                     <div className="flex items-baseline gap-3">
-                      <span className="font-mono text-[13px] font-bold text-zinc-600">POLICY 0{policy.id}</span>
+                      <span className="font-mono text-[13px] font-bold text-[#0B3CFF]">POLICY 0{policy.id}</span>
                       <h3 className="text-[22px] font-serif font-bold text-zinc-950 break-keep">
                         {policy.title}
                       </h3>
@@ -60,7 +60,7 @@ export default function PolicySection({ onOpenPoster, setActiveTab }) {
                   </div>
 
                   {/* Goal Definition */}
-                  <div className="bg-zinc-50 border-l-4 border-zinc-950 p-4 space-y-1">
+                  <div className="bg-blue-50/15 border-l-4 border-[#0B3CFF] p-4 space-y-1">
                     <span className="font-bold text-zinc-950 block text-[15px]">정책 목표</span>
                     <p className="text-zinc-800 font-medium text-[15px] leading-relaxed break-keep">
                       {policy.target}
@@ -314,7 +314,7 @@ export default function PolicySection({ onOpenPoster, setActiveTab }) {
           <div className="flex flex-wrap items-center gap-3">
             <button
               onClick={() => setIsPreviewOpen(true)}
-              className="min-h-[44px] px-5 py-2.5 bg-zinc-950 hover:bg-zinc-800 text-white text-[15px] font-semibold rounded-[2px] transition-colors inline-flex items-center gap-2"
+              className="min-h-[44px] px-5 py-2.5 bg-[#0B3CFF] hover:bg-blue-700 text-white text-[15px] font-semibold rounded-[2px] transition-colors inline-flex items-center gap-2 shadow-xs"
             >
               <FileText className="w-4 h-4" />
               <span>정책제안서</span>
@@ -333,7 +333,7 @@ export default function PolicySection({ onOpenPoster, setActiveTab }) {
         <div className="pt-8 border-t border-zinc-200 flex justify-end">
           <button
             onClick={() => { setActiveTab('er-guide'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="inline-flex items-center min-h-[44px] px-6 py-3 bg-zinc-950 hover:bg-zinc-800 text-white text-[15px] font-semibold rounded-[2px] transition-colors gap-2"
+            className="inline-flex items-center min-h-[44px] px-6 py-3 bg-[#0B3CFF] hover:bg-blue-700 text-white text-[15px] font-semibold rounded-[2px] transition-colors shadow-xs gap-2"
           >
             <span>응급실 가이드</span>
             <ArrowRight className="w-4 h-4" />

@@ -11,7 +11,7 @@ export default function IssuesSection({ setActiveTab }) {
         
         {/* Section Header */}
         <div className="space-y-4 text-left border-b border-zinc-300 pb-8">
-          <div className="text-[13px] font-mono font-bold text-zinc-600">SECTION 02 • 2026년 현안 및 법 개정</div>
+          <div className="text-[13px] font-mono font-bold text-[#0B3CFF]">SECTION 02 • 2026년 현안 및 법 개정</div>
           
           {/* Core Sentence First (20px bold) */}
           <div className="text-[20px] font-bold text-zinc-950 leading-snug break-keep">
@@ -38,7 +38,7 @@ export default function IssuesSection({ setActiveTab }) {
               >
                 <div className="flex items-baseline justify-between border-b border-zinc-200 pb-3">
                   <span className="font-mono text-[15px] font-bold text-zinc-900">{c.date}</span>
-                  <span className="text-[13px] font-semibold text-zinc-900 bg-zinc-100 px-2.5 py-0.5 border border-zinc-300 rounded">
+                  <span className="text-[13px] font-semibold text-[#0B3CFF] bg-blue-50/50 px-2.5 py-0.5 border border-[#0B3CFF]/30 rounded">
                     {c.stageNote}
                   </span>
                 </div>
@@ -98,7 +98,7 @@ export default function IssuesSection({ setActiveTab }) {
           </div>
 
           {/* Academic Assessment Callout */}
-          <div className="border-l-2 border-zinc-950 bg-zinc-50 p-5 space-y-1.5">
+          <div className="border-l-4 border-[#0B3CFF] bg-blue-50/15 p-5 space-y-1.5">
             <p className="text-[17px] font-bold text-zinc-950 leading-snug break-keep">
               “{lawRevision.highlightNote.lead}”
             </p>
@@ -160,7 +160,7 @@ export default function IssuesSection({ setActiveTab }) {
         <div className="pt-8 border-t border-zinc-200 flex justify-end">
           <button
             onClick={() => { setActiveTab('research'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="min-h-[44px] inline-flex items-center px-5 py-2.5 bg-zinc-950 hover:bg-zinc-800 text-white text-[15px] font-semibold rounded transition-colors"
+            className="min-h-[44px] inline-flex items-center px-6 py-3 bg-[#0B3CFF] hover:bg-blue-700 text-white text-[15px] font-semibold rounded-[2px] transition-colors shadow-xs"
           >
             <span>연구 과정</span>
             <ArrowRight className="w-4 h-4 ml-2" />

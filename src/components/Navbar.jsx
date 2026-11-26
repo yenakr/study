@@ -33,7 +33,7 @@ export default function Navbar({ activeTab, setActiveTab }) {
             aria-label="CODE BLUE 메인으로 이동"
           >
             <span className="font-serif font-black text-[22px] tracking-tight text-zinc-950">
-              {PROJECT_CONFIG.teamName}
+              CODE <span className="text-[#0B3CFF]">BLUE</span>
             </span>
             <span className="hidden sm:inline-block text-[15px] text-zinc-600 font-normal pl-3 border-l border-zinc-300">
               2026 한양학술타운 LION
@@ -50,7 +50,7 @@ export default function Navbar({ activeTab, setActiveTab }) {
                   onClick={() => handleTabClick(item.id)}
                   className={`px-3 py-2 text-[15px] min-h-[44px] flex items-center transition-colors border-b-2 font-medium ${
                     isActive 
-                      ? 'border-zinc-950 text-zinc-950 font-bold text-[#0B3CFF]' 
+                      ? 'border-[#0B3CFF] text-[#0B3CFF] font-bold' 
                       : 'border-transparent text-zinc-600 hover:text-zinc-950 hover:border-zinc-300'
                   }`}
                 >
@@ -84,7 +84,7 @@ export default function Navbar({ activeTab, setActiveTab }) {
                 onClick={() => handleTabClick(item.id)}
                 className={`w-full text-left px-3 py-3 min-h-[44px] text-[15px] font-medium border-l-2 flex items-center ${
                   isActive 
-                    ? 'border-zinc-950 bg-zinc-100 text-zinc-950 font-bold text-[#0B3CFF]' 
+                    ? 'border-[#0B3CFF] bg-blue-50/40 text-[#0B3CFF] font-bold' 
                     : 'border-transparent text-zinc-600 hover:bg-zinc-50'
                 }`}
               >

@@ -157,7 +157,7 @@ export default function PdfPreviewModal({ isOpen, onClose }) {
           </button>
           <button
             onClick={generatePolicyPDF}
-            className="min-h-[44px] px-5 py-2.5 bg-zinc-950 hover:bg-zinc-800 text-white font-semibold text-[15px] rounded-[2px] transition-colors inline-flex items-center gap-2"
+            className="min-h-[44px] px-5 py-2.5 bg-[#0B3CFF] hover:bg-blue-700 text-white font-semibold text-[15px] rounded-[2px] transition-colors inline-flex items-center gap-2 shadow-xs"
           >
             <Download className="w-4 h-4" />
             <span>PDF 받기</span>

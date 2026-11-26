@@ -37,11 +37,11 @@ export default function HeroSection({ setActiveTab }) {
         {/* Editorial Masthead Meta */}
         <div className="border-b border-zinc-300 pb-3 mb-10 flex flex-wrap items-baseline justify-between gap-2 text-[13px] text-zinc-600">
           <div>
-            <span className="font-semibold text-zinc-950">2026 한양학술타운 LION</span>
+            <span className="font-semibold text-[#0B3CFF]">2026 한양학술타운 LION</span>
             <span className="mx-2">|</span>
             <span>간호학과 × 정책학과 융합 연구 브리프</span>
           </div>
-          <div>발행 2026년 11월 • 팀 CODE BLUE</div>
+          <div>발행 2026년 11월 • 팀 <strong className="font-bold text-[#0B3CFF]">CODE BLUE</strong></div>
         </div>
 
         {/* Asymmetrical 2-Column Grid */}
@@ -62,19 +62,19 @@ export default function HeroSection({ setActiveTab }) {
             <div className="pt-2 flex flex-wrap items-center gap-3">
               <button
                 onClick={() => { setActiveTab('issues'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                className="min-h-[44px] px-5 py-2.5 bg-zinc-950 text-white text-[15px] font-semibold rounded hover:bg-zinc-800 transition-colors inline-flex items-center"
+                className="min-h-[44px] px-5 py-2.5 bg-[#0B3CFF] hover:bg-blue-700 text-white text-[15px] font-semibold rounded-[2px] transition-colors inline-flex items-center shadow-xs"
               >
                 2026 현안
               </button>
               <button
                 onClick={() => { setActiveTab('policy'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                className="min-h-[44px] px-5 py-2.5 bg-white text-zinc-950 border border-zinc-300 text-[15px] font-semibold rounded hover:bg-zinc-50 transition-colors inline-flex items-center"
+                className="min-h-[44px] px-5 py-2.5 bg-white text-zinc-950 border border-zinc-300 text-[15px] font-semibold rounded-[2px] hover:bg-zinc-50 transition-colors inline-flex items-center"
               >
                 3대 정책
               </button>
               <button
                 onClick={() => { setActiveTab('research'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                className="min-h-[44px] px-5 py-2.5 bg-white text-zinc-700 border border-zinc-200 text-[15px] font-medium rounded hover:bg-zinc-50 transition-colors inline-flex items-center"
+                className="min-h-[44px] px-5 py-2.5 bg-white text-zinc-700 border border-zinc-200 text-[15px] font-medium rounded-[2px] hover:bg-zinc-50 transition-colors inline-flex items-center"
               >
                 연구 과정
               </button>
@@ -84,7 +84,7 @@ export default function HeroSection({ setActiveTab }) {
           {/* Right Column: Legal Responsibility Structure Diagram */}
           <div className="lg:col-span-5 border border-zinc-300 bg-white p-7 text-left space-y-5">
             <div className="border-b border-zinc-200 pb-3">
-              <span className="text-[13px] font-mono font-bold text-zinc-600 block uppercase tracking-wide">
+              <span className="text-[13px] font-mono font-bold text-[#0B3CFF] block uppercase tracking-wide">
                 응급의료법상 책임 구조 분석
               </span>
               <h2 className="text-[22px] font-semibold text-zinc-950 mt-1 leading-snug break-keep">
@@ -99,7 +99,7 @@ export default function HeroSection({ setActiveTab }) {
               <div className="border border-zinc-300 bg-zinc-50 p-4 space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-[15px] text-zinc-950 flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-zinc-900 inline-block"></span>
+                    <span className="w-2 h-2 rounded-full bg-[#0B3CFF] inline-block"></span>
                     경로 A. 환자 수용 시
                   </span>
                   <span className="text-[13px] font-mono text-zinc-600 border border-zinc-200 bg-white px-2 py-0.5">형법 제268조</span>

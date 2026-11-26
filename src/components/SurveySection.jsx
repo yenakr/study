@@ -317,7 +317,7 @@ export default function SurveySection({ onSubmitted }) {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="min-h-[44px] px-8 py-3 bg-zinc-950 hover:bg-zinc-800 text-white font-semibold text-[15px] rounded-[2px] transition-colors inline-flex items-center gap-2"
+              className="min-h-[44px] px-8 py-3 bg-[#0B3CFF] hover:bg-blue-700 text-white font-semibold text-[15px] rounded-[2px] transition-colors inline-flex items-center gap-2 shadow-xs"
             >
               {isSubmitting ? (
                 <span>제출 처리 중...</span>

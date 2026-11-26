@@ -90,7 +90,7 @@ export default function App() {
         {activeTab === 'survey' && (
           <div className="animate-fadeIn py-24 sm:py-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
             <div className="space-y-4 text-left border-b border-zinc-200 pb-8">
-              <div className="text-[13px] font-mono font-bold text-zinc-600 uppercase tracking-widest">
+              <div className="text-[13px] font-mono font-bold text-[#0B3CFF] uppercase tracking-widest">
                 SECTION 06 • 시민 참여 및 의견 수렴
               </div>
 

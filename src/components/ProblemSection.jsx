@@ -50,7 +50,7 @@ export default function ProblemSection({ setActiveTab }) {
         
         {/* Section Header */}
         <div className="space-y-4 text-left border-b border-zinc-200 pb-8">
-          <div className="text-[13px] font-mono font-bold text-zinc-600">SECTION 01 • 현황 분석</div>
+          <div className="text-[13px] font-mono font-bold text-[#0B3CFF]">SECTION 01 • 현황 분석</div>
           
           {/* Core Sentence First (20px bold) */}
           <div className="text-[20px] font-bold text-zinc-950 leading-snug break-keep">
@@ -209,7 +209,7 @@ export default function ProblemSection({ setActiveTab }) {
         <div className="pt-8 border-t border-zinc-200 flex justify-end">
           <button
             onClick={() => { setActiveTab('issues'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            className="min-h-[44px] inline-flex items-center px-5 py-2.5 bg-zinc-950 hover:bg-zinc-800 text-white text-[15px] font-semibold rounded transition-colors"
+            className="min-h-[44px] inline-flex items-center px-6 py-3 bg-[#0B3CFF] hover:bg-blue-700 text-white text-[15px] font-semibold rounded-[2px] transition-colors shadow-xs"
           >
             <span>2026 현안</span>
             <ArrowRight className="w-4 h-4 ml-2" />
