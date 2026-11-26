@@ -15,7 +15,7 @@ export default function PosterModal({ isOpen, onClose }) {
       <div className="bg-white max-w-2xl w-full max-h-[90vh] flex flex-col border border-zinc-300 shadow-xl overflow-hidden text-left">
         
         {/* Header */}
-        <div className="bg-[#FAF9F5] p-5 sm:p-6 flex items-center justify-between border-b border-zinc-200 shrink-0">
+        <div className="bg-zinc-50 p-5 sm:p-6 flex items-center justify-between border-b border-zinc-200 shrink-0">
           <div>
             <span className="font-mono text-[13px] font-bold text-zinc-600 block">학술 발표 인쇄물</span>
             <h3 id="poster-modal-title" className="font-serif font-bold text-[20px] text-zinc-950">
@@ -32,7 +32,7 @@ export default function PosterModal({ isOpen, onClose }) {
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 sm:p-8 overflow-y-auto space-y-6 text-zinc-900 text-[15px] leading-relaxed bg-[#FAF9F5]">
+        <div className="p-6 sm:p-8 overflow-y-auto space-y-6 text-zinc-900 text-[15px] leading-relaxed bg-zinc-100/60">
           
           <div className="bg-white p-6 border border-zinc-300 space-y-2">
             <span className="font-mono text-[13px] font-bold text-zinc-600 block">연구 과제명</span>
@@ -83,7 +83,7 @@ export default function PosterModal({ isOpen, onClose }) {
               </div>
             </div>
 
-            <div className="p-4 bg-[#FAF9F5] border border-zinc-200 text-zinc-700 text-[13px] break-keep">
+            <div className="p-4 bg-zinc-50 border border-zinc-200 text-zinc-700 text-[13px] break-keep">
               * 본 포스터는 2026 한양학술타운 LION 최종 심사 현장에 인쇄물로 게시·발표됩니다.
             </div>
           </div>

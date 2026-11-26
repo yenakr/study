@@ -17,7 +17,7 @@ export default function PdfPreviewModal({ isOpen, onClose }) {
       <div className="bg-white max-w-4xl w-full max-h-[90vh] flex flex-col border border-zinc-300 shadow-xl overflow-hidden">
         
         {/* Document Header Bar */}
-        <div className="bg-[#FAF9F5] p-5 sm:p-6 flex items-center justify-between border-b border-zinc-200 shrink-0">
+        <div className="bg-zinc-50 p-5 sm:p-6 flex items-center justify-between border-b border-zinc-200 shrink-0">
           <div>
             <span className="font-mono text-[13px] font-bold text-zinc-600 block">학술 정책 제안서 전문</span>
             <h3 id="pdf-modal-title" className="font-serif font-bold text-[20px] text-zinc-950">
@@ -34,7 +34,7 @@ export default function PdfPreviewModal({ isOpen, onClose }) {
         </div>
 
         {/* Paper Document Layout */}
-        <div className="p-6 sm:p-10 overflow-y-auto space-y-8 bg-[#FAF9F5] text-zinc-900">
+        <div className="p-6 sm:p-10 overflow-y-auto space-y-8 bg-zinc-100/60 text-zinc-900">
           
           {/* Formal Official Report Paper */}
           <div className="bg-white p-6 sm:p-10 border border-zinc-300 max-w-3xl mx-auto space-y-8">
@@ -53,7 +53,7 @@ export default function PdfPreviewModal({ isOpen, onClose }) {
             </div>
 
             {/* Document Metadata Table */}
-            <div className="border border-zinc-200 bg-[#FAF9F5] p-4 grid grid-cols-2 sm:grid-cols-4 gap-4 text-[13px]">
+            <div className="border border-zinc-200 bg-zinc-50 p-4 grid grid-cols-2 sm:grid-cols-4 gap-4 text-[13px]">
               <div>
                 <span className="text-zinc-600 block font-mono">연구팀</span>
                 <span className="font-bold text-zinc-950 text-[15px]">{PROJECT_CONFIG.teamName}</span>
@@ -91,7 +91,7 @@ export default function PdfPreviewModal({ isOpen, onClose }) {
                 </h3>
 
                 {CORE_3_POLICIES.map((p, idx) => (
-                  <div key={idx} className="border border-zinc-200 p-5 space-y-3 bg-[#FAF9F5]">
+                  <div key={idx} className="border border-zinc-200 p-5 space-y-3 bg-zinc-50">
                     <div className="flex items-baseline gap-2 font-bold text-zinc-950">
                       <span className="font-mono text-[13px] text-zinc-600">[{p.code}]</span>
                       <h4 className="text-[17px]">{p.title}</h4>

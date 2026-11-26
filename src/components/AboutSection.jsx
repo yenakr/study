@@ -23,7 +23,7 @@ export default function AboutSection({ onOpenPdf, onOpenPoster, setActiveTab }) 
   ];
 
   return (
-    <section id="about" className="py-24 sm:py-28 bg-[#FAF9F5] text-zinc-900 min-h-screen font-sans border-b border-zinc-200">
+    <section id="about" className="py-24 sm:py-28 bg-white text-zinc-900 min-h-screen font-sans border-b border-zinc-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Section Header (Left-aligned) */}
@@ -83,7 +83,7 @@ export default function AboutSection({ onOpenPdf, onOpenPoster, setActiveTab }) 
 
           <div className="border border-zinc-200 bg-white overflow-x-auto">
             <table className="w-full text-left text-[15px] divide-y divide-zinc-200">
-              <thead className="bg-[#F4F1EA] text-zinc-900 font-semibold">
+              <thead className="bg-zinc-50 text-zinc-900 font-semibold border-b border-zinc-200">
                 <tr>
                   <th className="py-4 px-4 sm:px-6 w-1/4 border-r border-zinc-200">구분 / 성명</th>
                   <th className="py-4 px-4 sm:px-6 w-1/4 border-r border-zinc-200">소속 학과</th>
@@ -113,7 +113,7 @@ export default function AboutSection({ onOpenPdf, onOpenPoster, setActiveTab }) 
                     보건의료 법·제도 검토, 정책 구조와 실행방안 정리
                   </td>
                 </tr>
-                <tr className="hover:bg-zinc-50 transition-colors bg-[#FAF9F5]">
+                <tr className="hover:bg-zinc-50 transition-colors bg-zinc-50">
                   <td className="py-4 px-4 sm:px-6 font-bold border-r border-zinc-200 text-zinc-950 align-top">
                     공동 역할
                   </td>
@@ -138,7 +138,7 @@ export default function AboutSection({ onOpenPdf, onOpenPoster, setActiveTab }) 
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="border border-zinc-300 p-5 space-y-3 bg-[#FAF9F5] flex flex-col justify-between">
+            <div className="border border-zinc-300 p-5 space-y-3 bg-zinc-50 flex flex-col justify-between">
               <div className="space-y-1.5">
                 <span className="font-bold text-[17px] text-zinc-950 block">01. 학술 정책제안서</span>
                 <p className="text-[15px] text-zinc-700 leading-relaxed">3대 핵심 정책과 제도 분석을 포함한 공식 제안서</p>
@@ -152,7 +152,7 @@ export default function AboutSection({ onOpenPdf, onOpenPoster, setActiveTab }) 
               </button>
             </div>
 
-            <div className="border border-zinc-300 p-5 space-y-3 bg-[#FAF9F5] flex flex-col justify-between">
+            <div className="border border-zinc-300 p-5 space-y-3 bg-zinc-50 flex flex-col justify-between">
               <div className="space-y-1.5">
                 <span className="font-bold text-[17px] text-zinc-950 block">02. A0 학술 포스터</span>
                 <p className="text-[15px] text-zinc-700 leading-relaxed">한양학술타운 LION 발표용 고해상도 학술 인쇄물</p>

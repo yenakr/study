@@ -13,7 +13,7 @@ export default function PolicySection({ onOpenPoster, setActiveTab }) {
   };
 
   return (
-    <section id="policy" className="py-24 sm:py-28 bg-[#FAF9F5] text-zinc-900 min-h-screen font-sans border-b border-zinc-200">
+    <section id="policy" className="py-24 sm:py-28 bg-white text-zinc-900 min-h-screen font-sans border-b border-zinc-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Section Header (Left-aligned) */}
@@ -60,7 +60,7 @@ export default function PolicySection({ onOpenPoster, setActiveTab }) {
                   </div>
 
                   {/* Goal Definition */}
-                  <div className="bg-[#FAF9F5] border-l-4 border-zinc-950 p-4 space-y-1">
+                  <div className="bg-zinc-50 border-l-4 border-zinc-950 p-4 space-y-1">
                     <span className="font-bold text-zinc-950 block text-[15px]">정책 목표</span>
                     <p className="text-zinc-800 font-medium text-[15px] leading-relaxed break-keep">
                       {policy.target}
@@ -85,7 +85,7 @@ export default function PolicySection({ onOpenPoster, setActiveTab }) {
                 </div>
 
                 {/* Expand / Collapse Control */}
-                <div className="px-6 sm:px-8 py-3 bg-[#FAF9F5] border-b border-zinc-200 flex items-center justify-between">
+                <div className="px-6 sm:px-8 py-3 bg-zinc-50 border-b border-zinc-200 flex items-center justify-between">
                   <button
                     onClick={() => togglePolicy(policy.id)}
                     className="min-h-[44px] text-[15px] font-semibold text-zinc-800 hover:text-zinc-950 flex items-center gap-2 focus:outline-none"
@@ -105,7 +105,7 @@ export default function PolicySection({ onOpenPoster, setActiveTab }) {
                       <h4 className="font-bold text-zinc-950 text-[15px] uppercase tracking-wide">
                         세부 운영방안
                       </h4>
-                      <ul className="border border-zinc-200 divide-y divide-zinc-200 bg-[#FAF9F5]">
+                      <ul className="border border-zinc-200 divide-y divide-zinc-200 bg-zinc-50">
                         {policy.operations.map((op, i) => (
                           <li key={i} className="py-3 px-4 text-zinc-700 leading-relaxed flex items-start gap-3">
                             <span className="font-mono text-zinc-950 font-bold shrink-0">{i + 1}.</span>
@@ -210,7 +210,7 @@ export default function PolicySection({ onOpenPoster, setActiveTab }) {
           {isInitialTasksOpen && (
             <div className="space-y-3 pt-3 border-t border-zinc-200">
               {INITIAL_5_PROPOSALS.items.map((item, idx) => (
-                <div key={idx} className="p-4 bg-[#FAF9F5] border border-zinc-200 text-[15px] space-y-1">
+                <div key={idx} className="p-4 bg-zinc-50 border border-zinc-200 text-[15px] space-y-1">
                   <span className="font-bold text-zinc-950 block">{idx + 1}. {item.title}</span>
                   <span className="text-zinc-700 leading-relaxed block break-keep">{item.desc}</span>
                 </div>

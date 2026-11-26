@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 
 export default function ResearchSection({ setActiveTab }) {
   return (
-    <section id="research" className="py-24 sm:py-28 bg-[#FAF9F5] text-zinc-900 min-h-screen font-sans border-b border-zinc-200">
+    <section id="research" className="py-24 sm:py-28 bg-white text-zinc-900 min-h-screen font-sans border-b border-zinc-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Section Header (Left-aligned) */}
@@ -39,7 +39,7 @@ export default function ResearchSection({ setActiveTab }) {
 
           <div className="border border-zinc-200 bg-white overflow-x-auto">
             <table className="w-full text-left text-[15px] divide-y divide-zinc-200">
-              <thead className="bg-[#F4F1EA] text-zinc-900 font-semibold">
+              <thead className="bg-zinc-50 text-zinc-900 font-semibold border-b border-zinc-200">
                 <tr>
                   <th className="py-4 px-4 sm:px-6 w-28 border-r border-zinc-200 font-mono">시기</th>
                   <th className="py-4 px-4 sm:px-6 w-1/3 border-r border-zinc-200">연구 단계 및 주요 과업</th>

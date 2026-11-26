@@ -3,7 +3,7 @@ import { PROJECT_CONFIG } from '../config';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#FAF9F5] text-zinc-600 py-10 border-t border-zinc-200 font-sans text-left">
+    <footer className="bg-white text-zinc-600 py-10 border-t border-zinc-200 font-sans text-left">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3 text-[13px] text-zinc-600">
           <div className="break-keep">

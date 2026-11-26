@@ -6,7 +6,7 @@ export default function IssuesSection({ setActiveTab }) {
   const { title, subtitle, cases, lawRevision, flow } = MAJOR_ISSUES_2026;
 
   return (
-    <section id="issues" className="py-24 md:py-28 bg-[#FAF9F5] text-zinc-900 min-h-screen font-sans border-b border-zinc-200">
+    <section id="issues" className="py-24 md:py-28 bg-white text-zinc-900 min-h-screen font-sans border-b border-zinc-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Section Header */}
@@ -38,7 +38,7 @@ export default function IssuesSection({ setActiveTab }) {
               >
                 <div className="flex items-baseline justify-between border-b border-zinc-200 pb-3">
                   <span className="font-mono text-[15px] font-bold text-zinc-900">{c.date}</span>
-                  <span className="text-[13px] font-semibold text-amber-950 bg-amber-100 px-2.5 py-0.5 border border-amber-300 rounded">
+                  <span className="text-[13px] font-semibold text-zinc-900 bg-zinc-100 px-2.5 py-0.5 border border-zinc-300 rounded">
                     {c.stageNote}
                   </span>
                 </div>
@@ -98,7 +98,7 @@ export default function IssuesSection({ setActiveTab }) {
           </div>
 
           {/* Academic Assessment Callout */}
-          <div className="border-l-2 border-zinc-950 bg-[#FAF9F5] p-5 space-y-1.5">
+          <div className="border-l-2 border-zinc-950 bg-zinc-50 p-5 space-y-1.5">
             <p className="text-[17px] font-bold text-zinc-950 leading-snug break-keep">
               “{lawRevision.highlightNote.lead}”
             </p>
@@ -129,7 +129,7 @@ export default function IssuesSection({ setActiveTab }) {
 
           <div className="grid grid-cols-1 md:grid-cols-4 border border-zinc-300 divide-y md:divide-y-0 md:divide-x divide-zinc-200 text-left">
             {flow.map((item) => (
-              <div key={item.step} className="p-5 space-y-2 bg-[#FAF9F5] flex flex-col justify-between">
+              <div key={item.step} className="p-5 space-y-2 bg-zinc-50 flex flex-col justify-between">
                 <div>
                   <div className="text-[13px] font-mono font-bold text-zinc-600 mb-1">
                     단계 0{item.step}

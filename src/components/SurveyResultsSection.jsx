@@ -38,7 +38,7 @@ export default function SurveyResultsSection({ refreshTrigger, setActiveTab }) {
 
       {dbStats && dbStats.total > 0 ? (
         <div className="space-y-6 animate-fadeIn">
-          <div className="text-[13px] font-mono text-zinc-700 bg-[#FAF9F5] p-3 border border-zinc-200 flex justify-between">
+          <div className="text-[13px] font-mono text-zinc-700 bg-zinc-50 p-3 border border-zinc-200 flex justify-between">
             <span>집계 기준: 2026 한양학술타운 LION 설문 데이터베이스</span>
             <span className="font-bold text-zinc-950">누적 응답: {dbStats.total}건</span>
           </div>

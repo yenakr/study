@@ -10,7 +10,7 @@ export default function HeroSection({ setActiveTab }) {
   ];
 
   return (
-    <section className="bg-[#FAF9F5] text-zinc-900 py-24 md:py-28 border-b border-zinc-200 font-sans">
+    <section className="bg-white text-zinc-900 py-24 md:py-28 border-b border-zinc-200 font-sans">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Editorial Masthead Meta */}
@@ -98,13 +98,13 @@ export default function HeroSection({ setActiveTab }) {
             {flowSteps.map((s) => (
               <div 
                 key={s.num} 
-                className={`p-5 text-left min-h-[140px] flex flex-col justify-between ${s.highlight ? 'bg-amber-50/60' : 'bg-white'}`}
+                className={`p-5 text-left min-h-[140px] flex flex-col justify-between ${s.highlight ? 'bg-zinc-50' : 'bg-white'}`}
               >
                 <div>
                   <div className="flex items-baseline justify-between mb-2">
                     <span className="font-mono text-[15px] font-bold text-zinc-600">{s.num}</span>
                     {s.highlight && (
-                      <span className="text-[13px] font-bold text-amber-900 bg-amber-100 px-2 py-0.5 rounded">
+                      <span className="text-[13px] font-bold text-[#0B3CFF] bg-blue-50 border border-blue-200 px-2 py-0.5 rounded">
                         핵심 병목
                       </span>
                     )}

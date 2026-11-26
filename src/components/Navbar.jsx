@@ -22,7 +22,7 @@ export default function Navbar({ activeTab, setActiveTab }) {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 bg-[#FAF9F5]/95 backdrop-blur-xs border-b border-zinc-200 font-sans">
+    <header className="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-xs border-b border-zinc-200 font-sans">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between min-h-[56px]">
           
@@ -75,7 +75,7 @@ export default function Navbar({ activeTab, setActiveTab }) {
 
       {/* Mobile Drawer */}
       {isOpen && (
-        <div className="lg:hidden bg-[#FAF9F5] border-b border-zinc-200 px-4 pt-2 pb-4 space-y-1">
+        <div className="lg:hidden bg-white border-b border-zinc-200 px-4 pt-2 pb-4 space-y-1">
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
             return (

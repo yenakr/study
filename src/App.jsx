@@ -32,7 +32,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF9F5] text-zinc-900 font-sans selection:bg-zinc-800 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-white text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white">
       {/* Editorial Navigation Header */}
       <Navbar 
         activeTab={activeTab} 

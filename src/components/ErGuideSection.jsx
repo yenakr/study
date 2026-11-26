@@ -92,7 +92,7 @@ export default function ErGuideSection({ setActiveTab }) {
   };
 
   return (
-    <section id="er-guide" className="py-24 sm:py-28 bg-[#FAF9F5] text-zinc-900 min-h-screen font-sans border-b border-zinc-200">
+    <section id="er-guide" className="py-24 sm:py-28 bg-white text-zinc-900 min-h-screen font-sans border-b border-zinc-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Section Header (Left-aligned) */}
@@ -131,7 +131,7 @@ export default function ErGuideSection({ setActiveTab }) {
           {!showResult ? (
             <div className="border border-zinc-300 bg-white p-6 sm:p-8 space-y-6">
               
-              <div className="bg-[#FAF9F5] border border-zinc-200 p-5 space-y-2">
+              <div className="bg-zinc-50 border border-zinc-200 p-5 space-y-2">
                 <span className="text-[13px] font-mono font-bold text-zinc-600 block">질문 0{currentStep + 1}</span>
                 <p className="font-bold text-[18px] sm:text-[20px] text-zinc-950 leading-snug break-keep">
                   {questions[currentStep].question}
@@ -171,7 +171,7 @@ export default function ErGuideSection({ setActiveTab }) {
 
               {/* Answer Explanation Box */}
               {userAnswers[currentStep] !== undefined && (
-                <div className="p-6 bg-[#FAF9F5] border border-zinc-300 space-y-4 animate-fadeIn">
+                <div className="p-6 bg-zinc-50 border border-zinc-300 space-y-4 animate-fadeIn">
                   <div className="flex items-baseline gap-3">
                     <span className="font-bold text-[16px] text-zinc-950">
                       {userAnswers[currentStep] === questions[currentStep].answer ? '정답입니다' : '해설'}
@@ -229,7 +229,7 @@ export default function ErGuideSection({ setActiveTab }) {
 
           <div className="border border-zinc-200 bg-white overflow-x-auto">
             <table className="w-full text-left text-[15px] divide-y divide-zinc-200">
-              <thead className="bg-[#F4F1EA] text-zinc-900 font-semibold">
+              <thead className="bg-zinc-50 text-zinc-900 font-semibold border-b border-zinc-200">
                 <tr>
                   <th className="py-4 px-4 sm:px-6 w-20 border-r border-zinc-200 font-mono">번호</th>
                   <th className="py-4 px-4 sm:px-6 w-1/4 border-r border-zinc-200">구분 항목</th>

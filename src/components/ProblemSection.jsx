@@ -76,7 +76,7 @@ export default function ProblemSection({ setActiveTab }) {
           {/* Table (Min row height 56px, cells >= 15px) */}
           <div className="border border-zinc-300 overflow-x-auto">
             <table className="w-full text-left text-[15px] divide-y divide-zinc-200 min-w-[600px]">
-              <thead className="bg-[#FAF9F5] text-zinc-800 font-semibold border-b border-zinc-300">
+              <thead className="bg-zinc-50 text-zinc-900 font-semibold border-b border-zinc-300">
                 <tr className="min-h-[56px]">
                   <th className="py-4 px-5 w-1/4 border-r border-zinc-200">구분</th>
                   <th className="py-4 px-5 w-3/8 border-r border-zinc-200">법적·상황적 정의</th>
