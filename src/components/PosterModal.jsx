@@ -17,7 +17,7 @@ export default function PosterModal({ isOpen, onClose }) {
         {/* Header */}
         <div className="bg-zinc-50 p-5 sm:p-6 flex items-center justify-between border-b border-zinc-200 shrink-0">
           <div>
-            <span className="font-mono text-[13px] font-bold text-zinc-600 block">발표 인쇄물</span>
+            <span className="font-mono text-[13px] font-bold text-zinc-600 block">학술 포스터</span>
             <h3 id="poster-modal-title" className="font-serif font-bold text-[20px] text-zinc-950">
               2026 한양학술타운 LION 최종 포스터 요약
             </h3>
@@ -46,9 +46,8 @@ export default function PosterModal({ isOpen, onClose }) {
 
           {/* Poster Content Summary */}
           <div className="bg-white p-6 border border-zinc-300 space-y-6">
-            <div className="flex items-center justify-between border-b border-zinc-200 pb-3">
+            <div className="border-b border-zinc-200 pb-3">
               <span className="font-bold text-zinc-950 text-[16px]">포스터 패널 구성 및 수록 내용</span>
-              <span className="font-mono text-[13px] text-zinc-600">A0 인쇄 규격</span>
             </div>
 
             <div className="space-y-4 divide-y divide-zinc-200 text-[15px]">
@@ -81,10 +80,6 @@ export default function PosterModal({ isOpen, onClose }) {
                   초기 전산 정보망 중심 과제에서 출발하여, 배후 필수진료과 전문의 인력 확보와 사법 안전망 구축이 선행되어야 함을 증명한 연구 궤적 제시.
                 </p>
               </div>
-            </div>
-
-            <div className="p-4 bg-zinc-50 border border-zinc-200 text-zinc-700 text-[13px] break-keep">
-              * 본 포스터는 2026 한양학술타운 LION 최종 심사 현장에 인쇄물로 게시·발표됩니다.
             </div>
           </div>
 

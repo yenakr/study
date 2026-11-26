@@ -346,7 +346,7 @@ export default function InvestigativeReport({ onOpenPdf, onOpenPoster, onScrollT
               <span className="text-[16px] font-bold text-zinc-950 block">학술 포스터</span>
               <Image className="w-4 h-4 text-[#0052FF]" />
             </div>
-            <span className="text-[13px] text-zinc-600 block">한양학술타운 LION 최종 인쇄본</span>
+            <span className="text-[13px] text-zinc-600 block">연구 요약 및 정책 패널</span>
           </button>
 
           <button
